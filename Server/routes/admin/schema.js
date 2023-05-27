@@ -2,7 +2,7 @@ const Router = require('express').Router();
 const mongoose = require('mongoose');
 
 //create Schema
-Router.post('/schema/create', (req, res)=>{
+Router.post('/create', (req, res)=>{
     try {
         const Schema = new mongoose.Schema(req.body.structure, {timestamps: true});
         const model = mongoose.model(req.body.modelName, Schema);
@@ -14,9 +14,9 @@ Router.post('/schema/create', (req, res)=>{
 });
 
 //Store Data in the schema
-Router.post('/schema/store', async (req, res)=>{
-    try {
-        const model = mongoose.model('pros');
+Router.post('/store', async (req, res)=>{
+    try {   
+        const model = await mongoose.model(req.body.modelName);
         const data = new model(req.body.data);
         data.save();
         res.status(200).json(data);

@@ -13,7 +13,7 @@ const Navbar = () => {
 
   }, [mode]);
   return (
-    <div className={`w-full h-16 ${mode === "light" ? "bg-blue-50" : "bg-slate-800"} shadow-md flex items-center justify-between px-10`}>
+    <div className={`w-full h-14 ${mode === "light" ? "bg-blue-50" : "bg-slate-800"} shadow-md flex items-center justify-between px-10`}>
       <div className='flex items-center w-1/3 p-2'>
         <MdOutlineSearch className='w-7 h-7 mr-2 fill-gray-400' />
         <input className='bg-transparent text-xl w-full focus:outline-none' placeholder='Search for an entry...' />

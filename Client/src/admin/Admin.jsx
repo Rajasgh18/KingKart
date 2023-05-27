@@ -2,20 +2,31 @@ import React from 'react'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import { Routes, Route } from 'react-router-dom';
-import AdminHome from './pages/AdminHome';
-import Product from './pages/Product';
+import Dashboard from './pages/Dashboard';
 import ModeContext from './context/ModeContext';
+import Orders from './pages/Orders';
+import Products from './pages/Products';
+import Settings from './pages/Settings';
+import EditProduct from './pages/EditProduct';
+import AddProduct from './pages/AddProduct';
+import ProductDetails from './pages/ProductDetails';
 
 const Admin = () => {
   return (
     <ModeContext>
-      <div className='flex'>
+      <div className='flex min-w-screen min-h-screen'>
         <Sidebar />
         <div className='w-4/5'>
           <Navbar />
           <Routes>
-            <Route path="/" element={<AdminHome />} />
-            <Route path="/item" element={<Product />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route exact path="/products" element={<Products />} />
+            <Route path='/products/:id' element={<EditProduct />} />
+            <Route path='/products/details' element={<ProductDetails />} />
+            <Route path='/products/add' element={<AddProduct />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </div>
       </div>

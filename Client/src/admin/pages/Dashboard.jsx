@@ -1,11 +1,11 @@
 import React from 'react'
 
-const AdminHome = () => {
+const Dashboard = () => {
   return (
       <div className='flex'>
-        AdminHome
+        Dashboard
       </div>
   )
 }
 
-export default AdminHome
+export default Dashboard

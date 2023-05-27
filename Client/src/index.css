@@ -5,3 +5,39 @@
 * {
     font-family: 'Fira Sans', sans-serif;
 }
+
+.btnPrimary{
+    @apply bg-blue-500 flex items-center justify-center rounded-lg text-white
+}
+.itemBoxPrimary{
+    @apply w-1/6 px-4
+}
+
+.inputPrimary{
+    @apply border-2 p-2 my-2 mb-6 bg-slate-100 border-slate-300 focus:outline-blue-500 rounded-md
+}
+
+#openDialog{
+    animation: openAnim 400ms ease-in-out;
+}
+
+@keyframes openAnim{
+    from{
+        scale:0;
+        opacity: 0;
+    }
+    to{
+        scale:1;
+        opacity: 1;
+    }
+}
+@keyframes closeAnim {
+    from{
+        scale:1;
+        opacity: 1;
+    }
+    to{
+        scale:0;
+        opacity: 0;
+    }
+}

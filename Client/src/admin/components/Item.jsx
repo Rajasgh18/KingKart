@@ -1,26 +1,46 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import CreateContext from '../context/createContext';
+import { useNavigate } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import { RiPencilFill } from "react-icons/ri";
-const Item = () => {
-    const {mode} = useContext(CreateContext);
+import DeleteProduct from './DeleteProduct';
+const Item = ({ details }) => {
+    const { mode } = useContext(CreateContext);
+    const itemBoxBorder = `w-[1px] h-full ${mode === "dark" ? "bg-slate-400" : "bg-slate-300"}`;
+    const Navigate = useNavigate();
+
+    const { _id, name, category } = details;
+    const [isDeleteOpened, setIsDeleteOpened] = useState(false);
+
+    const handleDelete = () => {
+        if (isDeleteOpened)
+            setIsDeleteOpened(false);
+        else
+            setIsDeleteOpened(true);
+    }
+
+    const handleClick = () => {
+        Navigate(`/admin/products/${_id}`);
+    }
+
     return (
-        <div className={`flex w-full h-24 text-lg ${mode === "light" ? "text-slate-600 border-gray-400" : "text-white border-gray-300"} items-center border-b`}>
-            <span className='w-1/12 flex items-center justify-center'><img src="/assets/a64b345016e96adfb8849af5521c8e0ecfe8f027-555x555.webp" alt="img" className='h-20 w-20' /></span>
-            <hr className={`w-[1px] h-full ${mode === "dark" ? "bg-slate-400" : "bg-slate-300"}`}></hr>
-            <span className='w-1/6 px-4'>0xjkfdrsvjhiu</span>
-            <hr className={`w-[1px] h-full ${mode === "dark" ? "bg-slate-400" : "bg-slate-300"}`}></hr>
-            <span className='w-1/6 px-4'>Boat Headphone</span>
-            <hr className={`w-[1px] h-full ${mode === "dark" ? "bg-slate-400" : "bg-slate-300"}`}></hr>
-            <span className='w-1/6 px-4'>Over the Ears Headphone</span>
-            <hr className={`w-[1px] h-full ${mode === "dark" ? "bg-slate-400" : "bg-slate-300"}`}></hr>
-            <span className='w-1/6 px-4'>Nice and comfy with 40mm drivers</span>
-            <hr className={`w-[1px] h-full ${mode === "dark" ? "bg-slate-400" : "bg-slate-300"}`}></hr>
-            <span className='w-1/6 flex items-center justify-center px-4'><span className='p-2 bg-green-200 text-green-500 border-2 border-green-400 rounded'>Published</span></span>
-            <hr className={`w-[1px] h-full ${mode === "dark" ? "bg-slate-400" : "bg-slate-300"}`}></hr>
-            <span className='w-1/12 flex items-center justify-evenly px-4'>
-                <RiPencilFill className='w-7 h-7 cursor-pointer'/>
-                <MdDelete className='w-7 h-7 cursor-pointer'/>
+        <div className={`flex w-full h-20 text-md ${mode === "light" ? "text-slate-600 border-gray-400" : "text-white border-gray-300"} items-center border-b`}>
+            <span className='w-1/3 px-4'>{_id}</span>
+            <hr className={itemBoxBorder}></hr>
+            <span className='itemBoxPrimary'>{name}</span>
+            <hr className={itemBoxBorder}></hr>
+            <span className='itemBoxPrimary'>Type</span>
+            <hr className={itemBoxBorder}></hr>
+            <span className='itemBoxPrimary'>{category}</span>
+            <hr className={itemBoxBorder}></hr>
+            <span className='itemBoxPrimary flex justify-center'>
+                <button id='details' onClick={handleClick} className='p-2 bg-blue-500 text-white rounded-md'>More Details</button>
+            </span>
+            <hr className={itemBoxBorder}></hr>
+            <span className='w-1/12 px-4 flex items-center justify-evenly'>
+                <RiPencilFill onClick={handleClick} className='w-6 h-6 text-green-600 cursor-pointer' />
+                <MdDelete onClick={handleDelete} className='w-6 h-6 text-red-600 cursor-pointer' />
+                {isDeleteOpened && <DeleteProduct open={setIsDeleteOpened} />}
             </span>
         </div>
     )
