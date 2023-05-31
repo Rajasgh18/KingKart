@@ -10,6 +10,7 @@ import Settings from './pages/Settings';
 import EditProduct from './pages/EditProduct';
 import AddProduct from './pages/AddProduct';
 import ProductDetails from './pages/ProductDetails';
+import NotFound from '../NotFound';
 
 const Admin = () => {
   return (
@@ -19,14 +20,15 @@ const Admin = () => {
         <div className='w-4/5'>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route exact path="/products" element={<Products />} />
+            <Route exact path="/" element={<Dashboard />} />
+            <Route path="/products" element={<Products />} />
             <Route path='/products/:id' element={<EditProduct />} />
             <Route path='/products/details' element={<ProductDetails />} />
             <Route path='/products/add' element={<AddProduct />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path='*' element={<NotFound/>}/>
           </Routes>
         </div>
       </div>

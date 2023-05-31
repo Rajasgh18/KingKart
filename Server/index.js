@@ -20,7 +20,8 @@ App.use(bodyParser.json());
 App.use(bodyParser.urlencoded({extended: false}));
 App.use(express.json());
 App.use('/api/admin/product', adminProduct);
-App.use('/api/admin/image', express.static(path.join(__dirname, "public")), adminImage);
+App.use('/api/admin/image', adminImage);
+// express.static(path.join(__dirname, "./public/assets")),
 // App.use('api/customer/', customerRoute);
 
 App.listen(port, ()=>{

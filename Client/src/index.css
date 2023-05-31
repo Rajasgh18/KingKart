@@ -20,15 +20,23 @@
 #openDialog{
     animation: openAnim 400ms ease-in-out;
 }
+#imgLoad{
+    animation: openAnim 400ms ease-in-out;
+}
 
 @keyframes openAnim{
-    from{
-        scale:0;
+    0%{
         opacity: 0;
+        scale: 0;
     }
-    to{
-        scale:1;
-        opacity: 1;
+    60%{
+        scale: 1;
+    }
+    80%{
+        scale: 0.9;
+    }
+    100%{
+        scale: 1;
     }
 }
 @keyframes closeAnim {

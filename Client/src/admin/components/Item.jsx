@@ -9,7 +9,7 @@ const Item = ({ details }) => {
     const itemBoxBorder = `w-[1px] h-full ${mode === "dark" ? "bg-slate-400" : "bg-slate-300"}`;
     const Navigate = useNavigate();
 
-    const { _id, name, category } = details;
+    const { _id, name, price, category } = details;
     const [isDeleteOpened, setIsDeleteOpened] = useState(false);
 
     const handleDelete = () => {
@@ -29,7 +29,7 @@ const Item = ({ details }) => {
             <hr className={itemBoxBorder}></hr>
             <span className='itemBoxPrimary'>{name}</span>
             <hr className={itemBoxBorder}></hr>
-            <span className='itemBoxPrimary'>Type</span>
+            <span className='itemBoxPrimary'>{price}</span>
             <hr className={itemBoxBorder}></hr>
             <span className='itemBoxPrimary'>{category}</span>
             <hr className={itemBoxBorder}></hr>
@@ -40,7 +40,7 @@ const Item = ({ details }) => {
             <span className='w-1/12 px-4 flex items-center justify-evenly'>
                 <RiPencilFill onClick={handleClick} className='w-6 h-6 text-green-600 cursor-pointer' />
                 <MdDelete onClick={handleDelete} className='w-6 h-6 text-red-600 cursor-pointer' />
-                {isDeleteOpened && <DeleteProduct open={setIsDeleteOpened} />}
+                {isDeleteOpened && <DeleteProduct id={_id} open={setIsDeleteOpened} />}
             </span>
         </div>
     )

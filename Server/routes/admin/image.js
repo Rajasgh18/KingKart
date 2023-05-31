@@ -2,10 +2,10 @@ const Router = require('express').Router();
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './public');
+        cb(null, 'public/assets/productImg');
     },
     filename: (req, image, cb) => {
-        cb(null, image.originalname)
+        cb(null, req.body.fileName)
     }
 })
 const upload = multer({ storage });
@@ -21,9 +21,9 @@ Router.post('/single', upload.single('image'), (req, res) => {
 })
 
 //upload multiple images
-Router.post('/multiple', upload.array('images', 5), (req, res) => {
+Router.post('/', upload.array('images', 8), (req, res) => {
     try {
-        res.status(200).send("Successfully stored the images!");
+        res.status(200).send("Successfully uploaded the images!");
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error!");

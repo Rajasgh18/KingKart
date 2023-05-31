@@ -19,7 +19,7 @@ const Sidebar = () => {
             </header>
             <div className='pl-8 gap-6 flex flex-col items-start text-xl text-white'>
                 <Link to='/admin' className={location === '/admin/' || location === '/admin' ? activeLink : inactiveLink}>
-                    {location === '/admin/' || location === '/admin' && <div id='active' className='absolute left-0 w-2 rounded-tr-md rounded-br-md h-10 bg-blue-400'></div>}
+                    {(location === '/admin' || location === '/admin/') && <div id='active' className='absolute left-0 w-2 rounded-tr-md rounded-br-md h-10 bg-blue-400'></div>}
                     <BsSpeedometer2 className='w-6 h-6' />
                     Dashboard
                 </Link>
