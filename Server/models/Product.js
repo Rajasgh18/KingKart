@@ -24,9 +24,13 @@ const Product = new Schema({
         type: Number,
     },
     category:{
-        type: 'String',
+        type: mongoose.Types.ObjectId,
+        ref: 'Category',
         required: true,
-        min: 3
+    },
+    properties: {
+        type: Object,
+        required: true,
     }
 }, { timestamps: true });
 

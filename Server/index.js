@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const connectToDB = require('./db');
 const adminProduct = require('./routes/admin/product');
 const adminImage = require('./routes/admin/image');
+const adminCategory = require('./routes/admin/category');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
@@ -17,13 +18,14 @@ App.use(cors());
 // Parse application/json
 App.use(bodyParser.json());
 // Parse application/json
-App.use(bodyParser.urlencoded({extended: false}));
+App.use(bodyParser.urlencoded({ extended: false }));
 App.use(express.json());
 App.use('/api/admin/product', adminProduct);
+App.use('/api/admin/category', adminCategory);
 App.use('/api/admin/image', adminImage);
 // express.static(path.join(__dirname, "./public/assets")),
 // App.use('api/customer/', customerRoute);
 
-App.listen(port, ()=>{
+App.listen(port, () => {
     console.log(`KingKart Listening at http://localhost:${port}`)
 })

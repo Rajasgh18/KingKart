@@ -10,11 +10,14 @@
     @apply bg-blue-500 flex items-center justify-center rounded-lg text-white
 }
 .itemBoxPrimary{
-    @apply w-1/6 px-4
+    @apply p-2 text-lg px-4 border-[1px] border-slate-300
 }
 
 .inputPrimary{
     @apply border-2 p-2 my-2 mb-6 bg-slate-100 border-slate-300 focus:outline-blue-500 rounded-md
+}
+.inputSecondary{
+    @apply border-2 p-2 bg-slate-100 border-slate-300 focus:outline-blue-500 rounded-md
 }
 
 #openDialog{
@@ -22,6 +25,10 @@
 }
 #imgLoad{
     animation: openAnim 400ms ease-in-out;
+}
+
+#dropDownArrow{
+    transition: all 0.1s ease-in-out;
 }
 
 @keyframes openAnim{

@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const connectToMonogo = () => {
     // mongoose.set('strictQuery', true);
+    mongoose.set('strictPopulate', false);
     mongoose.connect(process.env.REACT_APP_KINGKART_DB_URL, { useNewUrlParser: "true", useUnifiedTopology: "true" });
     const db = mongoose.connection;
     db.on('connected', ()=>{console.log("MongoDB is Connected!")});

@@ -6,7 +6,7 @@ Router
     //Get Products
     .get('/:id', async (req, res) => {
         try {
-            let product = await Product.findById(req.params.id);
+            let product = await Product.findById(req.params.id).populate('Category');
             if (!product)
                 return res.status(404).send("product not found!");
             product = await Product.findById(req.params.id);
@@ -16,9 +16,11 @@ Router
             res.status(500).send("Internal Server Error!");
         }
     })
+
+    //Get all products
     .get('/', async (req, res) => {
         try {
-            const data = await Product.find();
+            const data = await Product.find().populate('Category');
             res.status(200).json(data);
         } catch (error) {
             console.error(error);
