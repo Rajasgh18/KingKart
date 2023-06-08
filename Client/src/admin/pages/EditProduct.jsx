@@ -27,7 +27,7 @@ const EditProduct = () => {
                 const fileName = Date.now() + data[i].name;
                 formData.append('fileName', fileName);
                 formData.append('image', data[i]);
-                const res = await axios.post('http://localhost:5000/api/admin/image/single', formData);
+                const res = await axios.post('http://localhost:5000/api/image/single', formData);
                 setInputImg(prev => [...prev, fileName]);
             }
         } catch (error) {
@@ -40,7 +40,7 @@ const EditProduct = () => {
         const data = { ...formDetails, img: inputImg, properties };
         console.log(properties)
         try {
-            const res = await axios.put('http://localhost:5000/api/admin/product/' + id, data);
+            const res = await axios.put('http://localhost:5000/api/product/' + id, data);
             Navigate('/admin/products');
         } catch (error) {
             console.error(error);
@@ -48,7 +48,7 @@ const EditProduct = () => {
     }
     const getDetails = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/admin/product/${id}`);
+            const res = await axios.get(`http://localhost:5000/api/product/${id}`);
             setFormDetails({ ...res.data });
             setProperties(res.data.properties);
             setInputImg(res.data.img);
@@ -69,7 +69,7 @@ const EditProduct = () => {
     useEffect(() => {
         const getCategories = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/admin/category');
+                const res = await axios.get('http://localhost:5000/api/category');
                 setCategory(res.data);
             } catch (error) {
                 console.error(error)

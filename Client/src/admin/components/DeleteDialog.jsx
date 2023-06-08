@@ -13,7 +13,7 @@ const DeleteDialog = ({ open, id, name, setCategoryDetails }) => {
     const handleDelete = async () => {
         try {
             onClose();
-            const res = await axios.delete(`http://localhost:5000/api/admin/${name === "product" ? "product" : "category"}/${id}`);
+            const res = await axios.delete(`http://localhost:5000/api/${name === "product" ? "product" : "category"}/${id}`);
             if (res.data === "success") {
             }
             else {

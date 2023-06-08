@@ -27,7 +27,7 @@ const Item = ({ details }) => {
     useEffect(()=>{
         const fetchCategory = async ()=>{
             try {
-                const res = await axios.get('http://localhost:5000/api/admin/category/'+category);
+                const res = await axios.get('http://localhost:5000/api/category/'+category);
                 setCategoryDetails(res.data);
             } catch (error) {
                 console.error(error)

@@ -1,6 +1,6 @@
 const Router = require('express').Router();
-const Product = require('../../models/Product');
-const { body, validator, validationResult } = require('express-validator');
+const Product = require('../models/Product');
+const { body, validationResult } = require('express-validator');
 
 Router
     //Get Products

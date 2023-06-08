@@ -31,7 +31,7 @@ const AddProduct = () => {
         const fileName = Date.now() + data[i].name;
         formData.append('fileName', fileName);
         formData.append('image', data[i]);
-        await axios.post('http://localhost:5000/api/admin/image/single', formData);
+        await axios.post('http://localhost:5000/api/image/single', formData);
         setInputImg(prev => [...prev, fileName]);
         console.log(formDetails)
       }
@@ -43,7 +43,7 @@ const AddProduct = () => {
     e.preventDefault();
     try {
       const data = { ...formDetails, img: inputImg, properties };
-      const res = await axios.post('http://localhost:5000/api/admin/product', data);
+      const res = await axios.post('http://localhost:5000/api/product', data);
       Navigate('/admin/products');
     } catch (error) {
       console.error(error);
@@ -53,7 +53,7 @@ const AddProduct = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/category');
+        const res = await axios.get('http://localhost:5000/api/category');
         setCategory(res.data);
       } catch (error) {
         console.error(error);

@@ -26,6 +26,17 @@
 #imgLoad{
     animation: openAnim 400ms ease-in-out;
 }
+.imgLoad{
+    animation: openAnim 400ms ease-in-out;
+}
+
+.scrollBar{
+    overflow: auto;
+}
+
+.scrollBar::-webkit-scrollbar{
+    width: 0;
+}
 
 #dropDownArrow{
     transition: all 0.1s ease-in-out;

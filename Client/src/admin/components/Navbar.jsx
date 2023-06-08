@@ -18,7 +18,7 @@ const Navbar = () => {
   useEffect(() => {
   }, [mode]);
   return (
-    <div className={`w-full h-14 ${mode === "light" ? "bg-blue-50" : "bg-slate-800"} shadow-md flex items-center justify-between px-10`}>
+    <div className={`w-full h-14 ${mode === "light" ? "bg-blue-50" : "bg-slate-800"} sticky top-0 shadow-md flex items-center justify-between px-10`}>
       <RxHamburgerMenu onClick={handleShow} className={`md:hidden w-6 h-6 cursor-pointer ${show ? "" : ""}`} />
       <div className='flex items-center w-1/3 p-2'>
         <MdOutlineSearch className='w-7 h-7 mr-2 fill-gray-400' />

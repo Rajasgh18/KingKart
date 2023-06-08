@@ -22,13 +22,13 @@ const Category = () => {
         data = { categoryName: categoryDetails.categoryName, parentCategory: null, properties };
       for (let i = 0; i < category.length; i++) {
         if (category[i].categoryName === categoryDetails.categoryName) {
-          const res = await axios.put('http://localhost:5000/api/admin/category/' + category[i]._id, data);
+          const res = await axios.put('http://localhost:5000/api/category/' + category[i]._id, data);
           setCategoryDetails({ categoryName: "", parentCategory: "No Parent Category" });
           setProperties([])
           return;
         }
       }
-      const res = await axios.post('http://localhost:5000/api/admin/category', data);
+      const res = await axios.post('http://localhost:5000/api/category', data);
       setCategoryDetails({ categoryName: "", parentCategory: "No Parent Category" });
       setProperties([])
     } catch (error) {
@@ -39,7 +39,7 @@ const Category = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/category');
+        const res = await axios.get('http://localhost:5000/api/category');
         setCategory(res.data);
         setIsLoader(false);
       } catch (error) {

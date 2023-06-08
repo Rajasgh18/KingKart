@@ -17,7 +17,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const products = await axios.get(`${url}/admin/product/`);
+        const products = await axios.get(`${url}/product/`);
         setProductList(products.data);
         setIsLoader(false);
       } catch (error) {
