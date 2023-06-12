@@ -7,10 +7,9 @@ import DeleteDialog from './DeleteDialog';
 import axios from 'axios';
 const Item = ({ details }) => {
     const { mode } = useContext(CreateContext);
-    const itemBoxBorder = `w-[1px] h-full ${mode === "dark" ? "bg-slate-400" : "bg-slate-300"}`;
     const Navigate = useNavigate();
 
-    const { _id, name, price, category } = details;
+    const { _id, name, offerPrice, category } = details;
     const [categoryDetails, setCategoryDetails] = useState({});
     const [isDeleteOpened, setIsDeleteOpened] = useState(false);
     const handleDelete = () => {
@@ -41,7 +40,7 @@ const Item = ({ details }) => {
             <tr>
                 <td className='itemBoxPrimary h-20 w-1/4'>{_id}</td>
                 <td className='itemBoxPrimary h-20 w-1/6'>{name}</td>
-                <td className='itemBoxPrimary h-20 w-1/6'>{price}</td>
+                <td className='itemBoxPrimary h-20 w-1/6'>{offerPrice}</td>
                 <td className='itemBoxPrimary h-20 w-1/6'>{categoryDetails?.categoryName}</td>
                 <td className='itemBoxPrimary h-20 w-1/6 text-center'>
                     <button id='details' onClick={handleClick} className='p-2 px-4 bg-blue-500 text-white rounded-md'>More Details</button>

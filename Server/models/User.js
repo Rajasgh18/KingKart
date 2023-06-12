@@ -17,8 +17,8 @@ const UserSchema = new Schema({
         min: 5,
         required: true,
     },
-    cartItems: [{ type: Schema.Types.ObjectId, ref: 'CartItems' }],
-    orderedItems: [{ type: Schema.Types.ObjectId, ref: 'CartItems' }]
+    cartItems: [{ type: Schema.Types.ObjectId, ref: 'products' }],
+    orderedItems: [{ type: Schema.Types.ObjectId, ref: 'products' }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('users', UserSchema);

@@ -38,7 +38,6 @@ const EditProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = { ...formDetails, img: inputImg, properties };
-        console.log(properties)
         try {
             const res = await axios.put('http://localhost:5000/api/product/' + id, data);
             Navigate('/admin/products');
@@ -112,12 +111,16 @@ const EditProduct = () => {
                             <label htmlFor='addImg' className='flex flex-col text-lg text-blue-500 cursor-pointer  items-center justify-center bg-slate-100 h-28 w-28 rounded border-2 border-blue-500'><FiUpload className='h-10 w-10' />Add Image</label>
                         </div>
                     </div>
-                    <DropDown choosedCategories={choosedCategory}    formDetails={formDetails} setFormDetails={setFormDetails} setProperties={setProperties} setChoosedCategory={setChoosedCategory} name="product" noSelectionText="No Category" category={category} dropInputCss="w-1/4 my-4" dropDownCss="w-[18.4%]" />
+                    <DropDown choosedCategories={choosedCategory} formDetails={formDetails} setFormDetails={setFormDetails} setProperties={setProperties} setChoosedCategory={setChoosedCategory} name="product" noSelectionText="No Category" category={category} dropInputCss="w-1/4 my-4" dropDownCss="w-[18.4%]" />
                     <ChooseCategories propertiesToFill={propertiesToFill} name="edit" properties={properties} setProperties={setProperties} />
                     <label htmlFor="desc" className='text-lg'>Description</label>
                     <textarea onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value })} id='desc' className='inputPrimary' value={formDetails.desc} />
-                    <label htmlFor="price" className='text-lg'>Price</label>
-                    <input onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value })} id='price' type='number' className='inputPrimary' value={formDetails.price} />
+                    <label htmlFor="offerPrice" className='text-lg'>Offer Price</label>
+                    <input onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value })} id='offerPrice' type='number' className='inputPrimary' value={formDetails.offerPrice} />
+                    <label htmlFor="mrp" className='text-lg'>MRP</label>
+                    <input onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value })} id='mrp' type='number' className='inputPrimary' value={formDetails.mrp} />
+                    <label htmlFor="deliveryCharge" className='text-lg'>Delivery Charge</label>
+                    <input onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value })} id='deliveryCharge' type='number' className='inputPrimary' value={formDetails.deliveryCharge} />
                     <label htmlFor="rating" className='text-lg'>Rating</label>
                     <input onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value })} id='rating' type="number" className='inputPrimary' value={formDetails.rating} />
                     <div className='flex gap-4 mt-4 items-center'>

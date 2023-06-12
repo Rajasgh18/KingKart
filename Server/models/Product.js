@@ -16,14 +16,22 @@ const Product = new Schema({
         min: 3,
         required: true
     },
-    price: {
+    offerPrice: {
         type: Number,
         required: true
+    },
+    mrp: {
+        type: Number,
+        required: true
+    },
+    deliveryCharge: {
+        type: Number,
+        required: true,
     },
     rating: {
         type: Number,
     },
-    category:{
+    category: {
         type: mongoose.Types.ObjectId,
         ref: 'Category',
         required: true,

@@ -19,10 +19,10 @@ const ProductInfo = ({ productDetail, imgIndex, setImgIndex }) => {
                 <h3 className='text-slate-500 font-bold'>Delivery</h3>
                 <div className='flex flex-col gap-2 w-[60%]'>
                     <div className='flex gap-2 items-center border-b-2 text-lg text-slate-600 border-blue-500 pb-2'>
-                        <MdLocationPin />
+                        <MdLocationPin className='text-red-500' />
                         <input type="text" placeholder='Enter Delivery Pincode' className='bg-transparent focus:outline-none' />
                     </div>
-                    <div className='text-sm'><strong className='text-slate-600'>Delivery by 9 Jun, Friday</strong> | <span className='text-green-600'>Free</span> <span className='line-through text-slate-600'>Rs 40</span></div>
+                    <div className='text-sm'><strong className='text-slate-600'>Delivery by 9 Jun, Friday</strong></div>
                 </div>
             </div>
             <div className='flex justify-between w-2/3'>

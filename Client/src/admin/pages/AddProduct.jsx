@@ -95,8 +95,12 @@ const AddProduct = () => {
           <ChooseCategories propertiesToFill={propertiesToFill} properties={properties} setProperties={setProperties} />
           <label htmlFor="desc" className='text-lg'>Description</label>
           <textarea placeholder='Description...' onChange={handleForm} id='desc' className='inputPrimary' value={desc} />
-          <label htmlFor="price" className='text-lg'>Price</label>
-          <input placeholder='Price' onChange={handleForm} id='price' type="Number" className='inputPrimary' value={price} />
+          <label htmlFor="offerPrice" className='text-lg'>Offer Price</label>
+          <input placeholder='Offer Price' onChange={handleForm} id='offerPrice' type="Number" className='inputPrimary' value={price} />
+          <label htmlFor="mrp" className='text-lg'>MRP</label>
+          <input placeholder='MRP' onChange={handleForm} id='mrp' type="Number" className='inputPrimary' value={price} />
+          <label htmlFor="deliveryCharge" className='text-lg'>Delivery Charge</label>
+          <input placeholder='Delivery Charge' onChange={handleForm} id='deliveryCharge' type="Number" className='inputPrimary' value={price} />
           <label htmlFor="rating" className='text-lg'>Rating</label>
           <input placeholder='Rating' onChange={handleForm} id='rating' type="NUmber" className='inputPrimary' value={rating} />
           <div className='flex gap-2 mt-4 items-center'>

@@ -67,3 +67,89 @@
         opacity: 0;
     }
 }
+
+.leftAppear{
+    animation: appearLeft 0.5s ease-in-out;
+}
+
+@keyframes appearLeft {
+    from{
+        right: -5%;
+        opacity: 0;
+    }
+    to{
+        right: 0;
+        opacity: 1;
+    }
+}
+.rightAppear{
+    animation: appearRight 0.5s ease-in-out;
+}
+
+@keyframes appearRight {
+    from{
+        left: -5%;
+        opacity: 0;
+    }
+    to{
+        left: 0;
+        opacity: 1;
+    }
+}
+  
+.bottomAppear {
+    animation: appearBottom 0.5s ease-in-out;
+  }
+  
+
+@keyframes appearBottom {
+    from{
+        transform: translateY(20%);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.removeItem{
+    animation: disappearItem 0.6s ease-in-out;
+}
+
+@keyframes disappearItem {
+    from{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    to{
+        transform: translateY(10%);
+        opacity: 0;
+    }
+}
+
+.dropDownShow{
+    animation: dropShow 0.3s ease-in-out;
+}
+
+@keyframes dropShow {
+    from{
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+@keyframes dropHide {
+    from{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    to{
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+}
+
