@@ -20,7 +20,7 @@ Router
             if (!errors.isEmpty()) return res.status(400).json({ erros: errors.array() })
 
             let user = await User.findOne({ username: req.body.username });
-            if (user) return res.status(400).json({ message: "A User exists with this username!" });
+            if (user) return res.status(400).send("A User exists with this username!");
             const salt = await bcrypt.genSalt(10);
             const secPassword = await bcrypt.hash(req.body.password, salt);
 
@@ -56,6 +56,17 @@ Router
             const authToken = JWT.sign(data, secretKey);
 
             res.status(200).json({ user, authToken });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Internal Server Error!");
+        }
+    })
+    .get('/:id', async (req, res) => {
+        try {
+            let user = await User.findById(req.params.id);
+            if (!user) return res.status(404).send("There exists no user with that username")
+
+            res.status(200).json(user);
         } catch (error) {
             console.error(error);
             res.status(500).send("Internal Server Error!");
@@ -119,8 +130,8 @@ Router
     //Get Cart Products
     .get('/cart-items/:id', async (req, res) => {
         try {
-            const cart = await User.findById(req.params.id).populate('cartItems');
-            res.status(200).json(cart);
+            const user = await User.findById(req.params.id).populate('cartItems');
+            res.status(200).json(user.cartItems);
         } catch (error) {
 
         }

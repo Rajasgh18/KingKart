@@ -1,7 +1,9 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useContext } from 'react';
+import CreateContext from '../context/createContext';
 
 const DeleteDialog = ({ open, id, name, setCategoryDetails }) => {
+    const { setIsDeleted } = useContext(CreateContext);
     const onClose = () => {
         const form = document.getElementById('openDialog');
         form.style.animationName = 'closeAnim';
@@ -15,6 +17,7 @@ const DeleteDialog = ({ open, id, name, setCategoryDetails }) => {
             onClose();
             const res = await axios.delete(`http://localhost:5000/api/${name === "product" ? "product" : "category"}/${id}`);
             if (res.data === "success") {
+                setIsDeleted(true);
             }
             else {
                 console.log(res.data);

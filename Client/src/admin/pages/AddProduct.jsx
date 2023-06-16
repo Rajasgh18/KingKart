@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Loader from '../components/Loader';
 import ImgBox from '../components/ImgBox';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiUpload } from "react-icons/fi";
 import axios from 'axios';
 import DropDown from '../components/DropDown';
@@ -9,13 +9,13 @@ import ChooseCategories from '../components/ChooseCategories';
 
 const AddProduct = () => {
   const [isLoader, setIsLoader] = useState(true);
-  const [formDetails, setFormDetails] = useState({ name: '', desc: '', category: '', price: '', rating: '' });
+  const [formDetails, setFormDetails] = useState({ name: '', desc: '', category: '', offerPrice: '', mrp: '', deliveryCharge: '', rating: '' });
   const [category, setCategory] = useState([]);
   const [dropDownValue, setDropDownValue] = useState("No Category");
   const [choosedCategory, setChoosedCategory] = useState('');
   const [properties, setProperties] = useState({});
 
-  const { name, desc, price, rating } = formDetails;
+  const { name, desc, offerPrice, mrp, deliveryCharge, rating } = formDetails;
   const [inputImg, setInputImg] = useState("");
   const Navigate = useNavigate();
 
@@ -33,7 +33,6 @@ const AddProduct = () => {
         formData.append('image', data[i]);
         await axios.post('http://localhost:5000/api/image/single', formData);
         setInputImg(prev => [...prev, fileName]);
-        console.log(formDetails)
       }
     } catch (error) {
       console.error(error);
@@ -76,14 +75,16 @@ const AddProduct = () => {
   return (
     !isLoader ? <Loader /> :
       <div className='flex flex-col gap-4 px-12 py-8 text-slate-600'>
-        <h1 className='text-3xl text-slate-700'>New Product</h1>
+        <div className='flex justify-between'>
+          <h1 className='text-3xl text-slate-700'>New Product</h1>
+          <Link to='/admin/products' className='btnPrimary px-4 p-2 text-xl'>Back</Link>
+        </div>
         <form onSubmit={handleSubmit} className='flex w-full flex-col rounded-lg opacity-100'>
           <label htmlFor="name" className='text-lg'>Product Name</label>
           <input placeholder='Product name' onChange={handleForm} id='name' type="text" className='inputPrimary' value={name} />
           <label htmlFor="image" className='text-lg'>Images</label>
           <div id='image' className='my-4 flex'>
             {inputImg.length !== 0 && inputImg.map(i => {
-
               return <ImgBox key={i} name={i} />
             })}
             <div onDragOver={e => e.preventDefault()}>
@@ -96,11 +97,11 @@ const AddProduct = () => {
           <label htmlFor="desc" className='text-lg'>Description</label>
           <textarea placeholder='Description...' onChange={handleForm} id='desc' className='inputPrimary' value={desc} />
           <label htmlFor="offerPrice" className='text-lg'>Offer Price</label>
-          <input placeholder='Offer Price' onChange={handleForm} id='offerPrice' type="Number" className='inputPrimary' value={price} />
+          <input placeholder='Offer Price' onChange={handleForm} id='offerPrice' type="Number" className='inputPrimary' value={offerPrice} />
           <label htmlFor="mrp" className='text-lg'>MRP</label>
-          <input placeholder='MRP' onChange={handleForm} id='mrp' type="Number" className='inputPrimary' value={price} />
+          <input placeholder='MRP' onChange={handleForm} id='mrp' type="Number" className='inputPrimary' value={mrp} />
           <label htmlFor="deliveryCharge" className='text-lg'>Delivery Charge</label>
-          <input placeholder='Delivery Charge' onChange={handleForm} id='deliveryCharge' type="Number" className='inputPrimary' value={price} />
+          <input placeholder='Delivery Charge' onChange={handleForm} id='deliveryCharge' type="Number" className='inputPrimary' value={deliveryCharge} />
           <label htmlFor="rating" className='text-lg'>Rating</label>
           <input placeholder='Rating' onChange={handleForm} id='rating' type="NUmber" className='inputPrimary' value={rating} />
           <div className='flex gap-2 mt-4 items-center'>

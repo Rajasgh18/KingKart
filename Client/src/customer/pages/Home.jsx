@@ -5,10 +5,13 @@ import Product from '../components/Product';
 import axios from 'axios';
 import Loader from '../components/Loader';
 import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [products, SetProducts] = useState([]);
   const [isLoader, setIsLoader] = useState(true);
+  const userId = localStorage.getItem('userId');
+  const Navigate = useNavigate();
 
   const backgroundRef = useRef([]);
 
@@ -23,6 +26,10 @@ const Home = () => {
   },
     { rootMargin: '0px' }
   );
+
+  useEffect(()=>{
+    if(!userId) Navigate('/login');
+  }, [])
 
   backgroundRef && useEffect(() => {
     backgroundRef.current.forEach((element, index) => {

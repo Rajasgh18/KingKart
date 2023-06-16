@@ -5,23 +5,23 @@ import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { HiArchive } from "react-icons/hi";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 const Navbar = () => {
     const { user } = useContext(UserContext);
     const dropDownRef = useRef(null);
     const dropDownBoxRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
+    const Navigate = useNavigate();
 
     const handleDropDown = () => {
         if (isOpen) {
             dropDownBoxRef.current.style.animation = 'dropHide 0.3s ease-in-out';
             setTimeout(() => {
                 setIsOpen(false)
-            }, 350);
+            }, 250);
         } else {
             setIsOpen(true)
-            dropDownBoxRef.current.style.animation = 'dropShow 0.3s ease-in-out';
         }
     }
 
@@ -42,6 +42,11 @@ const Navbar = () => {
         };
     }, []);
 
+    const handleLogout = ()=>{
+        localStorage.removeItem('userId');
+        Navigate('/login');
+    }
+
     return (
         <div className='h-14 px-10 z-50 sticky top-0 bg-violet-500 justify-between flex items-center'>
             <Link to='/' className='text-3xl text-white font-bold'>KingKart</Link>
@@ -61,10 +66,10 @@ const Navbar = () => {
                 </Link>
                 <div ref={dropDownRef} className='flex justify-end'>
                     <IoSettings onClick={handleDropDown} className='w-6 h-6 text-white cursor-pointer transition-transform hover:scale-125' />
-                    {isOpen && <div ref={dropDownBoxRef} className='absolute dropDownShow text-slate-700 bg-white flex flex-col gap-2 rounded shadow-[0_0_15px_0] shadow-slate-400 mt-8 py-2 w-fit'>
-                        <button className='flex hover:bg-violet-500 hover:text-white transition-all duration-600 px-5 py-1 items-center gap-2'><CgProfile className='w-5 h-5' />My Profile</button>
-                        <button className='flex hover:bg-violet-500 hover:text-white transition-all duration-600 px-5 py-1 items-center gap-2'><HiArchive className='w-5 h-5' />My Orders</button>
-                        <button className='flex hover:bg-violet-500 hover:text-white transition-all duration-600 px-5 py-1 items-center gap-2'><FiLogOut className='w-5 h-5' />Logout</button>
+                    {isOpen && <div ref={dropDownBoxRef} className='absolute dropDownShow text-slate-600 bg-white flex flex-col gap-2 rounded shadow-[0_0_10px_0] shadow-slate-400 mt-8 py-2 w-fit'>
+                        <button className='flex hover:bg-violet-500 hover:text-white transition-all duration-600 px-5 py-1 items-center gap-2'><CgProfile className='w-6 h-6' />My Profile</button>
+                        <button className='flex hover:bg-violet-500 hover:text-white transition-all duration-600 px-5 py-1 items-center gap-2'><HiArchive className='w-6 h-6' />My Orders</button>
+                        <button onClick={handleLogout} className='cursor-pointer flex hover:bg-violet-500 hover:text-white transition-all duration-600 px-5 py-1 items-center gap-2'><FiLogOut className='w-6 h-6' />Logout</button>
                     </div>}
                 </div>
             </div>

@@ -8,7 +8,7 @@ import axios from 'axios';
 import ItemTable from '../components/ItemTable';
 
 const Products = () => {
-  const { mode } = useContext(CreateContext);
+  const { mode, isDeleted } = useContext(CreateContext);
 
   const [isLoader, setIsLoader] = useState(true);
   const url = 'http://localhost:5000/api';
@@ -25,7 +25,7 @@ const Products = () => {
       }
     }
     fetchProducts();
-  }, [productList])
+  }, [isDeleted])
 
   return (
     <section className={`flex flex-col p-12 flex-grow gap-12 ${mode === "dark" ? "bg-slate-700 text-slate-200" : "bg-white text-gray-600"}`}>

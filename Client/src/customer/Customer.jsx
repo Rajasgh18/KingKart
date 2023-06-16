@@ -9,13 +9,14 @@ import { UserContext } from './context/UserContext';
 
 
 const Customer = () => {
-  const { user, getUser } = useContext(UserContext);
+  const { getUser, changes, setChanges, userId } = useContext(UserContext);
   useEffect(() => {
+    setChanges(1)
     getUser();
-  }, [user])
+  }, [userId, changes]);
 
   return (
-    <div className='flex flex-col min-h-screen bg-slate-100'>
+    <div className='flex flex-col min-h-screen flex-grow bg-slate-100'>
       <Navbar />
       <Routes>
         <Route exact path='/' element={<Home />} />

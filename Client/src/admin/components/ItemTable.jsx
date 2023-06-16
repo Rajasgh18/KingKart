@@ -16,7 +16,7 @@ const ItemTable = ({ productList, isLoader }) => {
             </thead>
             {productList.length !== 0 && !isLoader ? productList.map(product => {
                 return <Item key={product._id} details={product} />
-            }) : !isLoader && <div className='w-full text-center py-4 text-lg text-slate-600'>No Products Added Yet!</div>}
+            }) : !isLoader && <tbody><tr><td className='w-1/6 text-center py-4 text-lg text-slate-600'>No Products Added Yet!</td></tr></tbody>}
         </table>
     )
 }

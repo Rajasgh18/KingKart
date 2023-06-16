@@ -3,7 +3,7 @@ import { FiUpload } from "react-icons/fi";
 import Loader from '../components/Loader';
 import ImgBox from '../components/ImgBox';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import ChooseCategories from '../components/ChooseCategories';
 import DropDown from '../components/DropDown';
 const EditProduct = () => {
@@ -97,7 +97,10 @@ const EditProduct = () => {
     return (
         isLoader ? <Loader /> :
             <div className='flex flex-col gap-4 px-12 py-8 text-slate-600'>
-                <h1 className='text-3xl text-slate-700'>Edit Product</h1>
+                <div className='flex justify-between'>
+                    <h1 className='text-3xl text-slate-700'>Edit Product</h1>
+                    <Link to='/admin/products' className='btnPrimary px-4 p-2 text-xl'>Back</Link>
+                </div>
                 <form onSubmit={handleSubmit} onReset={handleReset} className='flex w-full flex-col rounded-lg opacity-100'>
                     <label htmlFor="name" className='text-lg'>Product Name</label>
                     <input onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value })} id='name' type="text" className='inputPrimary' value={formDetails.name} />

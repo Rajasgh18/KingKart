@@ -8,18 +8,17 @@ const NewProperty = ({ p, properties, setProperties }) => {
     }
     const handleDelete = (e) => {
         e.preventDefault();
-        let index;
-        for (let i = 0; i < properties.length; i++) {
-            if (properties[i].propName === props.propName)
-                index = i;
-        }
-        properties.splice(index);
-        console.log(properties)
-        setProperties(prev => [...prev]);
+        setProperties(prev => {
+            let prop = [...prev];
+            prop = prop.filter((name) => name.propName !== props.propName);
+            return prop;
+        });
     }
-    useEffect(()=>{
+
+    useEffect(() => {
         setProps(p)
     }, [properties])
+    
     return (
         <div className='flex gap-2 items-center my-2'>
             <input onChange={handleChange} className='inputSecondary text-slate-600 w-1/2' type="text" name="propName" id="" value={props.propName} />

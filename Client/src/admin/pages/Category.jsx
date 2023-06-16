@@ -23,7 +23,7 @@ const Category = () => {
       for (let i = 0; i < category.length; i++) {
         if (category[i].categoryName === categoryDetails.categoryName) {
           const res = await axios.put('http://localhost:5000/api/category/' + category[i]._id, data);
-          setCategoryDetails({ categoryName: "", parentCategory: "No Parent Category" });
+          setCategoryDetails({ categoryName: "", parentCategory: "No Selection" });
           setProperties([])
           return;
         }

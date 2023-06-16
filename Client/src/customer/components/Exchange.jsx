@@ -10,7 +10,7 @@ const Exchange = ({ productDetail }) => {
                             <input type="radio" className='w-4 h-4 focus:outline-none'/>
                             Buy Without Exchange
                         </span>
-                        <span className='text-slate-600 font-viga'>Rs {productDetail.price}</span>
+                        <span className='text-slate-600 font-viga'>Rs {productDetail.offerPrice}</span>
                     </td>
                 </tr>
             </thead>

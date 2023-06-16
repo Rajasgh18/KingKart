@@ -48,7 +48,7 @@ const Item = ({ details }) => {
                 <td className='itemBoxPrimary h-20 w-1/6 space-x-1'>
                     <FiEdit onClick={handleClick} className='w-7 h-7 text-green-600 cursor-pointer inline' />
                     <MdDelete onClick={handleDelete} className='w-7 h-7 text-red-600 cursor-pointer inline' />
-                    {isDeleteOpened && <DeleteDialog name="product" id={_id} open={setIsDeleteOpened} />}
+                    {isDeleteOpened && <DeleteDialog setCategoryDetails={setCategoryDetails} name="product" id={_id} open={setIsDeleteOpened} />}
                 </td>
             </tr>
         </tbody>

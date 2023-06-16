@@ -41,7 +41,7 @@ const DropDown = ({ name, p, properties, setFormDetails, formDetails, choosedCat
     }, [choosedCategories]);
 
     useEffect(()=>{
-        categoryDetails && setDropDownValue(categoryDetails?.parentCategory?.categoryName || "No Parent Category")
+        categoryDetails && setDropDownValue(categoryDetails?.parentCategory?.categoryName || dropDownValue)
     }, [categoryDetails])
 
     return (
@@ -53,8 +53,8 @@ const DropDown = ({ name, p, properties, setFormDetails, formDetails, choosedCat
                 </button>
                 {dropDownActive && <div id='dropDownMenu' className={`absolute border-2 mb-6 bg-slate-100 py-1 border-slate-300 focus:outline-blue-500 rounded-md flex-col flex text-slate-700 ${dropDownCss}`}>
                     <button name='parentCategory' onClick={handleOptions} className='py-1 text-left px-3 hover:bg-blue-500 hover:text-white transition-all duration-200' value={noSelectionText}>{noSelectionText}</button>
-                    {category.length !== 0 && category.map(c => {
-                        return <button key={c._id} name='parentCategory' onClick={handleOptions} className='py-1 text-left px-3 hover:bg-blue-500 hover:text-white transition-all duration-200' id={c._id} value={c?.categoryName || c}>{c?.categoryName || c}</button>
+                    {category.length !== 0 && category.map((c, index) => {
+                        return <button key={index} name='parentCategory' onClick={handleOptions} className='py-1 text-left px-3 hover:bg-blue-500 hover:text-white transition-all duration-200' id={c._id} value={c?.categoryName || c}>{c?.categoryName || c}</button>
                     })}
                 </div>}
             </div>

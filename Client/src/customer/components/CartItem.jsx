@@ -4,8 +4,8 @@ import { AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
-const CartItem = ({ cartDetails }) => {
-    const { user } = useContext(UserContext);
+const CartItem = ({ cartDetails, setIsDelete }) => {
+    const { user, setChanges } = useContext(UserContext);
     const Navigate = useNavigate();
     const currentItem = useRef(null);
     const handleClick = () => {
@@ -14,10 +14,13 @@ const CartItem = ({ cartDetails }) => {
 
     const handleRemove = async () => {
         try {
-            currentItem.current.classList += " removeItem"
+            currentItem.current.classList += " removeItem";
             setTimeout(async () => {
-                const res = await axios.put(`http://localhost:5000/api/user/cart-remove/${user._id}`, { productId: cartDetails._id })
-            }, [400])
+                currentItem.current.classList += " hidden"
+            }, [400]);
+            const res = await axios.put(`http://localhost:5000/api/user/cart-remove/${user._id}`, { productId: cartDetails._id })
+            setChanges(prev => [prev++]);
+            setIsDelete(true);
         } catch (error) {
             console.error(error)
         }

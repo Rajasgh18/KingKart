@@ -33,7 +33,9 @@ Router
         body("img", "Please enter atleast 1 image").isLength({ min: 1 }),
         body("name", "Enter a name which is more than  3 words").isLength({ min: 3 }),
         body("desc", "Enter a description which is more than  3 words").isLength({ min: 3 }),
-        body("price", "Please provide a numeric value which is between 0-5").isInt(),
+        body("offerPrice", "Please provide a numeric value").isInt(),
+        body("mrp", "Please provide a numeric value").isInt(),
+        body("deliveryCharge", "Please provide a numeric value").isInt(),
         body("rating", "Please provide a numeric value which is between 0-5").isNumeric({ min: 0, max: 5 }),
         body("category", "Enter a name which is more than 3 words").isLength({ min: 3 }),
     ], async (req, res) => {
