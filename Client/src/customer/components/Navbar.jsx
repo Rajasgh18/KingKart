@@ -7,11 +7,15 @@ import { CgProfile } from "react-icons/cg";
 import { HiArchive } from "react-icons/hi";
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
+import SearchResult from './SearchResult';
 const Navbar = () => {
     const { user } = useContext(UserContext);
     const dropDownRef = useRef(null);
     const dropDownBoxRef = useRef(null);
+    const searchBoxRef = useRef(null);
+    const searchResultRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
     const Navigate = useNavigate();
 
     const handleDropDown = () => {
@@ -26,23 +30,33 @@ const Navbar = () => {
     }
 
     const handleClickOutside = (event) => {
-        if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
+        if (isOpen && dropDownRef.current && !dropDownRef.current.contains(event.target)) {
             dropDownBoxRef.current.style.animation = 'dropHide 0.3s ease-in-out';
             setTimeout(() => {
                 setIsOpen(false)
             }, 250);
         }
     };
+    const handleSearchClickOutside = (event) => {
+        if (searchResultRef.current && searchBoxRef.current && !searchBoxRef.current.contains(event.target)) {
+            searchResultRef.current.style.animation = 'dropHide 0.3s ease-in-out';
+            setTimeout(() => {
+                setSearchQuery('')
+            }, 250);
+        }
+    };
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
+        document.addEventListener('click', handleSearchClickOutside);
 
         return () => {
             document.removeEventListener('click', handleClickOutside);
+            document.removeEventListener('click', handleSearchClickOutside);
         };
-    }, []);
+    }, [isOpen]);
 
-    const handleLogout = ()=>{
+    const handleLogout = () => {
         localStorage.removeItem('userId');
         Navigate('/login');
     }
@@ -50,9 +64,12 @@ const Navbar = () => {
     return (
         <div className='h-14 px-10 z-50 sticky top-0 bg-violet-500 justify-between flex items-center'>
             <Link to='/' className='text-3xl text-white font-bold'>KingKart</Link>
-            <div className='p-[0.3rem] bg-white rounded-lg flex items-center w-1/4 px-2 gap-3'>
-                <BsSearch className='w-5 h-5 text-slate-600' />
-                <input type="text" placeholder='Search here...' className='focus:outline-none text-lg w-full text-slate-600' />
+            <div ref={searchBoxRef} className='w-1/4 flex flex-col'>
+                <div className='p-[0.3rem] bg-white rounded-lg flex items-center w-full px-2 gap-3'>
+                    <label htmlFor="searchBar"><BsSearch className='w-5 h-5 text-slate-600' /></label>
+                    <input onChange={(e) => { setSearchQuery(e.target.value) }} value={searchQuery} id='searchBar' type="text" placeholder='Search here...' className='focus:outline-none text-lg w-full text-slate-600' />
+                </div>
+                {searchQuery && <SearchResult searchResultRef={searchResultRef} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
             </div>
             <div className='flex items-center text-white text-lg gap-4'>
                 <Link to='/' className='hover:bg-white transition-all duration-200 hover:text-violet-500 p-1 px-3 rounded-md'>Home</Link>

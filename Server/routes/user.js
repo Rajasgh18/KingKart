@@ -127,11 +127,41 @@ Router
         }
     })
 
-    //Get Cart Products
-    .get('/cart-items/:id', async (req, res) => {
+    //Increase cart items
+    .put('/cart-increase/:id', async(req, res)=>{
         try {
-            const user = await User.findById(req.params.id).populate('cartItems');
+            const user = await User.findById(req.params.id);
+            if(!user) return res.status(404).send("No user found!");
+            user.cartItems.push(req.body.productId);
+            await user.save();
             res.status(200).json(user.cartItems);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Internal Server Error!");
+        }
+    })
+    //Decrease cart items
+    .put('/cart-decrease/:id', async(req, res)=>{
+        try {
+            const user = await User.findById(req.params.id);
+            if(!user) return res.status(404).send("No user found!");
+            const indexToRemove = user.cartItems.indexOf(req.body.productId);
+            if(indexToRemove !== -1) 
+            user.cartItems.splice(indexToRemove, 1);
+            await user.save();
+            res.status(200).json(user.cartItems);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Internal Server Error!");
+        }
+    })
+
+    //Get Cart Products
+    .post('/cart-items/', async (req, res) => {
+        try {
+            const ids = req.body.ids;
+            const cartItems = await Product.find({_id: ids});
+            res.status(200).json(cartItems);
         } catch (error) {
 
         }

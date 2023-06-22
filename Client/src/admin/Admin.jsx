@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Orders from './pages/Orders';
 import Products from './pages/Products';
@@ -30,6 +30,7 @@ const Admin = () => {
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
+      <Link to='/' className='fixed bottom-16 right-16 bg-green-400 text-white font-viga p-3 px-4 rounded-md text-lg border-green-500 border-2'>Customer</Link>
     </div>
   )
 }

@@ -9,6 +9,7 @@ import Exchange from '../components/Exchange';
 import ProductInfo from '../components/ProductInfo';
 import { UserContext } from '../context/UserContext';
 import 'intersection-observer';
+import { TailSpin } from 'react-loader-spinner';
 
 const ProductPage = () => {
 
@@ -44,6 +45,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     const fetchProductDetails = async () => {
+      setIsLoader1(true);
       try {
         const res = await axios.get(`http://localhost:5000/api/product${_id}`);
         setProductDetail(res.data);
@@ -137,13 +139,12 @@ const ProductPage = () => {
         </section>
         <section className='mx-20 bg-white p-5 shadow-md flex flex-col gap-8 mb-10'>
           <h1 className='text-4xl text-slate-600'>More Products</h1>
-
           <div className='flex scrollBar p-2 gap-5'>
             {!isLoader2 ? products.map((p, index) => {
               return <div
                 className='flex relative bottomA flex-shrink-0 text-slate-700 hover:text-blue-500 flex-col gap-2'
                 onClick={() => { Navigate(`/${p._id}`) }}
-                ref={(element) => (productRefs.current[index] = element)} key={p._id}>
+                ref={(element) => { (productRefs.current[index] = element) }} key={p._id}>
                 <img src={`assets/productImg/${p.img[0]}`} className='h-40 p-2 w-40 duration-200 cursor-pointer transition-transform hover:scale-110 bg-slate-200 rounded-lg' alt="" />
                 <h4 className='text-inherit'>{p.name.length <= 18 ? p.name : `${p.name.substring(0, 18)}...`}</h4>
                 <span className='flex rounded px-1 bg-green-500 text-white items-center justify-center gap-1 w-fit'>{p.rating}<AiFillStar /></span>
@@ -153,10 +154,10 @@ const ProductPage = () => {
                   <span className='text-sm text-green-600'>{Math.round(((p.mrp - p.offerPrice) / p.mrp) * 100)}%off</span>
                 </div>
               </div>
-            }) : <Loader />}
+            }) : <div className='flex-grow w-full flex justify-center items-center'><TailSpin width={60} height={60} color='blue'/></div>}
           </div>
         </section>
-      </section> : <Loader />}
+      </section> : <div className='flex-grow w-full flex justify-center items-center'><TailSpin width={60} height={60} color='blue'/></div>}
     </>
   )
 }

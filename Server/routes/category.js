@@ -1,8 +1,8 @@
 const Router = require('express').Router();
 const Category = require('../models/Category');
 
-//Get all Categories
 Router
+    //Get all Categories
     .get('/', async (req, res) => {
         try {
             const data = await Category.find().populate('parentCategory');

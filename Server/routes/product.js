@@ -3,6 +3,26 @@ const Product = require('../models/Product');
 const { body, validationResult } = require('express-validator');
 
 Router
+    
+    //Search for Products or based no category
+    .get('/search', async (req, res) => {
+        try {
+            const products = await Product.find().populate('category');
+            let matchedProducts;
+            if(req.query.products){
+                const searchQuery = req.query.products;
+                matchedProducts = products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
+            }else{
+                const searchQuery = req.query.category;
+                matchedProducts = products.filter(p => p.category.categoryName.toLowerCase() === searchQuery.toLowerCase());
+            }
+            res.status(200).json(matchedProducts);
+        } catch (error) {
+            console.error(error);
+            res.status("Internal Server Error!");
+        }
+    })
+
     //Get Products
     .get('/:id', async (req, res) => {
         try {

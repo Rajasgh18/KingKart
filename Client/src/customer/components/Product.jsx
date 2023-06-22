@@ -8,8 +8,8 @@ const Product = ({ details }) => {
         Navigate(`/${details._id}`)
     }
     return (
-        <div onClick={handleProduct} className='flex flex-col bottomAppear relative hover:text-blue-500 gap-2 text-slate-600 justify-start'>
-            <img src={`/assets/productImg/${details.img[0]}`} className='my-2 p-2 cursor-pointer bg-slate-200 transition-transform hover:scale-110 duration-300 rounded-lg object-contain w-[90%] h-[90%]' alt="" />
+        <div onClick={handleProduct} className='flex flex-col bottomAppear rounded-lg p-4 hover:text-blue-500 gap-2  text-slate-600 justify-start'>
+            <img src={`/assets/productImg/${details.img[0]}`} className='my-2 p-2 cursor-pointer transition-transform hover:scale-110 duration-300 object-contain shadow-[0_2px_8px_1px] shadow-slate-300 bg-white rounded-md w-[100%] h-[100%]' alt="" />
             <h3 className='text-lg text-inherit  font-bold'>{details.name}</h3>
             <span className='flex rounded px-1 bg-green-500 text-white items-center justify-center gap-1 w-fit'>{details.rating}<AiFillStar /></span>
             <div className='flex gap-2 items-end'>

@@ -5,27 +5,34 @@ import { TailSpin } from 'react-loader-spinner';
 import axios from 'axios';
 
 const Cart = () => {
-  const { url, userId } = useContext(UserContext);
+  const { url, user, userId } = useContext(UserContext);
   const [cartItems, setCartItems] = useState([]);
   const [isLoader, setIsLoader] = useState(true);
   const [isDelete, setIsDelete] = useState(true);
-  const [itemDetails, setItemDetails] = useState({offerPrice: 0, mrp: 0, discount: 0, deliveryCharge: 0});
+  const [itemDetails, setItemDetails] = useState({ offerPrice: 0, mrp: 0, discount: 0, deliveryCharge: 0 });
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const res = await axios.get(`${url}/user/cart-items/${userId}`);
+        const res = await axios.post(`${url}/user/cart-items`, { ids: user.cartItems });
         setCartItems(res.data);
         setIsLoader(false);
+        const productsEle = document.getElementsByClassName('rightAppear');
+        console.log(user.cartItems)
+        Array.from(productsEle).forEach((product, index) => {
+          product.style.display = 'flex';
+          const delay = (index + 1) * 150;
+          product.style.animation = `appearRight ${delay}ms ease-in-out`;
+        });
       } catch (error) {
         console.error(error);
       }
     }
     fetchCartItems();
-  }, [isDelete])
+  }, [user])
 
-  useEffect(()=>{
-    setItemDetails({offerPrice: 0, mrp: 0, discount: 0, deliveryCharge: 0})
+  useEffect(() => {
+    setItemDetails({ offerPrice: 0, mrp: 0, discount: 0, deliveryCharge: 0 })
     cartItems.forEach((item) => {
       itemDetails.offerPrice += item.offerPrice
       itemDetails.mrp += item.mrp;
@@ -33,17 +40,17 @@ const Cart = () => {
       itemDetails.deliveryCharge += item.deliveryCharge;
     })
     setItemDetails(itemDetails);
-  }, [cartItems, isDelete])
+  }, [user])
 
   return (
     <>
       {!isLoader ? <section className='mx-20 flex-grow my-5 flex gap-5'>
-        <aside className='w-[70%] h-full rightAppear relative rounded bg-white shadow-[0_0_8px] shadow-slate-300'>
-          {cartItems.length !== 0 ? cartItems.map(item => {
-            return <CartItem setIsDelete={setIsDelete} key={item._id} cartDetails={item} />;
-          }) : <div className='text-center p-4 flex-grow'>"No Items in the cart"</div>}
+        <aside className='w-[70%] flex flex-col flex-grow rounded bg-white shadow-[0_0_8px] shadow-slate-300'>
+          {cartItems.length !== 0 ? cartItems.map((item, index) => {
+            return <CartItem setIsDelete={setIsDelete} index={index} key={item._id} cartDetails={item} />;
+          }) : <div className='text-center p-4 flex-grow'>"Your Cart is empty"</div>}
         </aside>
-        <aside className='w-[30%] sticky top-[4.8rem] leftAppear h-fit rounded bg-white shadow-[0_0_8px] p-4 shadow-slate-300'>
+        <aside className='w-[30%] sticky leftAppear top-[4.8rem] h-fit rounded bg-white shadow-[0_0_8px] p-4 shadow-slate-300'>
           <table className='w-full flex flex-col'>
             <thead className='border-b-2'>
               <tr className='py-2'>

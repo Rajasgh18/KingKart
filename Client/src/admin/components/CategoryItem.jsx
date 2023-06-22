@@ -3,7 +3,7 @@ import { FiEdit } from 'react-icons/fi';
 import { AiOutlineDelete } from 'react-icons/ai';
 import DeleteDialog from './DeleteDialog';
 
-const CategoryItem = ({ details, setCategoryDetails, setProperties }) => {
+const CategoryItem = ({ details, setCategoryDetails, setInputImg, setProperties }) => {
     const { _id, categoryName, parentCategory } = details;
 
     const [isDeleteOpened, setIsDeleteOpened] = useState(false);
@@ -18,6 +18,7 @@ const CategoryItem = ({ details, setCategoryDetails, setProperties }) => {
     const handleEdit = async () => {
         setCategoryDetails({ categoryName, parentCategory: parentCategory ? parentCategory : "No Parent Category" });
         details.properties && setProperties(details.properties);
+        setInputImg(details?.categoryImg || null);
     }
 
     return (

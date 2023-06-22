@@ -74,25 +74,26 @@
 
 @keyframes appearLeft {
     from{
-        right: -5%;
+        transform: translateX(8%);
         opacity: 0;
     }
     to{
-        right: 0;
+        transform: translateX(0%);
         opacity: 1;
     }
 }
 .rightAppear{
     animation: appearRight 0.5s ease-in-out;
+    /* animation-delay: calc(100ms * var(--i)); */
 }
 
 @keyframes appearRight {
     from{
-        left: -5%;
+        transform: translateX(-8%);
         opacity: 0;
     }
     to{
-        left: 0;
+        transform: translateX(0%);
         opacity: 1;
     }
 }

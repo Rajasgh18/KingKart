@@ -69,7 +69,7 @@ const Home = () => {
     <div className='flex-1 flex flex-col px-10'>
       <Background backgroundRef={backgroundRef} />
       <h1 className='text-center text-4xl my-10 font-viga text-green-500'>BEST SELLING PRODUCTS</h1>
-      <section className='grid grid-cols-5 gap-y-10 px-10'>
+      <section className='grid grid-cols-5 px-10'>
         {!isLoader && products.map(p => {
           return <Product key={p._id} details={p} />;
         })
