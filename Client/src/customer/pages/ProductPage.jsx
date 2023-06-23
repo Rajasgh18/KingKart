@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Loader from '../components/Loader';
 import axios from 'axios';
 import { AiFillStar } from 'react-icons/ai';
 import { FaBolt, FaShoppingCart } from 'react-icons/fa';

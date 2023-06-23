@@ -1,7 +1,6 @@
 const express = require('express');
 const App = express();
 const port = 5000;
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const connectToDB = require('./db');
 const product = require('./routes/product');

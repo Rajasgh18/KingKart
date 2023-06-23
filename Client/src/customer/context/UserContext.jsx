@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const UserContext = createContext();
 
@@ -8,13 +9,14 @@ export const UserState = (props) => {
     const [changes, setChanges] = useState(0);
     const url = "http://localhost:5000/api";
     const userId = localStorage.getItem('userId');
+    const Navigate = useNavigate();
 
     const getUser = async () => {
         const res = await axios.get(`${url}/user/${userId}`);
         setUser(res.data);
     }
     return (
-        <UserContext.Provider value={{ user, getUser, setUser, changes, setChanges, userId, url }}>
+        <UserContext.Provider value={{ user, getUser, setUser, changes, setChanges, userId, url, Navigate }}>
             {props.children}
         </UserContext.Provider>
     );

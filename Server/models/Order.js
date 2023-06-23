@@ -6,7 +6,7 @@ const orderSchema = new Schema({
         type: String,
         required: true,
     },
-    email: {
+    username: {
         type: String,
         required: true,
     },
@@ -30,7 +30,11 @@ const orderSchema = new Schema({
         type: Boolean,
         required: true
     },
-    orderedProducts: Object,
+    line_items: Object,
+    orderedProductIds:{
+        type: Array,
+        required: true
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Orders', orderSchema);

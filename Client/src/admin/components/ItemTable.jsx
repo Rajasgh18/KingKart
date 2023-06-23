@@ -6,12 +6,12 @@ const ItemTable = ({ productList, isLoader }) => {
         <table className='shadow-[0_0_6px_1px] shadow-slate-200'>
             <thead className='bg-slate-100 text-slate-600'>
                 <tr>
-                    <td className='itemBoxPrimary w-1/4'>Id</td>
-                    <td className='itemBoxPrimary w-1/6'>Name</td>
-                    <td className='itemBoxPrimary w-1/6'>Price</td>
-                    <td className='itemBoxPrimary w-1/6'>Caterogory</td>
-                    <td className='itemBoxPrimary w-1/6'>More Details</td>
-                    <td className='itemBoxPrimary w-1/6'>Edit</td>
+                    <th className='itemBoxPrimary w-1/4 text-left'>Id</th>
+                    <th className='itemBoxPrimary w-1/6 text-left'>Name</th>
+                    <th className='itemBoxPrimary w-1/6 text-left'>Price</th>
+                    <th className='itemBoxPrimary w-1/6 text-left'>Caterogory</th>
+                    <th className='itemBoxPrimary w-1/6 text-left'>More Details</th>
+                    <th className='itemBoxPrimary w-1/6 text-left'>Edit</th>
                 </tr>
             </thead>
             {productList.length !== 0 && !isLoader ? productList.map(product => {

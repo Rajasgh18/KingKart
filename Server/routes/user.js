@@ -6,7 +6,7 @@ const { body, validationResult } = require('express-validator');
 const JWT = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
-const secretKey = process.env.REACT_APP_JWT_SECRET;
+const secretKey = process.env.JWT_SECRET;
 
 Router
     // Create User
@@ -164,6 +164,19 @@ Router
             res.status(200).json(cartItems);
         } catch (error) {
 
+        }
+    })
+
+    //Clear Cart
+    .post('/cart-clear', async(req, res)=>{
+        try {
+            const user = await User.findById(req.body.userId);
+            user.cartItems = [];
+            await user.save();
+            res.status(200).send('Cart Cleared!');
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Internal Server Error!");
         }
     })
 

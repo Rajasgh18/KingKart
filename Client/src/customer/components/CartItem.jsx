@@ -4,7 +4,7 @@ import { AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
-const CartItem = ({ cartDetails, setIsDelete, index }) => {
+const CartItem = ({ cartDetails }) => {
     const { user, setChanges, userId, setUser } = useContext(UserContext);
     const Navigate = useNavigate();
     const currentItem = useRef(null);
@@ -15,13 +15,12 @@ const CartItem = ({ cartDetails, setIsDelete, index }) => {
 
     const handleRemove = async () => {
         try {
-            currentItem.current.classList += " removeItem";
+            currentItem.current.style.animation = 'disappearItem 0.7s ease-in-out';
             setTimeout(async () => {
-                currentItem.current.classList += " hidden"
+                currentItem.current.style.display = 'none';
             }, [400]);
             const res = await axios.put(`http://localhost:5000/api/user/cart-remove/${user._id}`, { productId: cartDetails._id })
             setChanges(prev => [prev++]);
-            setIsDelete(true);
         } catch (error) {
             console.error(error)
         }
@@ -30,7 +29,6 @@ const CartItem = ({ cartDetails, setIsDelete, index }) => {
     const handleIncrease = async () => {
         try {
             const res = await axios.put(`http://localhost:5000/api/user/cart-increase/${userId}`, { productId: cartDetails._id });
-            console.log(res.data);
             setQuantity(prev => [++prev]);
             setUser({ ...user, cartItems: res.data });
         } catch (error) {
@@ -57,15 +55,13 @@ const CartItem = ({ cartDetails, setIsDelete, index }) => {
                 <h3 onClick={handleClick} className='text-xl cursor-pointer text-slate-700'>{cartDetails?.name}</h3>
                 <span className='flex rounded px-1 bg-green-500 text-white items-center justify-center gap-1 w-fit'>{cartDetails?.rating}<AiFillStar /></span>
                 <div className='flex gap-2 items-end'>
-                    <span className='text-lg text-slate-700 font-viga'>Rs {cartDetails?.offerPrice}</span>
-                    <span className='text text-slate-500 line-through'>Rs {cartDetails?.mrp}</span>
-                    <span className='text text-green-600'>{Math.round(((cartDetails?.mrp - cartDetails?.offerPrice) / cartDetails?.mrp) * 100)}%off</span>
+                    <span className='text-lg text-slate-700 font-viga'>Rs {quantity * cartDetails?.offerPrice}</span>
                 </div>
                 <div className='flex gap-5'>
                     <div className='flex items-center gap-3 text-xl'>
-                        <button onClick={handleIncrease} className='bg-blue-500 hover:scale-110 duration-200 transition-transform px-4 rounded-md text-white text-2xl'>+</button>
-                        <span>{quantity}</span>
                         <button onClick={handleDecrease} className='bg-blue-500 hover:scale-110 duration-200 transition-transform px-4 rounded-md text-white text-2xl'>-</button>
+                        <span>{quantity}</span>
+                        <button onClick={handleIncrease} className='bg-blue-500 hover:scale-110 duration-200 transition-transform px-4 rounded-md text-white text-2xl'>+</button>
                     </div>
                     <button onClick={handleRemove} className='w-fit hover:bg-red-600 hover:scale-105 transition-transform p-1 px-2 rounded-md bg-red-500 text-white text-md'>Remove</button>
                 </div>

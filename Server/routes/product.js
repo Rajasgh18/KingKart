@@ -3,7 +3,6 @@ const Product = require('../models/Product');
 const { body, validationResult } = require('express-validator');
 
 Router
-    
     //Search for Products or based no category
     .get('/search', async (req, res) => {
         try {

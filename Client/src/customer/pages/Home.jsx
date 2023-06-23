@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import Navbar from '../components/Navbar';
 import Background from '../components/Background';
 import Product from '../components/Product';
 import axios from 'axios';
-import Loader from '../components/Loader';
-import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
 
 const Home = () => {
   const [products, SetProducts] = useState([]);
@@ -27,8 +25,8 @@ const Home = () => {
     { rootMargin: '0px' }
   );
 
-  useEffect(()=>{
-    if(!userId) Navigate('/login');
+  useEffect(() => {
+    if (!userId) Navigate('/login');
   }, [])
 
   backgroundRef && useEffect(() => {
@@ -75,7 +73,7 @@ const Home = () => {
         })
         }
       </section>
-      {isLoader && <Loader />}
+      {isLoader && <div className='flex flex-grow justify-center'><TailSpin height={50} width={50} color='blue' /></div>}
     </div>
   )
 }
