@@ -62,21 +62,21 @@ const Navbar = () => {
     }
 
     return (
-        <div className='h-14 px-10 z-50 sticky top-0 bg-violet-500 justify-between flex items-center'>
-            <Link to='/' className='text-3xl text-white font-bold'>KingKart</Link>
-            <div ref={searchBoxRef} className='w-1/4 flex flex-col'>
-                <div className='p-[0.3rem] bg-white rounded-lg flex items-center w-full px-2 gap-3'>
-                    <label htmlFor="searchBar"><BsSearch className='w-5 h-5 text-slate-600' /></label>
-                    <input onChange={(e) => { setSearchQuery(e.target.value) }} value={searchQuery} id='searchBar' type="text" placeholder='Search here...' className='focus:outline-none text-lg w-full text-slate-600' />
+        <nav className='lg:h-14 sm:h-12 h-10 px-10 z-50 sticky top-0 bg-violet-500 justify-between flex items-center'>
+            <Link to='/' className='sm:text-3xl text-2xl text-white font-bold'>KingKart</Link>
+            <div ref={searchBoxRef} className='sm:w-1/4 w-1/2 flex justify-center flex-col'>
+                <div className='lg:p-[0.3rem] lg:px-3 sm:p-1 sm:px-2 px-2 p-[0.1rem] bg-white rounded-lg flex items-center w-full gap-3'>
+                    <label htmlFor="searchBar"><BsSearch className='lg:w-5 lg:h-5 sm:w-4 sm:h-4 text-slate-600' /></label>
+                    <input onChange={(e) => { setSearchQuery(e.target.value) }} value={searchQuery} id='searchBar' type="text" placeholder='Search here...' className='focus:outline-none lg:text-lg sm:text-md text-base w-full text-slate-600' />
                 </div>
                 {searchQuery && <SearchResult searchResultRef={searchResultRef} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
             </div>
-            <div className='flex items-center text-white text-lg gap-4'>
+            <div className='md:flex items-center hidden text-white text-lg gap-4'>
                 <Link to='/' className='hover:bg-white transition-all duration-200 hover:text-violet-500 p-1 px-3 rounded-md'>Home</Link>
                 <Link to='/categories' className='hover:bg-white transition-all duration-200 hover:text-violet-500 p-1 px-3 rounded-md'>Categories</Link>
                 <Link to='/settings' className='hover:bg-white transition-all duration-200 hover:text-violet-500 p-1 px-3 rounded-md'>Settings</Link>
             </div>
-            <div className='flex items-center gap-5'>
+            <div className='sm:flex hidden items-center gap-5'>
                 <Link to="/cart" className='flex'>
                     <FaShoppingCart className='w-6 h-6 text-white cursor-pointer transition-transform hover:scale-125' />
                     <span className='bg-red-600 absolute px-[0.4rem] font-bold ml-4 -mt-2 text-white text-sm h-fit w-fit rounded-full'>{user?.cartItems?.length}</span>
@@ -90,7 +90,7 @@ const Navbar = () => {
                     </div>}
                 </div>
             </div>
-        </div>
+        </nav>
     )
 }
 

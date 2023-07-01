@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../context/UserContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 
 const Categories = () => {
 
+  const {url} = useContext(UserContext);
   const [categories, setCategories] = useState([]);
   const Navigate = useNavigate();
   const [isLoader, setIsLoader] = useState(true);
@@ -12,7 +14,7 @@ const Categories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/category/');
+        const res = await axios.get(`${url}/category/`);
         setCategories(res.data);
         setIsLoader(false);
         const productsEle = document.getElementsByClassName('bottomAppear');

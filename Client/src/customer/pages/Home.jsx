@@ -4,8 +4,10 @@ import Product from '../components/Product';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
+import { UserContext } from '../context/UserContext';
 
 const Home = () => {
+  const {url} = useContext(UserContext);
   const [products, SetProducts] = useState([]);
   const [isLoader, setIsLoader] = useState(true);
   const userId = localStorage.getItem('userId');
@@ -47,7 +49,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/product');
+        const res = await axios.get(`${url}/product`);
         SetProducts(res.data);
         setIsLoader(false);
         const productsEle = document.getElementsByClassName('bottomAppear');
@@ -64,10 +66,10 @@ const Home = () => {
 
 
   return (
-    <div className='flex-1 flex flex-col px-10'>
+    <div className='flex-1 flex flex-col lg:px-10 md:px-8 sm:px-6 px-4'>
       <Background backgroundRef={backgroundRef} />
-      <h1 className='text-center text-4xl my-10 font-viga text-green-500'>BEST SELLING PRODUCTS</h1>
-      <section className='grid grid-cols-5 px-10'>
+      <h1 className='text-center lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:my-10 md:my-8 sm:my-4 my-4 font-viga text-green-500'>BEST SELLING PRODUCTS</h1>
+      <section className='grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 lg:gap-10 gap-5 lg:px-10 md:px-8 sm:px-6 px-4'>
         {!isLoader && products.map(p => {
           return <Product key={p._id} details={p} />;
         })

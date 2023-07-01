@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { TailSpin } from 'react-loader-spinner';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
+import {UserContext} from '../context/UserContext';
 
 const QueryProducts = () => {
 
+    const {url} = useContext(UserContext);
     const searchQuery = useLocation().search;
     const Navigate = useNavigate();
     const [products, setProducts] = useState([]);
@@ -14,7 +16,7 @@ const QueryProducts = () => {
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const res = await axios.get(`http://localhost:5000/api/product/search${searchQuery}`);
+            const res = await axios.get(`${url}/product/search${searchQuery}`);
             setProducts(res.data);
             setIsLoader(false);
             const productsEle = document.getElementsByClassName('leftAppear');

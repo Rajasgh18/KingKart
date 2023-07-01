@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {TailSpin} from 'react-loader-spinner';
 import axios from 'axios';
+import { UserContext } from '../context/UserContext';
 
 const LoginSignup = () => {
   const logoRef = useRef();
   const signupRef = useRef();
   const loginRef = useRef();
   const validationRef = useRef();
+  const {url} = useContext(UserContext);
   const pageName = useLocation().pathname;
   const [loginCred, setLoginCred] = useState({ username: '', password: '' });
   const [signupCred, setSignupCred] = useState({ name: '', username: '', password: '', confirmPassword: '' });
@@ -48,7 +50,7 @@ const LoginSignup = () => {
     setIsLoader(true);
     validationRef.current.innerHTML = '';
     try {
-      const res = await axios.post(`http://localhost:5000/api/user/login`, loginCred);
+      const res = await axios.post(`${url}/user/login`, loginCred);
       localStorage.setItem('userId', res.data.user._id);
       setIsLoader(false);
       Navigate('/');
@@ -64,7 +66,7 @@ const LoginSignup = () => {
       if(signupCred.password.length <= 4) validationRef.current.innerHTML = 'Please enter password more than 4 letters'
       else if(signupCred.confirmPassword === signupCred.password){
         validationRef.current.innerHTML = '';
-        const res = await axios.post('http://localhost:5000/api/user/', {name: signupCred.name, username: signupCred.username, password: signupCred.password});
+        const res = await axios.post(`${url}/user/`, {name: signupCred.name, username: signupCred.username, password: signupCred.password});
         localStorage.setItem('userId', res.data.user._id);
         setIsLoader(false);
         Navigate('/');

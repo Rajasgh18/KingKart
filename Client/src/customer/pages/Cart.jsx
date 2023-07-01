@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../context/UserContext'
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../context/UserContext';
 import CartItem from '../components/CartItem';
 import { TailSpin } from 'react-loader-spinner';
 import axios from 'axios';

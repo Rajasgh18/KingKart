@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 const CartItem = ({ cartDetails }) => {
-    const { user, setChanges, userId, setUser } = useContext(UserContext);
+    const { user, setChanges, userId, setUser, url } = useContext(UserContext);
     const Navigate = useNavigate();
     const currentItem = useRef(null);
     const [quantity, setQuantity] = useState(user.cartItems?.filter(item => item === cartDetails._id).length);
@@ -19,7 +19,7 @@ const CartItem = ({ cartDetails }) => {
             setTimeout(async () => {
                 currentItem.current.style.display = 'none';
             }, [400]);
-            const res = await axios.put(`http://localhost:5000/api/user/cart-remove/${user._id}`, { productId: cartDetails._id })
+            const res = await axios.put(`${url}/user/cart-remove/${user._id}`, { productId: cartDetails._id })
             setChanges(prev => [prev++]);
         } catch (error) {
             console.error(error)
@@ -28,7 +28,7 @@ const CartItem = ({ cartDetails }) => {
 
     const handleIncrease = async () => {
         try {
-            const res = await axios.put(`http://localhost:5000/api/user/cart-increase/${userId}`, { productId: cartDetails._id });
+            const res = await axios.put(`${url}/user/cart-increase/${userId}`, { productId: cartDetails._id });
             setQuantity(prev => [++prev]);
             setUser({ ...user, cartItems: res.data });
         } catch (error) {
@@ -37,7 +37,7 @@ const CartItem = ({ cartDetails }) => {
     }
     const handleDecrease = async () => {
         try {
-            const res = await axios.put(`http://localhost:5000/api/user/cart-decrease/${userId}`, { productId: cartDetails._id });
+            const res = await axios.put(`${url}/user/cart-decrease/${userId}`, { productId: cartDetails._id });
             console.log(res.data);
             setQuantity(prev => [--prev]);
             setUser({ ...user, cartItems: res.data });

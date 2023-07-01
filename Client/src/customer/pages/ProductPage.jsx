@@ -12,7 +12,7 @@ import { TailSpin } from 'react-loader-spinner';
 
 const ProductPage = () => {
 
-  const { setUser, setChanges } = useContext(UserContext);
+  const { setUser, setChanges, url } = useContext(UserContext);
   const userId = localStorage.getItem('userId');
   const _id = useLocation().pathname;
   const [productDetail, setProductDetail] = useState({});
@@ -46,7 +46,7 @@ const ProductPage = () => {
     const fetchProductDetails = async () => {
       setIsLoader1(true);
       try {
-        const res = await axios.get(`http://localhost:5000/api/product${_id}`);
+        const res = await axios.get(`${url}/product${_id}`);
         setProductDetail(res.data);
         setIsLoader1(false);
       } catch (error) {
@@ -61,7 +61,7 @@ const ProductPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/product');
+        const res = await axios.get(`${url}/product`);
         SetProducts(res.data);
         setIsLoader2(false);
         productRefs.current.forEach((element, index) => {
@@ -85,7 +85,7 @@ const ProductPage = () => {
 
   const handleCart = async () => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/user/cart-add/${userId}`, { productId: productDetail._id })
+      const res = await axios.put(`${url}/user/cart-add/${userId}`, { productId: productDetail._id })
       if (res.data === "Successfully added to the cart!") {
         setUser(prev => {
           const details = { ...prev };
@@ -102,16 +102,16 @@ const ProductPage = () => {
   return (
     <>
       {!isLoader1 ? <section className='flex flex-col gap-10 flex-1'>
-        <section className='mx-20 flex h-full bg-white shadow-md'>
-          <aside className='w-[40%] h-2/3 p-4 flex flex-col sticky top-14 left-0 items-center'>
+        <section className='lg:mx-20 md:mx-16 sm:mx-12 mx-8 sm:my-0 my-4 flex sm:flex-row flex-col bg-white shadow-md'>
+          <aside className='sm:w-[40%] sm:h-2/3 p-4 flex flex-col sm:sticky top-14 left-0 items-center'>
             <div className='flex w-full justify-center h-full'>
-              <div className={`flex flex-col flex-shrink-0 border-2 gap-2 overflow-y-auto p-2`}>
+              <div className={`flex flex-col w-[20%] flex-shrink-0 border-2 md:gap-1 overflow-y-auto lg:gap-2 lg:p-2 sm:p-1 p-2 gap-2`}>
                 {productDetail.img.map((i, index) => {
-                  return <img onMouseEnter={() => setImgIndex(index)} key={index} src={`/assets/productImg/${i}`} alt="" className={`${index === imgIndex && "border-2 border-blue-500"} w-20 h-20 productImg cursor-pointer imgLoad bg-slate-200 rounded object-contain`} />
+                  return <img onMouseEnter={() => setImgIndex(index)} key={index} src={`/assets/productImg/${i}`} alt="" className={`${index === imgIndex && "border-2 border-blue-500"}  productImg cursor-pointer imgLoad bg-slate-200 rounded object-contain`} />
                 })}
               </div>
               <div className='w-full h-full'>
-                <img src={`/assets/productImg/${productDetail.img[imgIndex]}`} className={`w-full imgLoad h-96 border-2 border-l-0 bg-slate-100 object-contain`} alt="" />
+                <img src={`/assets/productImg/${productDetail.img[imgIndex]}`} className={`w-full imgLoad border-2 border-l-0 bg-slate-100 object-contain`} alt="" />
               </div>
             </div>
             <div className='w-full flex my-5 gap-4'>
@@ -119,13 +119,13 @@ const ProductPage = () => {
               <button className='hover:bg-orange-400 flex items-center justify-center gap-2 text-white rounded p-3 px-4 bg-orange-500 text-xl w-full'><FaBolt />Buy Now</button>
             </div>
           </aside>
-          <aside className='flex-grow leftAppear relative gap-3 flex flex-col p-4'>
-            <h2 className='text-2xl text-slate-700'>{productDetail.name}</h2>
+          <aside className='flex-grow leftAppear relative lg:gap-3 md:gap-2 sm:gap-2 flex flex-col p-4'>
+            <h2 className='lg:text-2xl md:text-xl text-slate-700'>{productDetail.name}</h2>
             <span className='flex rounded px-2 bg-green-500 text-white items-center justify-center gap-1 w-fit'>{productDetail.rating}<AiFillStar /></span>
             <div className='flex flex-col'>
               <span className='text-green-600'>Extra Rs {productDetail.mrp - productDetail.offerPrice} off</span>
               <div className='flex gap-4 items-end'>
-                <span className='text-4xl text-slate-700 font-viga'>Rs {productDetail.offerPrice}</span>
+                <span className='lg:text-4xl md:text-3xl sm:text-2xl text-slate-700 font-viga'>Rs {productDetail.offerPrice}</span>
                 <span className='text-lg text-slate-500 line-through'>Rs {productDetail.mrp}</span>
                 <span className='text-lg text-green-600'>{Math.round(((productDetail.mrp - productDetail.offerPrice) / productDetail.mrp) * 100)}%off</span>
               </div>

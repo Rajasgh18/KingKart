@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { TailSpin } from 'react-loader-spinner';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 const SearchResult = ({ searchQuery, searchResultRef, setSearchQuery }) => {
+    const {url} = useContext(UserContext);
     const encodedQuery = encodeURIComponent(searchQuery);
     const [isLoader, setIsLoader] = useState(true);
     const [resultItems, setResultItems] = useState([]);
@@ -13,7 +15,7 @@ const SearchResult = ({ searchQuery, searchResultRef, setSearchQuery }) => {
         const fetchSearchResults = async () => {
             setIsLoader(true);
             try {
-                const res = await axios.get(`http://localhost:5000/api/product/search?products=${encodedQuery}`);
+                const res = await axios.get(`${url}/product/search?products=${encodedQuery}`);
                 setResultItems(res.data);
                 setIsLoader(false);
             } catch (error) {

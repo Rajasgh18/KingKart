@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Raja Singh",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",

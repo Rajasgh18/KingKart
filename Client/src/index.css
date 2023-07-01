@@ -169,3 +169,47 @@
     }
 }
 
+.chatBotAnim{
+    animation: chatAppear 0.3s ease-in-out;
+}
+
+@keyframes chatAppear {
+    from{
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+        width: 30%;
+        height: 60%;
+    }
+}
+
+@keyframes chatDisappear{
+    from{
+        opacity: 1;
+        width: 30%;
+        height: 60%;
+    }
+    to{
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+.chatTextAppear{
+    animation: textAppear 0.8s ease-in-out;
+}
+
+@keyframes textAppear{
+    from{
+        transform: translateX(-10%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

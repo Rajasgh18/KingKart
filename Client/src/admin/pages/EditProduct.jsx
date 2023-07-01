@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FiUpload } from "react-icons/fi";
 import Loader from '../components/Loader';
+import CreateContext from '../context/createContext';
 import ImgBox from '../components/ImgBox';
 import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -8,6 +9,7 @@ import ChooseCategories from '../components/ChooseCategories';
 import DropDown from '../components/DropDown';
 const EditProduct = () => {
 
+    const {url} = useContext(CreateContext);
     const [isLoader, setIsLoader] = useState(true);
     const [formDetails, setFormDetails] = useState({ _id: '', name: '', desc: '', category: '', price: '', rating: '' });
     const [inputImg, setInputImg] = useState("");
@@ -27,7 +29,7 @@ const EditProduct = () => {
                 const fileName = Date.now() + data[i].name;
                 formData.append('fileName', fileName);
                 formData.append('image', data[i]);
-                const res = await axios.post('http://localhost:5000/api/image/single', formData);
+                const res = await axios.post(`${url}/image/single`, formData);
                 setInputImg(prev => [...prev, fileName]);
             }
         } catch (error) {
@@ -39,7 +41,7 @@ const EditProduct = () => {
         e.preventDefault();
         const data = { ...formDetails, img: inputImg, properties };
         try {
-            const res = await axios.put('http://localhost:5000/api/product/' + id, data);
+            const res = await axios.put(`${url}/product/${id}`, data);
             Navigate('/admin/products');
         } catch (error) {
             console.error(error);
@@ -47,7 +49,7 @@ const EditProduct = () => {
     }
     const getDetails = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/product/${id}`);
+            const res = await axios.get(`${url}/product/${id}`);
             setFormDetails({ ...res.data });
             setProperties(res.data.properties);
             setInputImg(res.data.img);
@@ -68,7 +70,7 @@ const EditProduct = () => {
     useEffect(() => {
         const getCategories = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/category');
+                const res = await axios.get(`${url}/category`);
                 setCategory(res.data);
             } catch (error) {
                 console.error(error)

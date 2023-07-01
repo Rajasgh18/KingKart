@@ -8,10 +8,9 @@ import axios from 'axios';
 import ItemTable from '../components/ItemTable';
 
 const Products = () => {
-  const { mode, isDeleted } = useContext(CreateContext);
+  const { mode, isDeleted, url } = useContext(CreateContext);
 
   const [isLoader, setIsLoader] = useState(true);
-  const url = 'http://localhost:5000/api';
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {

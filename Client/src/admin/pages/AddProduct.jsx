@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Loader from '../components/Loader';
 import ImgBox from '../components/ImgBox';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,8 +6,10 @@ import { FiUpload } from "react-icons/fi";
 import axios from 'axios';
 import DropDown from '../components/DropDown';
 import ChooseCategories from '../components/ChooseCategories';
+import CreateContext from '../context/createContext';
 
 const AddProduct = () => {
+  const {url} = useContext(CreateContext);
   const [isLoader, setIsLoader] = useState(true);
   const [formDetails, setFormDetails] = useState({ name: '', desc: '', category: '', offerPrice: '', mrp: '', deliveryCharge: '', rating: '' });
   const [category, setCategory] = useState([]);
@@ -31,7 +33,7 @@ const AddProduct = () => {
         const fileName = Date.now() + data[i].name;
         formData.append('fileName', fileName);
         formData.append('image', data[i]);
-        await axios.post('http://localhost:5000/api/image/single', formData);
+        await axios.post(`${url}/image/single`, formData);
         setInputImg(prev => [...prev, fileName]);
       }
     } catch (error) {
@@ -42,7 +44,7 @@ const AddProduct = () => {
     e.preventDefault();
     try {
       const data = { ...formDetails, img: inputImg, properties };
-      const res = await axios.post('http://localhost:5000/api/product', data);
+      const res = await axios.post(`${url}/product`, data);
       Navigate('/admin/products');
     } catch (error) {
       console.error(error);
@@ -52,7 +54,7 @@ const AddProduct = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/category');
+        const res = await axios.get(`${url}/category`);
         setCategory(res.data);
       } catch (error) {
         console.error(error);

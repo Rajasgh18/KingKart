@@ -7,7 +7,7 @@ export const UserContext = createContext();
 export const UserState = (props) => {
     const [user, setUser] = useState({});
     const [changes, setChanges] = useState(0);
-    const url = "http://localhost:5000/api";
+    const url = import.meta.env.VITE_URL;
     const userId = localStorage.getItem('userId');
     const Navigate = useNavigate();
 

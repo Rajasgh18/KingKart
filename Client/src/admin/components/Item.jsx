@@ -6,7 +6,7 @@ import { FiEdit } from "react-icons/fi";
 import DeleteDialog from './DeleteDialog';
 import axios from 'axios';
 const Item = ({ details }) => {
-    const { mode } = useContext(CreateContext);
+    const { mode, url } = useContext(CreateContext);
     const Navigate = useNavigate();
 
     const { _id, name, offerPrice, category } = details;
@@ -26,7 +26,7 @@ const Item = ({ details }) => {
     useEffect(()=>{
         const fetchCategory = async ()=>{
             try {
-                const res = await axios.get('http://localhost:5000/api/category/'+category);
+                const res = await axios.get(`${url}/category/${category}`);
                 setCategoryDetails(res.data);
             } catch (error) {
                 console.error(error)

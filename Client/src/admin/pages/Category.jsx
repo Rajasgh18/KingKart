@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { BsChevronDown } from "react-icons/bs";
 import DropDown from '../components/DropDown';
@@ -7,9 +7,11 @@ import Loader from '../components/Loader';
 import CategoryProperty from '../components/CategoryProperty';
 import { FiUpload } from "react-icons/fi";
 import ImgBox from '../components/ImgBox';
+import CreateContext from '../context/createContext';
 
 const Category = () => {
 
+  const {url} = useContext(CreateContext);
   const [category, setCategory] = useState([]);
   const [categoryDetails, setCategoryDetails] = useState({ categoryName: "", parentCategory: "No Parent Category", properties: [{}] });
   const [properties, setProperties] = useState([]);
@@ -24,14 +26,14 @@ const Category = () => {
         data = { categoryName: categoryDetails.categoryName, parentCategory: null, properties, categoryImg: inputImg };
       for (let i = 0; i < category.length; i++) {
         if (category[i].categoryName === categoryDetails.categoryName) {
-          const res = await axios.put('http://localhost:5000/api/category/' + category[i]._id, data);
+          const res = await axios.put(`${url}/category/${category[i]._id, data}`);
           setCategoryDetails({ categoryName: "", parentCategory: "No Selection" });
           setProperties([])
           setInputImg(null);
           return;
         }
       }
-      const res = await axios.post('http://localhost:5000/api/category', data);
+      const res = await axios.post(`${url}/category`, data);
       setCategoryDetails({ categoryName: "", parentCategory: "No Parent Category" });
       setInputImg(null);
       setProperties([])
@@ -43,7 +45,7 @@ const Category = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/category');
+        const res = await axios.get(`${url}/category`);
         setCategory(res.data);
         setIsLoader(false);
       } catch (error) {
@@ -60,7 +62,7 @@ const Category = () => {
       const fileName = Date.now() + data.name;
       formData.append('fileName', fileName);
       formData.append('image', data);
-      await axios.post('http://localhost:5000/api/image/single', formData);
+      await axios.post(`${url}/image/single`, formData);
       setInputImg(fileName);
     } catch (error) {
       console.error(error);
