@@ -5,9 +5,6 @@
   "main": "index.js",
   "author": "Raja Singh",
   "license": "MIT",
-  "engines": {
-    "node": "16.x"
-  },
   "scripts": {
     "start": "node index.js"
   },

@@ -4,8 +4,8 @@ const Product = require('../models/Product');
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
 const JWT = require('jsonwebtoken');
-const dotenv = require('dotenv');
-dotenv.config();
+// const dotenv = require('dotenv');
+// dotenv.config();
 const secretKey = process.env.JWT_SECRET;
 
 Router
