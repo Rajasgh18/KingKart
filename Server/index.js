@@ -35,7 +35,7 @@ App.use('/api/category', category);
 App.use('/api/image', image);
 App.use('/api/user', user);
 App.use('/api/order', order);
-// express.static(path.join(__dirname, "./public/assets")),
+express.static(path.join(__dirname, "./public/assets")),
 
 App.listen(port, () => {
     console.log(`KingKart Listening at http://localhost:${port}`)
