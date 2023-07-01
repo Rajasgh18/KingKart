@@ -7,7 +7,7 @@ export const UserContext = createContext();
 export const UserState = (props) => {
     const [user, setUser] = useState({});
     const [changes, setChanges] = useState(0);
-    const url = import.meta.env.VITE_URL;
+    const url = import.meta.env.VITE_URL || 'https://king-kart-server.vercel.app/api';
     const userId = localStorage.getItem('userId');
     const Navigate = useNavigate();
 

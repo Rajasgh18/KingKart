@@ -6,7 +6,7 @@ const ModeContext = (props) => {
     const [mode, setMode] = useState('light');
     const [show, setShow] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
-    const url = 'http://localhost:5000/api'
+    const url = import.meta.env.VITE_URL || 'https://king-kart-server.vercel.app/api'
     return (
         <CreateContext.Provider value={{mode, setMode,isDeleted, setIsDeleted, show, setShow, url}}>
             {props.children}
