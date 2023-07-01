@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Orders from './pages/Orders';
 import Products from './pages/Products';
@@ -13,6 +13,15 @@ import ProductDetails from './pages/ProductDetails';
 import NotFound from '../NotFound';
 
 const Admin = () => {
+
+  const Navigate = useNavigate();
+
+  useEffect(()=>{
+    if(localStorage.getItem('userId') !== '64958bb127e9d080f9ead0e2'){
+      Navigate('/');
+    }
+  }, []);
+
   return (
     <div className='flex min-w-screen min-h-screen'>
       <Sidebar />

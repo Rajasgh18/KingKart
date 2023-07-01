@@ -27,7 +27,7 @@ const Customer = () => {
         <Route exact path='/cart' element={<Cart />} />
         <Route exact path='/products' element={<QueryProducts />} />
       </Routes>
-      <Link to='/admin' className='fixed bottom-16 left-16 bg-green-400 text-white font-viga p-3 px-4 rounded-md text-lg border-green-500 border-2'>Admin</Link>
+      {userId === '64958bb127e9d080f9ead0e2' && <Link to='/admin' className='fixed bottom-16 left-16 bg-green-400 text-white font-viga p-3 px-4 rounded-md text-lg border-green-500 border-2'>Admin</Link>}
       <ChatBot />
     </div>
   );
