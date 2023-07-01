@@ -21,6 +21,11 @@ App.use(bodyParser.json());
 // Parse application/json
 App.use(bodyParser.urlencoded({ extended: false }));
 App.use(express.json());
+
+App.use('/', (req, res)=> {
+    res.send("Hello");
+})
+
 App.use('/api/product', product);
 App.use('/api/category', category);
 App.use('/api/image', image);
