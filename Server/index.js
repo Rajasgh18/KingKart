@@ -14,7 +14,11 @@ const cors = require('cors');
 
 dotenv.config();
 connectToDB();
-App.use(cors());
+App.use(cors(
+    {
+        origin: 'https://king-kart.vercel.app/',
+    }
+));
 
 // Parse application/json
 App.use(bodyParser.json());

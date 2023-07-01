@@ -1,9 +1,8 @@
 {
     "version": 2,
-    "name": "Rest Api for Ecommerce",
     "builds": [
         {
-            "src": "./index.js",
+            "src": "index.js",
             "use": "@vercel/node"
         }
     ],
