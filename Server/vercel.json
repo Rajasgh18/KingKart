@@ -3,7 +3,7 @@
     "name": "Rest Api for Ecommerce",
     "builds": [
         {
-            "src": "*.js",
+            "src": "./index.js",
             "use": "@vercel/node"
         }
     ],
