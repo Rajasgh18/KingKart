@@ -16,7 +16,7 @@ const cors = require('cors');
 connectToDB();
 App.use(cors(
     {
-        origin: 'https://king-kart.vercel.app/',
+        origin: 'https://king-kart.vercel.app',
     }
 ));
 
