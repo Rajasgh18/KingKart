@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BsRobot } from 'react-icons/bs';
+import { FaUserTie } from 'react-icons/fa';
 
 const ChatBot = () => {
     const chatBotRef = useRef();
     const chatBotBtnRef = useRef();
     const [isClicked, setIsClicked] = useState(false);
-    const [messages, setMessages] = useState([{ text: "Hello, what help would you like!", options: ["hello", "world"] }]);
-    const [userOptions, setUserOptions] = useState([]);
+    const [messages, setMessages] = useState([{ name: 'chatBot', text: "Hello, what are your queries!", options: ["Product", "Service"] }]);
+    const [choosedOptions, setChoosedOptions] = useState([]);
+    const scrollRef = useRef();
 
     const handleBtn = () => {
         setIsClicked(true);
@@ -31,9 +33,24 @@ const ChatBot = () => {
     }, [isClicked]);
 
     const handleNewMessages = (e) => {
-        setUserOptions(prev => [...prev, e]);
-        setMessages(prev => [...prev, {text:"welcom", options: ["hello", "nothing"]}])
+        console.log(choosedOptions.indexOf('Service'));
+        setMessages(prev => [...prev, { text: e, name: 'user', options: [] }]);
+        setChoosedOptions(prev => [...prev, e]);
+        setTimeout(() => {
+            switch (e) {
+                case 'Product': setMessages(prev => [...prev, { text: "abenffejiowjffeef", name: 'chatBot', options: ['Delivery', 'abx', 'dash'] }]);
+                    break;
+                case 'Service': setMessages(prev => [...prev, { text: "nothingsnfeif", name: 'chatBot', options: ['fee', 'abx', 'dash'] }]);
+                    break;
+                case 'dash': setMessages(prev => [...prev, { text: "edd", name: 'chatBot', options: ['we', 'awwx', 'wsq'] }]);
+                    break;
+            }
+        }, 1000);
     }
+
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }, [handleNewMessages]);
 
     return (
         <>
@@ -45,14 +62,14 @@ const ChatBot = () => {
                     </div>
                     <div className='flex gap-4 flex-col'>
                         {messages.length !== 0 && messages.map((message, index) => {
-                            return <div key={index} className='flex w-full flex-col gap-2'>
-                                <div className='flex gap-2'>
-                                    <BsRobot className='bg-slate-100 border border-blue-200 h-10 w-10 p-[0.4rem] text-blue-800 rounded-full' />
+                            return <div ref={scrollRef} key={index} className={`flex w-full flex-col gap-2 ${message.name === 'user' ? "items-end" : ""}`}>
+                                <div className={`flex gap-2 ${message.name === 'user' ? "flex-row-reverse" : ""}`}>
+                                    {message.name === 'user' ? <FaUserTie className='bg-slate-100 border border-blue-200 h-10 w-10 p-[0.4rem] text-blue-800 rounded-full' /> : <BsRobot className='bg-slate-100 border border-blue-200 h-10 w-10 p-[0.4rem] text-blue-800 rounded-full' />}
                                     <p className='bg-slate-100 text-blue-800 border border-blue-200 w-fit p-2 px-3 cursor-pointer rounded-xl chatTextAppear'>{message.text}</p>
                                 </div>
                                 <div className='flex gap-2 flex-shrink-0 w-full'>
                                     {message.options.length !== 0 && message.options.map((option, index) => {
-                                        return <span key={index} onClick={()=> handleNewMessages(option)} className={`bg-slate-100 cursor-pointer text-blue-800 px-3 border border-blue-200 p-2 rounded-xl`}>{option}</span>
+                                        return <span key={index} onClick={() => handleNewMessages(option)} className={`cursor-pointer px-3 border p-2 ${choosedOptions.find(e => e === option) ? 'bg-blue-400 text-white' : 'text-blue-800 bg-slate-100 border-blue-200'} rounded-xl`}>{option}</span>
                                     })}
                                 </div>
                             </div>
