@@ -70,34 +70,36 @@ const Home = () => {
 
 
   return (
-    <div className='flex-1 flex flex-col gap-12'>
-      <Background backgroundRef={backgroundRef} />
-      <div className='w-full flex justify-center'>
-        <div className='w-fit flex justify-center flex-col gap-1'>
-          <h1 className='text-center lg:text-4xl md:text-3xl sm:text-2xl text-xl font-viga text-SLATE-800'>BEST SELLERS</h1>
-          <hr className='border-b-2 mx-[10%] border-red-500'/>
+    <>
+      {!isLoader ? <div className='flex-1 flex flex-col gap-12'>
+        <Background backgroundRef={backgroundRef} />
+        <div className='w-full flex justify-center'>
+          <div className='w-fit flex justify-center flex-col gap-1'>
+            <h1 className='text-center lg:text-4xl md:text-3xl sm:text-2xl text-xl font-viga text-slate-800'>BEST SELLERS</h1>
+            <hr className='border-b-2 mx-[10%] border-red-500' />
+          </div>
         </div>
-      </div>
-      <section className='grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 lg:gap-10 gap-5 lg:px-10 md:px-8 sm:px-6 px-4'>
-        {!isLoader && products.map((p, index) => {
-          return index < 10 && <Product key={p._id} details={p} />;
-        })
-        }
-      </section>
-      <div className='w-full flex justify-center lg:my-10 md:my-8 sm:my-4 my-4'>
-        <div className='w-fit flex justify-center flex-col gap-1'>
-          <h1 className='text-center lg:text-4xl md:text-3xl sm:text-2xl text-xl font-viga text-SLATE-800'>BROWSE TOP CATEGORIES</h1>
-          <hr className='border-b-2 mx-[10%] border-red-500'/>
+        <section className='grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 lg:gap-10 gap-5 lg:px-10 md:px-8 sm:px-6 px-4'>
+          {!isLoader && products.map((p, index) => {
+            return index < 10 && <Product key={p._id} details={p} />;
+          })
+          }
+        </section>
+        <div className='w-full flex justify-center lg:my-10 md:my-8 sm:my-4 my-4'>
+          <div className='w-fit flex justify-center flex-col gap-1'>
+            <h1 className='text-center lg:text-4xl md:text-3xl sm:text-2xl text-xl font-viga text-slate-800'>BROWSE TOP CATEGORIES</h1>
+            <hr className='border-b-2 mx-[10%] border-red-500' />
+          </div>
         </div>
+        <section className='grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 lg:gap-10 gap-5 lg:px-10 md:px-8 sm:px-6 px-4'>
+          {!isLoader && categories.map((p, index) => {
+            return index < 10 && <Category key={p._id} details={p} />;
+          })
+          }
+        </section>
       </div>
-      <section className='grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 lg:gap-10 gap-5 lg:px-10 md:px-8 sm:px-6 px-4'>
-        {!isLoader && categories.map((p, index) => {
-          return index < 10 && <Category key={p._id} details={p} />;
-        })
-        }
-      </section>
-      {isLoader && <div className='flex flex-grow items-center justify-center'><TailSpin height={50} width={50} color='blue' /></div>}
-    </div>
+        : <div className='flex flex-grow items-center justify-center'><TailSpin height={50} width={50} color='blue' /></div>}
+    </>
   )
 }
 
