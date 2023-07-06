@@ -2,7 +2,7 @@ import React from 'react'
 
 const Background = ({ backgroundRef }) => {
     return (
-        <div className='lg:h-96 md:h-72 lg:my-10 lg:gap-4 md:my-6 sm:h-52 sm:my-4 sm:gap-2 h-40 my-4 w-full bg-gradient-to-r from-violet-500 to-blue-400 flex lg:rounded-2xl md:rounded-xl sm:rounded-xl rounded-lg'>
+        <div className='lg:h-96 md:h-72 lg:gap-4 sm:h-52 sm:gap-2 h-40 w-full bg-gradient-to-tr from-[#444ACC] to-[#1D2B66] flex'>
             <aside id='headings' ref={e => backgroundRef.current[0] = e} className='w-1/2 h-full relative flex flex-col items-start lg:px-20 md:px-14 sm:px-8 px-4 justify-center'>
                 <h3 className='cursor-default lg:text-2xl md:text-xl sm:text-base text-base font-viga text-yellow-400'>Beats Solo</h3>
                 <h2 className='cursor-default lg:text-7xl md:text-5xl sm:text-3xl text-xl font-viga text-green-400 '>Wireless</h2>

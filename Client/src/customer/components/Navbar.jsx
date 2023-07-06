@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { FaShoppingCart } from "react-icons/fa";
-import { BsSearch, BsFillBox2Fill } from "react-icons/bs";
+import { BsSearch, BsCart3 } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { HiArchive } from "react-icons/hi";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import SearchResult from './SearchResult';
 const Navbar = () => {
@@ -17,6 +16,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const Navigate = useNavigate();
+    const location = useLocation().pathname;
 
     const handleDropDown = () => {
         if (isOpen) {
@@ -62,8 +62,8 @@ const Navbar = () => {
     }
 
     return (
-        <nav className='lg:h-14 sm:h-12 h-10 px-10 z-50 sticky top-0 bg-violet-500 justify-between flex items-center'>
-            <Link to='/' className='sm:text-3xl text-2xl text-white font-bold'>KingKart</Link>
+        <nav className='lg:h-14 sm:h-12 h-10 px-10 z-50 sticky top-0 bg-[#0C1934] justify-between flex items-center'>
+            <Link to='/'><img className='lg:h-14 sm:h-12 h-10' src='/assets/logo.png'/></Link>
             <div ref={searchBoxRef} className='sm:w-1/4 w-1/2 flex justify-center flex-col'>
                 <div className='lg:p-[0.3rem] lg:px-3 sm:p-1 sm:px-2 px-2 p-[0.1rem] bg-white rounded-lg flex items-center w-full gap-3'>
                     <label htmlFor="searchBar"><BsSearch className='lg:w-5 lg:h-5 sm:w-4 sm:h-4 text-slate-600' /></label>
@@ -71,14 +71,14 @@ const Navbar = () => {
                 </div>
                 {searchQuery && <SearchResult searchResultRef={searchResultRef} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
             </div>
-            <div className='md:flex items-center hidden text-white text-lg gap-4'>
-                <Link to='/' className='hover:bg-white transition-all duration-200 hover:text-violet-500 p-1 px-3 rounded-md'>Home</Link>
-                <Link to='/categories' className='hover:bg-white transition-all duration-200 hover:text-violet-500 p-1 px-3 rounded-md'>Categories</Link>
-                <Link to='/settings' className='hover:bg-white transition-all duration-200 hover:text-violet-500 p-1 px-3 rounded-md'>Settings</Link>
+            <div className='md:flex items-center hidden text-lg gap-10'>
+                <Link to='/' className={`underline-animation transition-all duration-200 rounded-md ${location === '/' ? "text-[#f00] underline underline-offset-8": "text-white"}`}>Home</Link>
+                <Link to='/categories' className={`underline-animation transition-all duration-200 rounded-md ${location.includes('/categories') ? "text-[#f00] underline underline-offset-8": "text-white"}`}>Categories</Link>
+                <Link to='/about-us' className={`underline-animation transition-all duration-200 rounded-md ${location.includes('/about-us') ? "text-[#f00] underline underline-offset-8": "text-white"}`}>About Us</Link>
             </div>
             <div className='sm:flex hidden items-center gap-5'>
                 <Link to="/cart" className='flex'>
-                    <FaShoppingCart className='w-6 h-6 text-white cursor-pointer transition-transform hover:scale-125' />
+                    <BsCart3 className='w-6 h-6 text-white cursor-pointer transition-transform hover:scale-125' />
                     <span className='bg-red-600 absolute px-[0.4rem] font-bold ml-4 -mt-2 text-white text-sm h-fit w-fit rounded-full'>{user?.cartItems?.length}</span>
                 </Link>
                 <div ref={dropDownRef} className='flex justify-end'>

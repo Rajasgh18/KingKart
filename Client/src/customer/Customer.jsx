@@ -8,6 +8,7 @@ import Cart from './pages/Cart';
 import { UserContext } from './context/UserContext';
 import QueryProducts from './pages/QueryProducts';
 import ChatBot from './components/ChatBot';
+import Footer from './components/Footer';
 
 
 const Customer = () => {
@@ -29,6 +30,7 @@ const Customer = () => {
       </Routes>
       {userId === '64958bb127e9d080f9ead0e2' && <Link to='/admin' className='fixed bottom-16 left-16 bg-green-400 text-white font-viga p-3 px-4 rounded-md text-lg border-green-500 border-2'>Admin</Link>}
       <ChatBot />
+      <Footer />
     </div>
   );
 };

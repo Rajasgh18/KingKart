@@ -213,3 +213,34 @@
         opacity: 1;
     }
 }
+
+.underline-animation {
+    position: relative;
+    display: inline-block;
+    /* color: white; Initial text color */
+    transition: color 0.5s ease-in-out;
+  }
+  
+  .underline-animation::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 0;
+    background-color: red; /* Initial line color */
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+  
+  .underline-animation:hover {
+    color: red; /* Updated text color on hover */
+  }
+  
+  .underline-animation:hover::after {
+    width: 100%;
+    background-color: red; /* Updated line color on hover */
+  }
+  
+  
+  
+  

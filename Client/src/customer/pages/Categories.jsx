@@ -3,6 +3,7 @@ import { UserContext } from '../context/UserContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
+import Category from '../components/Category';
 
 const Categories = () => {
 
@@ -35,10 +36,7 @@ const Categories = () => {
         <h1 className='text-4xl text-blue-500 font-viga'>CATEGORIES</h1>
         <div className='grid grid-cols-5 gap-8 p-10'>
           {categories.length !== 0 && categories.map(category => {
-            return <div onClick={() => { Navigate(`/products?category=${category.categoryName}`) }} key={category._id} className='flex flex-col bottomAppear gap-2 justify-center cursor-pointer transition-transform hover:scale-110 duration-300 items-center rounded p-4 shadow-[0_2px_8px_1px] shadow-slate-300 bg-white'>
-              <img src={`/assets/productImg/${category.categoryImg}`} className='h-40 w-40 object-contain' alt="" />
-              <span className='text-xl text-blue-600'>{category.categoryName}</span>
-            </div>
+            return <Category key={category._id} details={category}/>
           })}
         </div>
       </div> : <div className='flex flex-grow items-center justify-center'><TailSpin width={60} height={60} color="blue" /></div>}
