@@ -241,6 +241,24 @@
     background-color: red; /* Updated line color on hover */
   }
   
-  
+@keyframes searchDisappear {
+    0%{
+        background-color: white;
+    }
+    50%{
+        background-color: white;
+    }
+    100%{
+        background-color: transparent;
+    }
+}
+@keyframes searchBoxDisappear {
+    from{
+        width: 13rem;
+    }
+    to{
+        width: 0;
+    }
+}
   
   

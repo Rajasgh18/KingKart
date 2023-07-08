@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 const Cart = () => {
   const { url, user, userId, Navigate } = useContext(UserContext);
-  const location = useLocation().search;
+  const query = useLocation().search;
   const [cartItems, setCartItems] = useState([]);
   const [isLoader, setIsLoader] = useState(true);
   const [paymentLoader, setPaymentLoader] = useState(false);
@@ -66,7 +66,7 @@ const Cart = () => {
   }
 
   useEffect(() => {
-    if (location === '?success=1') {
+    if (query === '?success=1') {
       const clearCart = async () => {
         try {
           const res = await axios.post(`${url}/user/cart-clear`, { userId });
@@ -84,7 +84,7 @@ const Cart = () => {
 
   return (
     <>
-      {location === '?success=1'
+      {query === '?success=1'
         ? <div className='flex flex-col orderPlacedAnim gap-2 bg-white rounded-lg items-center w-fit m-auto my-10 p-5 py-10 shadow-[0_0_8px] shadow-slate-300'>
           <h1 className='text-3xl font-viga text-slate-600'>YOUR ORDER HAS BEEN PLACED</h1>
           <p className='text-xl text-slate-500'>Thank you for the order, we will email you soon about the order details</p>

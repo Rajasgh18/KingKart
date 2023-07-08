@@ -9,7 +9,7 @@ const ChooseCategories = ({ propertiesToFill, name, properties, setProperties })
             {propertiesToFill && propertiesToFill?.map((p, index) => {
                 return <div key={index} className='flex items-center gap-4'>
                     <span className='p-2 text-lg px-4 h-fit bg-blue-400 text-white rounded-md'>{p.propName}</span>
-                    <DropDown p={p} properties={properties} name="choose" setProperties={setProperties} noSelectionText="No selection" category={p.propValue} dropDownCss="w-[9.7%]" />
+                    <DropDown p={p} properties={properties} name="choose" setProperties={setProperties} noSelectionText="No selection" category={p.propValue} />
                 </div>
             })}
         </div>

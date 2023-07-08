@@ -26,7 +26,7 @@ const SearchResult = ({ searchQuery, searchResultRef, setSearchQuery }) => {
     }, [encodedQuery]);
 
     return (
-        <div ref={searchResultRef} className='absolute dropDownShow text-slate-700 top-16 w-[23.6%] flex items-center max-h-72 scrollBar py-3 flex-col gap-2 bg-white shadow-[0_0_8px] shadow-slate-500 rounded-lg'>
+        <div ref={searchResultRef} className='absolute dropDownShow text-slate-700 top-14 w-full flex items-center max-h-72 scrollBar py-3 flex-col gap-2 bg-white shadow-[0_0_8px] shadow-slate-500 rounded-lg'>
             {!isLoader ? resultItems.length !== 0 ? resultItems.map(item => {
                 return <div key={item._id} onClick={() => { Navigate(`/${item._id}`); setSearchQuery('') }} className='flex w-full gap-2 px-3 items-center hover:bg-blue-100 cursor-pointer'>
                     <img src={`/assets/productImg/${item.img[0]}`} className='w-16 h-16 p-2 rounded-md ' alt="" />

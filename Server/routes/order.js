@@ -1,8 +1,8 @@
 const Router = require('express').Router();
 const Product = require('../models/Product');
 const Order = require('../models/Order');
-// const dotenv = require('dotenv');
-// dotenv.config();
+const dotenv = require('dotenv');
+dotenv.config();
 const stripe = require('stripe')(process.env.STRIPE_SK);
 
 Router

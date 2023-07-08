@@ -12,8 +12,10 @@ export const UserState = (props) => {
     const Navigate = useNavigate();
 
     const getUser = async () => {
-        const res = await axios.get(`${url}/user/${userId}`);
-        setUser(res.data);
+        if(userId){
+            const res = await axios.get(`${url}/user/${userId}`);
+            setUser(res.data);
+        }
     }
     return (
         <UserContext.Provider value={{ user, getUser, setUser, changes, setChanges, userId, url, Navigate }}>
