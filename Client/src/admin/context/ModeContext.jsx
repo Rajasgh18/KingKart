@@ -3,7 +3,7 @@ import CreateContext from "./createContext";
 import React, { useState } from 'react'
 
 const ModeContext = (props) => {
-    const [mode, setMode] = useState('light');
+    const [mode, setMode] = useState('dark');
     const [show, setShow] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
     const url = import.meta.env.VITE_URL || 'https://king-kart-server.vercel.app/api'

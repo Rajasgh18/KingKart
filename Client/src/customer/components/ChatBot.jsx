@@ -6,7 +6,7 @@ const ChatBot = () => {
     const chatBotRef = useRef();
     const chatBotBtnRef = useRef();
     const [isClicked, setIsClicked] = useState(false);
-    const [messages, setMessages] = useState([{ name: 'chatBot', text: "Hello, what are your queries!", options: ["Product", "Service"] }]);
+    const [messages, setMessages] = useState([{ name: 'chatbot', text: " I'm here to assist you with any questions, concerns, or issues you might have while navigating our online store.. How can I assist you today?", options: ["📦Product", "👨‍🔧Service"] }]);
     const [choosedOptions, setChoosedOptions] = useState([]);
     const scrollRef = useRef();
 
@@ -38,9 +38,9 @@ const ChatBot = () => {
         setChoosedOptions(prev => [...prev, e]);
         setTimeout(() => {
             switch (e) {
-                case 'Product': setMessages(prev => [...prev, { text: "abenffejiowjffeef", name: 'chatBot', options: ['Delivery', 'abx', 'dash'] }]);
+                case '📦Product': setMessages(prev => [...prev, { text: "abenffejiowjffeef", name: 'chatBot', options: ['Delivery', 'abx', 'dash'] }]);
                     break;
-                case 'Service': setMessages(prev => [...prev, { text: "nothingsnfeif", name: 'chatBot', options: ['fee', 'abx', 'dash'] }]);
+                case '👨‍🔧Service': setMessages(prev => [...prev, { text: "nothingsnfeif", name: 'chatBot', options: ['fee', 'abx', 'dash'] }]);
                     break;
                 case 'dash': setMessages(prev => [...prev, { text: "edd", name: 'chatBot', options: ['we', 'awwx', 'wsq'] }]);
                     break;
@@ -58,7 +58,7 @@ const ChatBot = () => {
                 <div ref={chatBotRef} className='w-[30%] h-[60%] fixed scrollBar flex flex-col gap-4 bottom-16 right-16 chatBotAnim bg-white shadow-[0_0_10px] p-4 rounded-md shadow-slate-400'>
                     <div className='flex items-center gap-2'>
                         <BsRobot className='bg-slate-100 border border-blue-200 h-10 w-10 p-[0.4rem] text-blue-800 rounded-full' />
-                        <h4 className='bg-slate-100 border border-blue-200 text-blue-800 w-fit p-2 px-3 cursor-default rounded-xl chatTextAppear'>Welcome to help & support</h4>
+                        <h4 className='bg-slate-100 border border-blue-200 text-blue-800 w-fit p-2 px-3 cursor-default rounded-xl chatTextAppear'>👋 Hello there! Welcome to our e-commerce website support.</h4>
                     </div>
                     <div className='flex gap-4 flex-col'>
                         {messages.length !== 0 && messages.map((message, index) => {

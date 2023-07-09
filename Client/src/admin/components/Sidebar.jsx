@@ -4,7 +4,7 @@ import { BsSpeedometer2 } from "react-icons/bs";
 import { BsArchive } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 import { BsBoxSeam } from "react-icons/bs";
-import { FiSettings } from "react-icons/fi";
+import { SiChatbot } from "react-icons/si";
 import { FaListUl } from "react-icons/fa";
 import { Link, useLocation } from 'react-router-dom';
 import CreateContext from '../context/createContext';
@@ -16,10 +16,10 @@ const Sidebar = () => {
 
     return (
         <aside className={`${show ? "left-0" : "-left-full"} transition-all duration-500 ease-in-out fixed w-auto md:sticky md:min-h-screen top-0 h-full flex bg-blue-950 gap-6 flex-col`}>
-            <div className='h-14 w-full bg-blue-500 gap-2 flex items-center justify-center px-4'>
+            <div className='h-14 w-full bg--500 gap-2 flex items-center justify-center px-4'>
                 <header className='gap-2 flex items-center'>
-                    <GiCrossShield className='h-10 w-10 fill-white' />
-                    <span className="text-2xl font-['viga'] text-white">ADMIN</span>
+                    
+                    <span className="text-2xl font-['viga'] text-white">kingkart</span>
                 </header>
                 <RxCross2 onClick={() => show ? setShow(false) : setShow(true)} className='md:hidden absolute right-3 text-white w-7 h-7' />
             </div>
@@ -46,9 +46,10 @@ const Sidebar = () => {
                 </Link>
                 <Link to='/admin/settings' className={location === '/admin/settings' ? activeLink : inactiveLink}>
                     {location === '/admin/settings' && <div id='active' className='absolute left-0 w-2 rounded-tr-md rounded-br-md h-10 bg-blue-400'></div>}
-                    <FiSettings className='w-6 h-6' />
-                    Settings
+                    <SiChatbot className='w-6 h-6' />
+                    Queries
                 </Link>
+  
             </div>
         </aside>
     )
