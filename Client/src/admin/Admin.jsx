@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
-import Navbar from './components/Navbar'
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Orders from './pages/Orders';
@@ -26,7 +25,6 @@ const Admin = () => {
     <div className='flex min-w-screen min-h-screen'>
       <Sidebar />
       <div className='flex-grow'>
-        <Navbar />
         <Routes>
           <Route exact path="/" element={<Dashboard />} />
           <Route path="/products" element={<Products name="Product" />} />

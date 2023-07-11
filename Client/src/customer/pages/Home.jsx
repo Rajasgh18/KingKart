@@ -16,32 +16,32 @@ const Home = () => {
 
   const backgroundRef = useRef([]);
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.id === "headings" ? entry.target.classList.add('rightAppear') : entry.target.classList.add('leftAppear');
-      } else {
-        entry.target.id === "headings" ? entry.target.classList.remove('rightAppear') : entry.target.classList.remove('leftAppear');
-      }
-    });
-  },
-    { rootMargin: '0px' }
-  );
+  // const observer = new IntersectionObserver((entries) => {
+  //   entries.forEach((entry) => {
+  //     if (entry.isIntersecting) {
+  //       entry.target.id === "headings" ? entry.target.classList.add('rightAppear') : entry.target.classList.add('leftAppear');
+  //     } else {
+  //       entry.target.id === "headings" ? entry.target.classList.remove('rightAppear') : entry.target.classList.remove('leftAppear');
+  //     }
+  //   });
+  // },
+  //   { rootMargin: '0px' }
+  // );
 
-  backgroundRef && useEffect(() => {
-    backgroundRef.current.forEach((element, index) => {
-      if (element) {
-        observer.observe(element);
-      }
-    });
-    return () => {
-      backgroundRef.current.forEach((element) => {
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
-    };
-  }, [])
+  // backgroundRef && useEffect(() => {
+  //   backgroundRef.current.forEach((element, index) => {
+  //     if (element) {
+  //       observer.observe(element);
+  //     }
+  //   });
+  //   return () => {
+  //     backgroundRef.current.forEach((element) => {
+  //       if (element) {
+  //         observer.unobserve(element);
+  //       }
+  //     });
+  //   };
+  // }, [])
 
   useEffect(() => {
     const fetchProducts = async () => {

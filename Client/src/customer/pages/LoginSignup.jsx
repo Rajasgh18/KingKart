@@ -13,7 +13,7 @@ const LoginSignup = () => {
   const { url } = useContext(UserContext);
   const pageName = useLocation().pathname;
   const [loginCred, setLoginCred] = useState({ username: '', password: '' });
-  const [signupCred, setSignupCred] = useState({ name: '', username: '', password: '', confirmPassword: '' });
+  const [signupCred, setSignupCred] = useState({ name: '', username: '', password: '', confirm: '' });
   const [isLoader, setIsLoader] = useState(false);
   const Navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const LoginSignup = () => {
   const handleChange = (e) => {
     if (pageName === '/login') {
       setLoginCred({ ...loginCred, [e.target.name.toLowerCase()]: e.target.value });
-      setSignupCred({ name: '', username: '', password: '', confirmPassword: '' });
+      setSignupCred({ name: '', username: '', password: '', confirm: '' });
     } else {
       setSignupCred({ ...signupCred, [e.target.name.toLowerCase()]: e.target.value });
       setLoginCred({ username: '', password: '' });;
@@ -68,7 +68,7 @@ const LoginSignup = () => {
         validationRef.current.innerHTML = 'Please enter password more than 4 letters'
         setIsLoader(false);
       }
-      else if (signupCred.confirmPassword === signupCred.password) {
+      else if (signupCred.confirm === signupCred.password) {
         validationRef.current.innerHTML = '';
         const res = await axios.post(`${url}/user/`, { name: signupCred.name, username: signupCred.username, password: signupCred.password });
         localStorage.setItem('userId', res.data.user._id);
@@ -105,10 +105,10 @@ const LoginSignup = () => {
           </div>
         </form> :
           <form onSubmit={handleSignup} ref={signupRef} className='transition-all duration-700 ease-in-out w-1/2 flex flex-col gap-2 p-6 text-slate-700'>
-            <Input name="Name" id="signupName" value={signupCred.name} onChange={handleChange} placeholder="Enter Your Full Name" />
-            <Input name="Username" id="signupUsername" value={signupCred.username} onChange={handleChange} placeholder="Enter Your Username" />
-            <Input name="Password" id="signupPassword" value={signupCred.password} onChange={handleChange} placeholder="Enter Your Password" />
-            <Input name="Confirm Password" id="signupConfirmPassword" value={signupCred.confirmPassword} onChange={handleChange} placeholder="Confirm Password" />
+            <Input name="Name" id="signupName" value={signupCred.name} onChange={handleChange} />
+            <Input name="Username" id="signupUsername" value={signupCred.username} onChange={handleChange} />
+            <Input name="Password" id="signupPassword" value={signupCred.password} onChange={handleChange} />
+            <Input name="Confirm" id="signupConfirmPassword" value={signupCred.confirm} onChange={handleChange} />
             <span ref={validationRef} className='text-red-600 text-center'></span>
             <button className='p-3 px-4 bg-gradient-to-r hover:from-[#665fda] hover:to-[#27209e] from-[#716aee] to-[#3731aa] my-2 flex justify-center rounded-lg text-xl text-white'>{!isLoader ? "Signup" : <TailSpin height={29} width={29} color='white' />}</button>
             <div className='text-lg flex flex-wrap justify-center gap-1'>

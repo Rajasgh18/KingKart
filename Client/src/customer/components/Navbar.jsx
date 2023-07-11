@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BsSearch, BsCart3 } from "react-icons/bs";
 import { IoLogOutOutline, IoHomeOutline } from "react-icons/io5";
-import { FiLogOut } from "react-icons/fi";
 import { CiUser } from "react-icons/ci";
 import { PiSquaresFour, PiUserCircleFill } from "react-icons/pi";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -92,9 +91,9 @@ const Navbar = () => {
                     </div>
                     {searchQuery && <SearchResult searchResultRef={searchResultRef} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
                 </div>
-                <Link>
+                {user._id && <Link>
                     <CiUser className='text-white w-7 h-7 hover:scale-125 transition-transform duration-300' />
-                </Link>
+                </Link>}
                 <Link to="/cart" className='sm:flex hidden'>
                     <BsCart3 className={`w-6 h-6 cursor-pointer transition-transform hover:scale-125 ${location.includes('/cart') ? "text-red-500" : "text-white"}`} />
                     <span className='bg-red-600 absolute px-[0.4rem] font-bold ml-4 -mt-2 text-white text-sm h-fit w-fit rounded-full'>{user?.cartItems?.length}</span>
