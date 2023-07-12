@@ -22,7 +22,8 @@ const Background = ({ backgroundRef }) => {
     return (
         <div className={`lg:h-[760px] relative md:h-72 sm:h-52 overflow-hidden h-40 w-full flex items-center`}>
             {caraousel.map((item, index) => {
-                return <div key={index} ref={e => caraouselRef.current[index] = e} className={`min-w-full h-full ease-in-out transition-transform duration-1000 bg-[url(/assets/svgs/${item})] bg-no-repeat bg-cover flex flex-col`}>
+                return <div key={index}  className={`min-w-full relative h-full flex flex-col`}>
+                    <img ref={e => caraouselRef.current[index] = e} src={`/assets/svgs/${item}`} className={`transition-transform duration-1000 object-cover w-full h-full absolute`} alt="" />
                     <aside id='headings' className='w-1/2 h-full relative flex flex-col items-start lg:px-20 md:px-14 sm:px-8 px-4 justify-center'>
                    
              
