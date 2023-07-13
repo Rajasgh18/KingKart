@@ -38,9 +38,9 @@ const ChatBot = () => {
         setChoosedOptions(prev => [...prev, e]);
         setTimeout(() => {
             switch (e) {
-                case '📦Product': setMessages(prev => [...prev, { text: "abenffejiowjffeef", name: 'chatBot', options: ['Delivery', 'abx', 'dash'] }]);
+                case '📦Product': setMessages(prev => [...prev, { text: "so,what's your Query related product☞", name: 'chatBot', options: ['Delivery🚚', 'Query for product🖥️', 'Another one'] }]);
                     break;
-                case '👨‍🔧Service': setMessages(prev => [...prev, { text: "nothingsnfeif", name: 'chatBot', options: ['fee', 'abx', 'dash'] }]);
+                case '👨‍🔧Service': setMessages(prev => [...prev, { text: "Tell me the issue", name: 'chatBot', options: ['Computer Related💻','Other Accesories🖨️', 'Service related'] }]);
                     break;
                 case 'dash': setMessages(prev => [...prev, { text: "edd", name: 'chatBot', options: ['we', 'awwx', 'wsq'] }]);
                     break;
