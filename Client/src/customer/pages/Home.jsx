@@ -76,7 +76,7 @@ const Home = () => {
         </div>
         <section className='grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 lg:gap-10 gap-5 lg:px-36 md:px-8 sm:px-6 px-4'>
           {!isLoader && products.map((p, index) => {
-            return index < 10 && <Product key={p._id} details={p} />;
+            return index < 8 && <Product key={p._id} details={p} />;
           })
           }
         </section>
@@ -86,7 +86,7 @@ const Home = () => {
             <hr className='border-b-2 mx-[10%] border-red-500' />
           </div>
         </div>
-        <section className='grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 lg:gap-10 gap-5 lg:px-10 md:px-8 sm:px-6 px-4'>
+        <section className='grid lg:px-36 md:px-8 sm:px-6 px-4 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 lg:gap-10 gap-5'>
           {!isLoader && categories.map((p, index) => {
             return index < 10 && <Category key={p._id} details={p} />;
           })

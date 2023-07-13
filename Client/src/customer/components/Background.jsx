@@ -13,14 +13,13 @@ const Background = ({ backgroundRef }) => {
                 element.style.transform = `translateX(-${activeIndex * 100}%)`
             });
             setActiveIndex((prevIndex) => (prevIndex+1) % 3);
-            console.log(activeIndex)
         }, 3000);
 
         return () => clearInterval(interval);
     }, [activeIndex]);
 
     return (
-        <div className={`lg:h-[760px] relative md:h-72 sm:h-52 overflow-hidden h-40 w-full flex items-center`}>
+        <div className={`lg:h-[760px] relative md:h-72 sm:h-60 overflow-hidden h-52 w-full flex items-center`}>
             {caraousel.map((item, index) => {
                 return <div key={index}  className={`min-w-full relative h-full flex flex-col`}>
                     <img ref={e => caraouselRef.current[index] = e} src={`/assets/svgs/${item}`} className={`transition-transform duration-1000 object-cover w-full h-full absolute`} alt="" />

@@ -101,26 +101,18 @@ const ProductPage = () => {
 
   return (
     <>
-      {!isLoader1 ? <section className='flex flex-col gap-10 flex-1'>
-        <section className='lg:mx-20 md:mx-16 sm:mx-12 mx-8 sm:my-0 my-4 flex sm:flex-row flex-col bg-white shadow-md'>
-          <aside className='sm:w-[40%] sm:h-2/3 p-4 flex flex-col sm:sticky top-14 left-0 items-center'>
-            <div className='flex w-full justify-center h-full'>
-              <div className={`flex flex-col w-[20%] flex-shrink-0 border-2 md:gap-1 overflow-y-auto lg:gap-2 lg:p-2 sm:p-1 p-2 gap-2`}>
-                {productDetail.img.map((i, index) => {
-                  return <img onMouseEnter={() => setImgIndex(index)} key={index} src={`/assets/productImg/${i}`} alt="" className={`${index === imgIndex && "border-2 border-blue-500"}  productImg cursor-pointer imgLoad bg-slate-200 rounded object-contain`} />
-                })}
-              </div>
-              <div className='w-full h-full'>
-                <img src={`/assets/productImg/${productDetail.img[imgIndex]}`} className={`w-full imgLoad border-2 border-l-0 bg-slate-100 object-contain`} alt="" />
-              </div>
-            </div>
-            <div className='w-full flex my-5 gap-4'>
-              <button onClick={handleCart} className='hover:bg-yellow-400 text-white flex items-center gap-2 justify-center rounded p-3 px-4 bg-yellow-500 text-xl w-full'><FaShoppingCart />Add to Cart</button>
-              <button className='hover:bg-orange-400 flex items-center justify-center gap-2 text-white rounded p-3 px-4 bg-orange-500 text-xl w-full'><FaBolt />Buy Now</button>
-            </div>
+      {!isLoader1 ? <section className='flex flex-col min-h-screen gap-10'>
+        <section className='lg:mx-40 md:mx-16 sm:mx-12 mx-8 lg:my-12 sm:my-0 my-4 gap-5 flex flex-col h-full'>
+          <aside className='w-full h-[400px] bg-white shadow-[0_0_15px] shadow-slate-300 rounded-xl flex flex-col items-center'>
+            <img src={`/assets/productImg/${productDetail.img[imgIndex]}`} className={`w-full h-full imgLoad object-contain`} alt="" />
+            {/* <div className={`flex h-[100px] w-full border-2 md:gap-1 overflow-y-auto lg:gap-2 lg:p-2 sm:p-1 p-2 gap-2`}>
+              {productDetail.img.map((i, index) => {
+                return <img onMouseEnter={() => setImgIndex(index)} key={index} src={`/assets/productImg/${i}`} alt="" className={`${index === imgIndex && "border-2 border-blue-500"}  productImg cursor-pointer imgLoad bg-slate-200 rounded object-contain`} />
+              })}
+            </div> */}
           </aside>
-          <aside className='flex-grow leftAppear relative lg:gap-3 md:gap-2 sm:gap-2 flex flex-col p-4'>
-            <h2 className='lg:text-2xl md:text-xl text-slate-700'>{productDetail.name}</h2>
+          <aside className='leftAppear lg:gap-3 md:gap-2 sm:gap-2 flex flex-col'>
+            <h2 className='lg:text-3xl md:text-xl text-slate-700'>{productDetail.name}</h2>
             <span className='flex rounded px-2 bg-green-500 text-white items-center justify-center gap-1 w-fit'>{productDetail.rating}<AiFillStar /></span>
             <div className='flex flex-col'>
               <span className='text-green-600'>Extra Rs {productDetail.mrp - productDetail.offerPrice} off</span>
@@ -131,32 +123,41 @@ const ProductPage = () => {
               </div>
               <span className='text-slate-700'>+ Rs {productDetail.deliveryCharge} Delivery Charge</span>
             </div>
-            <Offer />
-            <Exchange productDetail={productDetail} />
+            {/* <Offer /> */}
+            {/* <Exchange productDetail={productDetail} /> */}
             <ProductInfo setImgIndex={setImgIndex} productDetail={productDetail} imgIndex={imgIndex} />
           </aside>
-        </section>
-        <section className='mx-20 bg-white p-5 shadow-md flex flex-col gap-8 mb-10'>
-          <h1 className='text-4xl text-slate-600'>More Products</h1>
-          <div className='flex scrollBar p-2 gap-5'>
-            {!isLoader2 ? products.map((p, index) => {
-              return <div
-                className='flex relative bottomA flex-shrink-0 text-slate-700 hover:text-blue-500 flex-col gap-2'
-                onClick={() => { Navigate(`/${p._id}`) }}
-                ref={(element) => { (productRefs.current[index] = element) }} key={p._id}>
-                <img src={`assets/productImg/${p.img[0]}`} className='h-40 p-2 w-40 duration-200 cursor-pointer transition-transform hover:scale-110 bg-slate-200 rounded-lg' alt="" />
-                <h4 className='text-inherit'>{p.name.length <= 18 ? p.name : `${p.name.substring(0, 18)}...`}</h4>
-                <span className='flex rounded px-1 bg-green-500 text-white items-center justify-center gap-1 w-fit'>{p.rating}<AiFillStar /></span>
-                <div className='flex gap-2 items-end'>
-                  <span className='text-sm text-slate-700 font-viga'>Rs {p.offerPrice}</span>
-                  <span className='text-sm text-slate-500 line-through'>Rs {p.mrp}</span>
-                  <span className='text-sm text-green-600'>{Math.round(((p.mrp - p.offerPrice) / p.mrp) * 100)}%off</span>
-                </div>
+          <aside className='w-full flex justify-center my-5 gap-4'>
+            <button onClick={handleCart} className='hover:bg-yellow-400 text-white flex items-center gap-2 justify-center rounded p-3 px-4 bg-yellow-500 text-xl'><FaShoppingCart />Add to Cart</button>
+            <button className='hover:bg-orange-400 flex items-center justify-center gap-2 text-white rounded p-3 px-4 bg-orange-500 text-xl'><FaBolt />Buy Now</button>
+          </aside>
+          <aside className='flex flex-col gap-8'>
+            <div className='w-full flex justify-center'>
+              <div className='w-fit flex justify-center flex-col gap-1'>
+                <h1 className='text-center lg:text-4xl md:text-3xl sm:text-2xl text-xl font-viga text-slate-800'>Related Products</h1>
+                <hr className='border-b-2 mx-[10%] border-red-500' />
               </div>
-            }) : <div className='flex-grow w-full flex justify-center items-center'><TailSpin width={60} height={60} color='blue'/></div>}
-          </div>
+            </div>
+            <div className='flex scrollBar p-2 gap-5'>
+              {!isLoader2 ? products.map((p, index) => {
+                return <div
+                  className='flex relative bottomA flex-shrink-0 text-slate-700 hover:text-blue-500 flex-col gap-2'
+                  onClick={() => { Navigate(`/${p._id}`) }}
+                  ref={(element) => { (productRefs.current[index] = element) }} key={p._id}>
+                  <img src={`assets/productImg/${p.img[0]}`} className='h-40 p-2 w-40 duration-200 cursor-pointer transition-transform hover:scale-110 bg-white shadow-[0_0_10px] shadow-slate-300 rounded-lg' alt="" />
+                  <h4 className='text-inherit'>{p.name.length <= 18 ? p.name : `${p.name.substring(0, 18)}...`}</h4>
+                  <span className='flex rounded px-1 bg-green-500 text-white items-center justify-center gap-1 w-fit'>{p.rating}<AiFillStar /></span>
+                  <div className='flex gap-2 items-end'>
+                    <span className='text-sm text-slate-700 font-viga'>Rs {p.offerPrice}</span>
+                    <span className='text-sm text-slate-500 line-through'>Rs {p.mrp}</span>
+                    <span className='text-sm text-green-600'>{Math.round(((p.mrp - p.offerPrice) / p.mrp) * 100)}%off</span>
+                  </div>
+                </div>
+              }) : <div className='flex-grow w-full flex justify-center items-center'><TailSpin width={60} height={60} color='blue' /></div>}
+            </div>
+          </aside>
         </section>
-      </section> : <div className='flex-grow w-full flex justify-center items-center'><TailSpin width={60} height={60} color='blue'/></div>}
+      </section> : <div className='flex-grow w-full flex justify-center items-center'><TailSpin width={60} height={60} color='blue' /></div>}
     </>
   )
 }

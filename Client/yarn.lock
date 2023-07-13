@@ -2693,12 +2693,17 @@ react-lifecycles-compat@^3.0.4:
 
 react-loader-spinner@^5.3.4:
   version "5.3.4"
-  resolved "https://registry.npmjs.org/react-loader-spinner/-/react-loader-spinner-5.3.4.tgz"
+  resolved "https://registry.yarnpkg.com/react-loader-spinner/-/react-loader-spinner-5.3.4.tgz#43c22a41944e2bf3c84a249192450f1166592f30"
   integrity sha512-G2vw4ssX+RDZ/vfaeva06yfNqyFViv/u+tVZ3kFLy5TKNlNx2DbuwreBSpRtPespQA+VxinxUJsigwLwG9erOg==
   dependencies:
     react-is "^18.2.0"
     styled-components "^5.3.5"
     styled-tools "^1.7.2"
+
+react-loader-spinners@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-loader-spinners/-/react-loader-spinners-1.0.0.tgz#09e507fdf5964aa191f93db21a894011849cf6e9"
+  integrity sha512-SPgukgUqlMMHHM1GypuhIN4MHuZm+1ULjAhQyrBIIw4LgbFYDuESnlr9ov+TLla3Lf6lgZaeN860wgCrxLyYhg==
 
 react-refresh@^0.14.0:
   version "0.14.0"
