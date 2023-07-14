@@ -6,7 +6,7 @@
   "author": "Raja Singh",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -17,11 +17,13 @@
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "fs": "^0.0.1-security",
+    "global": "^4.4.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.0",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.22",
     "path": "^0.12.7",
-    "stripe": "^12.10.0"
+    "stripe": "^12.10.0",
+    "vercel": "^31.0.3"
   }
 }
