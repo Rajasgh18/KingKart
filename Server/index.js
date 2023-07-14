@@ -31,7 +31,15 @@ App.use('/api/category', category);
 App.use('/api/image', image);
 App.use('/api/user', user);
 App.use('/api/order', order);
-express.static(path.join(__dirname, "/public/assets")),
+express.static(path.join(__dirname, "/dist/assets")),
+
+// Serve static files
+App.use(express.static(path.join(__dirname, 'dist')));
+
+// Catch-all route
+App.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 App.listen(port, () => {
     console.log(`KingKart Listening at http://localhost:${port}`)
