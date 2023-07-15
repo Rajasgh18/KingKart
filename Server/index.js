@@ -34,11 +34,11 @@ App.use('/api/order', order);
 express.static(path.join(__dirname, "/dist/assets")),
 
 // Serve static files
-App.use(express.static(path.join(__dirname, '/build')));
+App.use(express.static(path.join(__dirname, '/dist')));
 
 // Catch-all route
 App.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '/dist', 'index.html'));
 });
 
 App.listen(port, () => {
