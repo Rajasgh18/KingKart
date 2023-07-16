@@ -61,11 +61,24 @@ Router
             res.status(500).send("Internal Server Error!");
         }
     })
+
+    //Get a User
     .get('/:id', async (req, res) => {
         try {
             let user = await User.findById(req.params.id);
             if (!user) return res.status(404).send("There exists no user with that username")
 
+            res.status(200).json(user);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Internal Server Error!");
+        }
+    })
+
+    //Get all users
+    .get('/', async (req, res) => {
+        try {
+            let user = await User.find();
             res.status(200).json(user);
         } catch (error) {
             console.error(error);
