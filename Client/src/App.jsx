@@ -8,12 +8,12 @@ import LoginSignup from './customer/pages/LoginSignup';
 const App = () => {
   return (
     <>
-      <Routes>
+      <Routes >
         <Route exact path="/*" element={<Customer/>} />
-        <Route path='/login' element={<LoginSignup />} />
-        <Route path='/signup' element={<LoginSignup />} />
-        <Route path="/admin/*" element={<Admin/>}/>
-        <Route path='*' element={<NotFound/>}/>
+        <Route exact path='/login' element={<LoginSignup />} />
+        <Route exact path='/signup' element={<LoginSignup />} />
+        <Route exact path="/admin/*" element={<Admin/>}/>
+        {/* <Route path='*' element={<NotFound/>}/> */}
       </Routes>
     </>
   )

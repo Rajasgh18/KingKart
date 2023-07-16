@@ -89,7 +89,7 @@ const Cart = () => {
           <h1 className='text-3xl font-viga text-slate-600'>YOUR ORDER HAS BEEN PLACED</h1>
           <p className='text-xl text-slate-500'>Thank you for the order, we will email you soon about the order details</p>
         </div>
-        : (!isLoader ? <section className='mx-20 flex-grow my-5 flex gap-5'>
+        : (!isLoader ? <section className='lg:mx-20 md:mx-16 sm:mx-12 flex-grow my-5 flex gap-5'>
           <aside className='w-[70%] flex flex-col flex-grow rounded bg-white shadow-[0_0_8px] shadow-slate-300'>
             {cartItems.length !== 0 ? cartItems.map((item, index) => {
               return <CartItem key={item._id} cartDetails={item} />;

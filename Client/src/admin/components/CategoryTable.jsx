@@ -3,7 +3,7 @@ import CategoryItem from './CategoryItem';
 
 const CategoryTable = ({ category, setInputImg, isLoader, setProperties, setCategoryDetails, setDropDownValue }) => {
     return (
-        <table className='shadow-[0_0_6px_1px] shadow-slate-200'>
+        <table>
             <thead className='bg-slate-100 text-slate-600'>
                 <tr>
                     <td className='itemBoxPrimary'>Category Name</td>

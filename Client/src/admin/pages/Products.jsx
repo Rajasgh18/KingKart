@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
 import { BsPlus } from "react-icons/bs";
 import { IoFilter, IoSettings, IoCaretDown } from "react-icons/io5";
 import Loader from '../components/Loader';
@@ -30,15 +31,15 @@ const Products = () => {
     <section className={`flex flex-col p-12 flex-grow gap-12 ${mode === "dark" ? "bg-slate-700 text-slate-200" : "bg-white text-gray-600"}`}>
       <header className='flex items-center justify-between'>
         <div className='gap-2'>
-          <h1 className={`text-4xl ${mode === "light" ? "text-slate-700" : "text-white"}`}>Product</h1>
-          <h3 className={`text-lg ${mode === "light" ? "text-slate-500" : "text-white"}`}>{productList.length} entries found</h3>
+          <h1 className={`text-4xl text-slate-700`}>Product</h1>
+          <h3 className={`text-lg text-slate-500`}>{productList.length} entries found</h3>
         </div>
         <Link to="/admin/products/add" className='btnPrimary p-3  text-md font-bold '>
           <BsPlus className='w-8 h-8' />
           Add New Product
         </Link>
       </header>
-      <div className='flex w-full justify-between'>
+      {/* <div className='flex w-full justify-between'>
         <button className='flex p-2 px-3 items-center gap-2 text-xl rounded-md justify-center border border-gray-300'>
           <IoFilter className='w-7 h-7' />
           Filters
@@ -47,9 +48,9 @@ const Products = () => {
           <IoSettings className='w-7 h-7' />
           <IoCaretDown className='w-4 h-4' />
         </button>
-      </div>
+      </div> */}
       <ItemTable productList={productList} isLoader={isLoader} />
-      {isLoader && <Loader />}
+      {isLoader && <div className='flex justify-center'><TailSpin width={45} height={45} color="blue" /></div>}
     </section>
   )
 }

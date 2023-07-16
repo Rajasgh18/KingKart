@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import CreateContext from '../context/createContext';
 import { useNavigate } from 'react-router-dom';
-import { MdDelete } from "react-icons/md";
+import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import DeleteDialog from './DeleteDialog';
 import axios from 'axios';
@@ -9,7 +9,7 @@ const Item = ({ details }) => {
     const { mode, url } = useContext(CreateContext);
     const Navigate = useNavigate();
 
-    const { _id, name, offerPrice, category } = details;
+    const { _id, name, offerPrice, mrp, category } = details;
     const [categoryDetails, setCategoryDetails] = useState({});
     const [isDeleteOpened, setIsDeleteOpened] = useState(false);
     const handleDelete = () => {
@@ -23,8 +23,8 @@ const Item = ({ details }) => {
         Navigate(`/admin/products/${_id}`);
     }
 
-    useEffect(()=>{
-        const fetchCategory = async ()=>{
+    useEffect(() => {
+        const fetchCategory = async () => {
             try {
                 const res = await axios.get(`${url}/category/${category}`);
                 setCategoryDetails(res.data);
@@ -40,14 +40,12 @@ const Item = ({ details }) => {
             <tr>
                 <td className='itemBoxPrimary h-20 w-1/4'>{_id}</td>
                 <td className='itemBoxPrimary h-20 w-1/6'>{name}</td>
-                <td className='itemBoxPrimary h-20 w-1/6'>{offerPrice}</td>
                 <td className='itemBoxPrimary h-20 w-1/6'>{categoryDetails?.categoryName}</td>
-                <td className='itemBoxPrimary h-20 w-1/6 text-center'>
-                    <button id='details' onClick={handleClick} className='p-2 px-4 bg-blue-500 text-white rounded-md'>More Details</button>
-                </td>
+                <td className='itemBoxPrimary h-20 w-1/6'>{offerPrice}</td>
+                <td className='itemBoxPrimary h-20 w-1/6'>{mrp}</td>
                 <td className='itemBoxPrimary h-20 w-1/6 space-x-1 text-center'>
-                    <FiEdit onClick={handleClick} className='w-7 h-7 text-green-600 cursor-pointer inline' />
-                    <MdDelete onClick={handleDelete} className='w-7 h-7 text-red-600 cursor-pointer inline' />
+                    <FiEdit onClick={handleClick} className='w-6 h-6 cursor-pointer inline' />
+                    <AiOutlineDelete onClick={handleDelete} className='w-7 h-7 cursor-pointer inline' />
                     {isDeleteOpened && <DeleteDialog setCategoryDetails={setCategoryDetails} name="product" id={_id} open={setIsDeleteOpened} />}
                 </td>
             </tr>

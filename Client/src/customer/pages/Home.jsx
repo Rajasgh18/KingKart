@@ -66,7 +66,7 @@ const Home = () => {
 
   return (
     <>
-      {!isLoader ? <div className='flex-1 flex flex-col gap-12'>
+      {!isLoader ? <div className='flex-1 flex flex-col md:gap-12 gap-8'>
         <Background backgroundRef={backgroundRef} />
         <div className='w-full flex justify-center'>
           <div className='w-fit flex justify-center flex-col gap-1'>

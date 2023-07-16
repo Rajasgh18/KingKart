@@ -67,11 +67,11 @@ const DropDown = ({ name, p, properties, setFormDetails, formDetails, choosedCat
     return (
         <>
             <div ref={dropDownRef} className={`${dropInputCss} relative`}>
-                <button onClick={handleDropDown} className='border-2 text-lg gap-2 p-2 my-2 bg-slate-100 border-slate-300 focus:outline-blue-500 rounded-md flex w-full justify-between items-center h-12 text-slate-700'>
+                <button onClick={handleDropDown} className='border text-lg gap-2 p-2 my-2 bg-slate-100 border-slate-400 focus:outline-blue-500 rounded-md flex w-full justify-between items-center h-12 text-slate-700'>
                     {dropDownValue}
                     <div ref={dropDownArrowRef} className='transition-transform duration-50'><BsChevronDown /></div>
                 </button>
-                {dropDownActive && <div ref={dropDownBoxRef} id='dropDownMenu' className={`z-10 dropDownShow absolute w-full border-2 mb-6 bg-slate-100 py-1 border-slate-300 focus:outline-blue-500 rounded-md flex-col flex text-slate-700`}>
+                {dropDownActive && <div ref={dropDownBoxRef} id='dropDownMenu' className={`z-10 dropDownShow absolute w-full border mb-6 bg-slate-100 py-1 border-slate-400 focus:outline-blue-500 rounded-md flex-col flex text-slate-700`}>
                     <button name='parentCategory' onClick={handleOptions} className='py-1 text-left px-3 hover:bg-blue-500 hover:text-white transition-all duration-200' value={noSelectionText}>{noSelectionText}</button>
                     {category.length !== 0 && category.map((c, index) => {
                         return <button key={index} name='parentCategory' onClick={handleOptions} className='py-1 text-left px-3 hover:bg-blue-500 hover:text-white transition-all duration-200' id={c._id} value={c?.categoryName || c}>{c?.categoryName || c}</button>

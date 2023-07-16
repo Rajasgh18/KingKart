@@ -14,10 +14,10 @@
 }
 
 .inputPrimary{
-    @apply border-2 p-2 my-2 mb-6 bg-slate-100 border-slate-300 focus:outline-blue-500 rounded-md 
+    @apply border p-2 my-2 mb-6 bg-slate-100 border-slate-400 focus:outline-blue-500 rounded-md 
 }
 .inputSecondary{
-    @apply border-2 p-2 bg-slate-100 border-slate-300 focus:outline-blue-500 rounded-md
+    @apply border p-2 bg-slate-100 border-slate-400 focus:outline-blue-500 rounded-md
 }
 
 #openDialog{
@@ -181,21 +181,49 @@
     }
     to{
         opacity: 1;
-        width: 30%;
-        height: 60%;
+        width: 400px;
+        height: 400px;
     }
 }
 
 @keyframes chatDisappear{
     from{
         opacity: 1;
-        width: 30%;
-        height: 60%;
+        width: 400px;
+        height: 400px;
     }
     to{
         width: 0;
         height: 0;
         opacity: 0;
+    }
+}
+
+@media (max-width:768px) {
+    @keyframes chatAppear {
+        from{
+            width: 0;
+            height: 0;
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+            width: 300px;
+            height: 300px;
+        }
+    }
+    
+    @keyframes chatDisappear{
+        from{
+            opacity: 1;
+            width: 300px;
+            height: 300px;
+        }
+        to{
+            width: 0;
+            height: 0;
+            opacity: 0;
+        }
     }
 }
 
@@ -258,6 +286,18 @@
     }
     to{
         width: 0;
+    }
+}
+
+.searchAppear{
+    animation: searchScale 1s ease-in-out;
+}
+
+@keyframes searchScale {
+    from{
+        width: 0%;
+    }to{
+        width: 100%;
     }
 }
   

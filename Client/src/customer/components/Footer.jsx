@@ -5,7 +5,7 @@ import { HiMail } from 'react-icons/hi';
 
 const Footer = () => {
     return (
-        <footer className='bg-[#0C1934] mt-10 p-12 px-16 text-slate-400 gap-10 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1'>
+        <footer className='bg-[#0C1934] mt-10 p-12 md:px-16 px-10 text-slate-400 gap-10 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1'>
             {footerDetails.map((details, index) => {
                 return <aside key={index} className='w-full flex flex-col gap-5'>
                     <div className='flex flex-col w-fit'>

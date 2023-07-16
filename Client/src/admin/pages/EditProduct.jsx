@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FiUpload } from "react-icons/fi";
-import Loader from '../components/Loader';
+import {TailSpin} from 'react-loader-spinner';
 import CreateContext from '../context/createContext';
 import ImgBox from '../components/ImgBox';
 import axios from 'axios';
@@ -9,7 +9,7 @@ import ChooseCategories from '../components/ChooseCategories';
 import DropDown from '../components/DropDown';
 const EditProduct = () => {
 
-    const {url} = useContext(CreateContext);
+    const { url } = useContext(CreateContext);
     const [isLoader, setIsLoader] = useState(true);
     const [formDetails, setFormDetails] = useState({ _id: '', name: '', desc: '', category: '', price: '', rating: '' });
     const [inputImg, setInputImg] = useState("");
@@ -97,7 +97,7 @@ const EditProduct = () => {
     }
 
     return (
-        isLoader ? <Loader /> :
+        isLoader ? <div className='flex h-full items-center justify-center'><TailSpin width={45} height={45} color="blue" /></div> :
             <div className='flex flex-col gap-4 px-12 py-8 text-slate-600'>
                 <div className='flex justify-between'>
                     <h1 className='text-3xl text-slate-700'>Edit Product</h1>

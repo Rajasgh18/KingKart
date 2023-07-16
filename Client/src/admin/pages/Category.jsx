@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { BsChevronDown } from "react-icons/bs";
 import DropDown from '../components/DropDown';
 import CategoryTable from '../components/CategoryTable';
-import Loader from '../components/Loader';
+import {TailSpin} from 'react-loader-spinner';
 import CategoryProperty from '../components/CategoryProperty';
 import { FiUpload } from "react-icons/fi";
 import ImgBox from '../components/ImgBox';
@@ -11,7 +10,7 @@ import CreateContext from '../context/createContext';
 
 const Category = () => {
 
-  const {url} = useContext(CreateContext);
+  const { url } = useContext(CreateContext);
   const [category, setCategory] = useState([]);
   const [categoryDetails, setCategoryDetails] = useState({ categoryName: "", parentCategory: "No Parent Category", properties: [{}] });
   const [properties, setProperties] = useState([]);
@@ -87,14 +86,14 @@ const Category = () => {
           </div>}
         </div>
         <div className='flex w-full justify-evenly gap-2'>
-          <input id='category' name='categoryName' onChange={e => setCategoryDetails({ ...categoryDetails, [e.target.name]: e.target.value })} value={categoryDetails.categoryName} type="text" className='border-2 p-2 my-2 bg-slate-100 border-slate-300 focus:outline-blue-500 rounded-md w-full h-12 text-lg text-slate-700' placeholder='Category Name' />
-          <DropDown name="category" setCategoryDetails={setCategoryDetails} categoryDetails={categoryDetails} noSelectionText="No Parent Category" category={category} dropInputCss="w-full" dropDownCss="w-[36.3%]" />
+          <input id='category' name='categoryName' onChange={e => setCategoryDetails({ ...categoryDetails, [e.target.name]: e.target.value })} value={categoryDetails.categoryName} type="text" className='border p-2 my-2 bg-slate-100 border-slate-400 focus:outline-blue-500 rounded-md w-full h-12 text-lg text-slate-700' placeholder='Category Name' />
+          <DropDown name="category" setCategoryDetails={setCategoryDetails} categoryDetails={categoryDetails} noSelectionText="No Parent Category" category={category} dropInputCss="w-full" />
         </div>
         <CategoryProperty properties={properties} setProperties={setProperties} />
         <button type='submit' className='btnPrimary my-4 w-fit p-3 px-5 text-lg'>Save</button>
       </form>
       <CategoryTable category={category} setInputImg={setInputImg} setProperties={setProperties} setCategoryDetails={setCategoryDetails} isLoader={isLoader} />
-      {isLoader && <Loader />}
+      {isLoader && <div className='flex justify-center'><TailSpin width={45} height={45} color="blue" /></div>}
     </section>
   )
 }

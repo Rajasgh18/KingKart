@@ -23,12 +23,12 @@ const Customer = () => {
       <Navbar />
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route path='/:id' element={<ProductPage />} />
-        <Route path='/categories' element={<Categories />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/products' element={<QueryProducts />} />
+        <Route exact path='/:id' element={<ProductPage />} />
+        <Route exact path='/categories' element={<Categories />} />
+        <Route exact path='/cart' element={<Cart />} />
+        <Route exact path='/products' element={<QueryProducts />} />
       </Routes>
-      {userId === '64958bb127e9d080f9ead0e2' && <Link to='/admin' className='fixed bottom-16 left-16 bg-green-400 text-white font-viga p-3 px-4 rounded-md text-lg border-green-500 border-2'>Admin</Link>}
+      {userId === '64958bb127e9d080f9ead0e2' && <Link to='/admin' className='fixed md:bottom-16 md:left-16 bottom-10 left-10 bg-green-400 text-white font-viga md:p-3 md:px-4 p-2 px-2 rounded-md md:text-lg text-base border-green-500 border-2'>Admin</Link>}
       <ChatBot />
       <Footer />
     </div>

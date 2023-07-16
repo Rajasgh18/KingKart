@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Loader from '../components/Loader';
+import { TailSpin } from 'react-loader-spinner';
 import ImgBox from '../components/ImgBox';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiUpload } from "react-icons/fi";
@@ -9,7 +9,7 @@ import ChooseCategories from '../components/ChooseCategories';
 import CreateContext from '../context/createContext';
 
 const AddProduct = () => {
-  const {url} = useContext(CreateContext);
+  const { url } = useContext(CreateContext);
   const [isLoader, setIsLoader] = useState(true);
   const [formDetails, setFormDetails] = useState({ name: '', desc: '', category: '', offerPrice: '', mrp: '', deliveryCharge: '', rating: '' });
   const [category, setCategory] = useState([]);
@@ -75,7 +75,7 @@ const AddProduct = () => {
   }
 
   return (
-    !isLoader ? <Loader /> :
+    !isLoader ? <div className='flex h-full items-center justify-center'><TailSpin width={45} height={45} color="blue" /></div> :
       <div className='flex flex-col gap-4 px-12 py-8 text-slate-600'>
         <div className='flex justify-between'>
           <h1 className='text-3xl text-slate-700'>New Product</h1>

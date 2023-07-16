@@ -10,6 +10,7 @@ import EditProduct from './pages/EditProduct';
 import AddProduct from './pages/AddProduct';
 import ProductDetails from './pages/ProductDetails';
 import NotFound from '../NotFound';
+import Users from './pages/Users';
 
 const Admin = () => {
 
@@ -32,6 +33,7 @@ const Admin = () => {
           <Route path='/products/details' element={<ProductDetails />} />
           <Route path='/products/add' element={<AddProduct />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/users" element={<Users />} />
           <Route path="/category" element={<Category />} />
           <Route path="/settings" element={<Settings />} />
           <Route path='*' element={<NotFound />} />

@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react'
-import { GiCrossShield } from "react-icons/gi";
+import React, { useContext, useState } from 'react';
 import { BsSpeedometer2 } from "react-icons/bs";
 import { BsArchive } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 import { BsBoxSeam } from "react-icons/bs";
 import { SiChatbot } from "react-icons/si";
-import { FaListUl } from "react-icons/fa";
+import { FaListUl, FaRegUserCircle } from "react-icons/fa";
 import { Link, useLocation } from 'react-router-dom';
 import CreateContext from '../context/createContext';
 const Sidebar = () => {
@@ -28,6 +27,11 @@ const Sidebar = () => {
                     {(location === '/admin' || location === '/admin/') && <div id='active' className='absolute left-0 w-2 rounded-tr-md rounded-br-md h-10 bg-blue-400'></div>}
                     <BsSpeedometer2 className='w-6 h-6' />
                     Dashboard
+                </Link>
+                <Link to='/admin/users' className={location === '/admin/users' ? activeLink : inactiveLink}>
+                    {location === '/admin/users' && <div id='active' className='absolute left-0 w-2 rounded-tr-md rounded-br-md h-10 bg-blue-400'></div>}
+                    <FaRegUserCircle className='w-6 h-6' />
+                    Users
                 </Link>
                 <Link to='/admin/orders' className={location === '/admin/orders' ? activeLink : inactiveLink}>
                     {location === '/admin/orders' && <div id='active' className='absolute left-0 w-2 rounded-tr-md rounded-br-md h-10 bg-blue-400'></div>}
