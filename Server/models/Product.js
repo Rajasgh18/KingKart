@@ -30,6 +30,11 @@ const Product = new Schema({
     },
     rating: {
         type: Number,
+        required: true
+    },
+    highlights: {
+        type: Array,
+        required: true,
     },
     category: {
         type: mongoose.Types.ObjectId,
