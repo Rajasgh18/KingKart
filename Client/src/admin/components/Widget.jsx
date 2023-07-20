@@ -45,11 +45,11 @@ const Widget = ({ name, link }) => {
     }, [])
 
     return (
-        <div className='flex-1 flex gap-2 flex-col shadow-[0_0_12px] rounded-lg p-3 shadow-slate-300'>
-            <h2 className='text-lg text-slate-500'>{name}</h2>
-            <h1 className='text-3xl text-slate-600'>{name === "Balance" || name === "Earnings" ? "Rs " + value : value}</h1>
+        <div className='flex-1 flex md:gap-2 flex-col shadow-[0_0_12px] md:rounded-lg rounded p-3 shadow-slate-300'>
+            <h2 className='md:text-lg sm:text-base text-sm text-slate-500'>{name}</h2>
+            <h1 className='md:text-3xl sm:text-xl text-lg text-slate-600'>{name === "Balance" || name === "Earnings" ? "Rs " + value : value}</h1>
             <div className={`flex ${name === "Earnings" ? "justify-end" : "justify-between"}`}>
-                <Link to={link} className={`underline underline-offset-4 text-slate-700 cursor-pointer text-sm ${name === "Earnings" && 'hidden'}`}>See all {name.toLowerCase()}</Link>
+                <Link to={link} className={`underline underline-offset-4 text-slate-700 cursor-pointer md:text-sm text-xs ${name === "Earnings" && 'hidden'}`}>See all {name.toLowerCase()}</Link>
                 {name === "Users"
                     ? <CiUser className="bg-red-300 w-6 h-6 p-[0.2rem] rounded text-red-700" />
                     : name === "Orders"

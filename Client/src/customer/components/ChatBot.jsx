@@ -58,7 +58,6 @@ const ChatBot = () => {
 
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
-        console.log(messages.filter(message => message.text === "Enter Your Query"))
         messages.filter(message => message.text === "Enter Your Query").length !== 0 ? setIsInput(true) : setIsInput(false);
     }, [handleNewMessages]);
 

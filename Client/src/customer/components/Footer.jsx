@@ -24,9 +24,9 @@ const Footer = () => {
                         </div>
                         <div>
                             {index === 0 && <div className='flex gap-4'>
-                                <BsInstagram className='w-6 h-6 cursor-pointer hover:text-slate-200 transition-colors duration-300' />
-                                <BsFacebook className='w-6 h-6 cursor-pointer hover:text-slate-200 transition-colors duration-300' />
-                                <BsWhatsapp className='w-6 h-6 cursor-pointer hover:text-slate-200 transition-colors duration-300' />
+                                <BsInstagram className='w-6 h-6 cursor-pointer hover:text-pink-500 transition-colors duration-300' />
+                                <BsFacebook className='w-6 h-6 cursor-pointer hover:text-blue-500 transition-colors duration-300' />
+                                <BsWhatsapp className='w-6 h-6 cursor-pointer hover:text-green-600 transition-colors duration-300' />
                             </div>}
                         </div>
                     </div>

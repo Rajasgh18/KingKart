@@ -46,32 +46,34 @@ const Chart = ({ aspect, title }) => {
 
   return (
     <>
-      <div className="w-full shadow-[0_0_12px] p-4 flex flex-col rounded-md gap-4 shadow-slate-300">
+      <div className="w-full shadow-[0_0_12px] md:p-4 p-2 flex flex-col rounded-md md:gap-4 gap-2 shadow-slate-300">
         <h1 className="text-slate-700 text-lg flex justify-center">{title}</h1>
-        <ResponsiveContainer width="100%" height="100%" aspect={aspect}>
-          <AreaChart
-            width={720}
-            height={250}
-            data={chartData}
-          >
-            <defs>
-              <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-              </linearGradient>
-            </defs>
-            <XAxis dataKey="name" stroke="gray" />
-            <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
-            <Tooltip />
-            <Area
-              type="monotone"
-              dataKey="Total"
-              stroke="#8884d8"
-              fillOpacity={1}
-              fill="url(#total)"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
+        <div className="w-full">
+          <ResponsiveContainer width="100%" height="100%" aspect={aspect}>
+            <AreaChart
+              width={720}
+              height={250}
+              data={chartData}
+            >
+              <defs>
+                <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <XAxis dataKey="name" stroke="gray" />
+              <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
+              <Tooltip />
+              <Area
+                type="monotone"
+                dataKey="Total"
+                stroke="#8884d8"
+                fillOpacity={1}
+                fill="url(#total)"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </>
   );

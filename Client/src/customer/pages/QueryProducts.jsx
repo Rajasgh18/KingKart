@@ -22,7 +22,6 @@ const QueryProducts = () => {
             const productsEle = document.getElementsByClassName('leftAppear');
             Array.from(productsEle).forEach((product, index) => {
                 const delay = (index + 1) * 150;
-                product.style.display = `flex`;
                 product.style.animation = `appearLeft ${delay}ms ease-in-out`;
             });
         }
@@ -30,13 +29,13 @@ const QueryProducts = () => {
     }, []);
     return (
         <>
-            {!isLoader ? <section className='flex p-3 gap-3 flex-grow text-slate-700'>
-                <aside className='w-1/4 p-4 flex flex-col rightAppear relative rounded bg-white shadow-[0_2px_8px_2px] shadow-slate-300'>
+            {!isLoader ? <section className='flex gap-3 mx-20 my-5 flex-grow text-slate-700'>
+                {/* <aside className='w-1/4 p-4 flex flex-col rightAppear relative rounded bg-white shadow-[0_2px_8px_2px] shadow-slate-300'>
                     <h1 className='text-2xl'>Filters</h1>
-                </aside>
-                <aside className='flex flex-col py-4 flex-grow rounded bg-white shadow-[0_2px_8px_2px] shadow-slate-300'>
+                </aside> */}
+                <aside className='flex flex-col py- flex-grow rounded bg-white shadow-[0_2px_8px_2px] shadow-slate-300'>
                     {products.length !== 0 && products.map(p => {
-                        return <div onClick={() => { Navigate(`/${p._id}`) }} key={p._id} className='h-52 leftAppear hidden relative hover:text-blue-600 cursor-pointer border-b-2 p-4'>
+                        return <div onClick={() => { Navigate(`/${p._id}`) }} key={p._id} className='h-52 leftAppear flex relative hover:text-blue-600 cursor-pointer border-b-2 p-4'>
                             <img ref={productImgRef} src={`/assets/productImg/${p.img[0]}`} className={`h-full w-1/4 transition-all duration-300 object-contain`} alt="" />
                             <aside className='flex flex-col gap-2 flex-grow'>
                                 <h2 className='text-inherit text-xl'>{p.name}</h2>

@@ -14,7 +14,7 @@ const Sidebar = () => {
     const inactiveLink = 'btn flex gap-3 items-center';
 
     return (
-        <aside className={`${show ? "left-0" : "-left-full"} transition-all duration-500 ease-in-out fixed w-auto md:sticky md:min-h-screen top-0 h-full flex bg-blue-950 gap-6 flex-col`}>
+        <aside className={`${show ? "left-0" : "-left-full"} transition-all duration-500 ease-in-out fixed w-auto md:sticky min-h-screen top-0 flex bg-blue-950 gap-6 flex-col`}>
             <div className='h-14 w-full bg--500 gap-2 flex items-center justify-center px-4'>
                 <header className='gap-2 flex items-center'>
                     

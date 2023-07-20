@@ -21,8 +21,8 @@ const NewProperty = ({ p, properties, setProperties }) => {
     
     return (
         <div className='flex gap-2 items-center my-2'>
-            <input onChange={handleChange} className='inputSecondary text-slate-600 w-1/2' type="text" name="propName" id="" value={props.propName} />
-            <input onChange={handleChange} className='inputSecondary text-slate-600 w-full' type="text" name="propValue" id="" value={props.propValue} />
+            <input onChange={handleChange} placeholder='Enter Property Name' className='inputSecondary text-slate-600 w-1/2' type="text" name="propName" id="" value={props.propName} />
+            <input onChange={handleChange} placeholder='Comma separated values' className='inputSecondary text-slate-600 w-full' type="text" name="propValue" id="" value={props.propValue} />
             <button onClick={handleDelete} className='p-2 text-lg px-4 rounded-md text-white bg-red-500'>Remove</button>
         </div>
     )

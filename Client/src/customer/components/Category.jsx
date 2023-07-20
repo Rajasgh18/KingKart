@@ -1,7 +1,7 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Category = ({details}) => {
+const Category = ({ details }) => {
     const Navigate = useNavigate();
     return (
         <div onClick={() => { Navigate(`/products?category=${details.categoryName}`) }} className={`flex justify-end relative items-center flex-col bottomAppear gap-2 cursor-pointer transition-transform hover:scale-110 duration-300 rounded shadow-[0_2px_8px_1px] shadow-slate-300`}>
@@ -11,4 +11,4 @@ const Category = ({details}) => {
     )
 }
 
-export default Category
+export default Category;

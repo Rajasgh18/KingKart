@@ -8,7 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const ProductInfo = ({ productDetail, imgIndex, setImgIndex }) => {
 
     const Navigate = useNavigate();
-    const {url} = useContext(UserContext);
+    const { url } = useContext(UserContext);
     const [colorProduct, setColorProduct] = useState([]);
     const location = useLocation().pathname;
 
@@ -17,7 +17,6 @@ const ProductInfo = ({ productDetail, imgIndex, setImgIndex }) => {
             try {
                 const res = await axios.get(`${url}/product/search?products=${productDetail.name}`);
                 setColorProduct(res.data);
-
             } catch (error) {
                 console.error(error);
             }
@@ -26,31 +25,21 @@ const ProductInfo = ({ productDetail, imgIndex, setImgIndex }) => {
     }, []);
 
     return (
-        <div className='flex flex-col gap-8'>
-            <div className='flex justify-between w-2/3'>
-                <h3 className='text-slate-700 text-lg'>Color</h3>
+        <div className='flex flex-col lg:gap-8 md:gap-6 sm:gap-4 gap-2'>
+            <div className='flex justify-between md:w-2/3 w-full'>
+                <h3 className='text-slate-700 md:text-lg text-base'>Color</h3>
                 <div className='flex gap-4 w-[60%]'>
                     {colorProduct.length !== 0 && colorProduct.map((i, index) => {
-                        return <img key={index} onClick={()=> Navigate(`/${i._id}`)} src={`/assets/productImg/${i.img[0]}`} className={`${location === '/'+i._id && "border-2 border-blue-500"} cursor-pointer imgLoad w-16 h-16 object-contain bg-slate-200 rounded`} alt="" />
+                        return <img key={index} onClick={() => Navigate(`/${i._id}`)} src={`/assets/productImg/${i.img[0]}`} className={`${location === '/' + i._id && "border-2 border-blue-500"} cursor-pointer imgLoad w-16 h-16 object-contain bg-slate-200 rounded`} alt="" />
                     })}
                 </div>
             </div>
-            <div className='flex justify-between w-2/3'>
-                <h3 className='text-slate-700 text-lg'>Delivery</h3>
-                <div className='flex flex-col gap-2 w-[60%]'>
-                    <div className='flex gap-2 items-center border-b-2 text-lg text-slate-600 border-blue-500 pb-2'>
-                        <MdLocationPin className='text-red-500' />
-                        <input type="text" placeholder='Enter Delivery Pincode' className='bg-transparent focus:outline-none' />
-                    </div>
-                    <div className='text-sm'><strong className='text-slate-600'>Delivery by 9 Jun, Friday</strong></div>
-                </div>
-            </div>
-            <div className='flex justify-between w-2/3'>
-                <h3 className='text-slate-700 text-lg'>Highlights</h3>
-                <ul className='flex flex-col list-disc pl-4 gap-2 text-md text-slate-700 w-[60%]'>
-                    <li>10W with powerfull bass</li>
-                    <li>15.49 cm (6.1 inch) Super Retina XDR Display</li>
-                    <li>A15 Bionic Chip, 6 Core Processor Processor</li>
+            <div className='flex justify-between md:w-2/3 w-full'>
+                <h3 className='text-slate-700 md:text-lg text-base'>Highlights</h3>
+                <ul className='flex flex-col list-disc pl-4 md:gap-2 gap-1 md:text-md text-sm text-slate-700 w-[60%]'>
+                    {productDetail.highlights.length !== 0 && productDetail.highlights.map((highlight, index) => {
+                        return <li key={index}>{highlight}</li>
+                    })}
                 </ul>
             </div>
         </div>

@@ -11,18 +11,18 @@ import CreateContext from '../context/createContext';
 const AddProduct = () => {
   const { url } = useContext(CreateContext);
   const [isLoader, setIsLoader] = useState(true);
-  const [formDetails, setFormDetails] = useState({ name: '', desc: '', category: '', offerPrice: '', mrp: '', deliveryCharge: '', rating: '' });
+  const [formDetails, setFormDetails] = useState({ name: '', desc: '', category: '', highlights: '', offerPrice: '', mrp: '', deliveryCharge: '', rating: '' });
   const [category, setCategory] = useState([]);
   const [dropDownValue, setDropDownValue] = useState("No Category");
   const [choosedCategory, setChoosedCategory] = useState('');
   const [properties, setProperties] = useState({});
 
-  const { name, desc, offerPrice, mrp, deliveryCharge, rating } = formDetails;
+  const { name, desc, offerPrice, highlights, mrp, deliveryCharge, rating } = formDetails;
   const [inputImg, setInputImg] = useState("");
   const Navigate = useNavigate();
 
   const handleForm = (e) => {
-    setFormDetails({ ...formDetails, [e.target.id]: e.target.value });
+    setFormDetails({ ...formDetails, [e.target.id]: e.target.id === "highlights" ? e.target.value.split(',') : e.target.value });
   }
 
   const addImgHandle = async (e) => {
@@ -100,6 +100,8 @@ const AddProduct = () => {
           <textarea placeholder='Description...' onChange={handleForm} id='desc' className='inputPrimary' value={desc} />
           <label htmlFor="offerPrice" className='text-lg'>Offer Price</label>
           <input placeholder='Offer Price' onChange={handleForm} id='offerPrice' type="Number" className='inputPrimary' value={offerPrice} />
+          <label htmlFor="highlights" className='text-lg'>Highlights</label>
+          <input placeholder='Comma Separated lines' onChange={handleForm} id='highlights' type="text" className='inputPrimary' value={highlights} />
           <label htmlFor="mrp" className='text-lg'>MRP</label>
           <input placeholder='MRP' onChange={handleForm} id='mrp' type="Number" className='inputPrimary' value={mrp} />
           <label htmlFor="deliveryCharge" className='text-lg'>Delivery Charge</label>

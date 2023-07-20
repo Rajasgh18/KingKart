@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FiUpload } from "react-icons/fi";
-import {TailSpin} from 'react-loader-spinner';
+import { TailSpin } from 'react-loader-spinner';
 import CreateContext from '../context/createContext';
 import ImgBox from '../components/ImgBox';
 import axios from 'axios';
@@ -11,7 +11,7 @@ const EditProduct = () => {
 
     const { url } = useContext(CreateContext);
     const [isLoader, setIsLoader] = useState(true);
-    const [formDetails, setFormDetails] = useState({ _id: '', name: '', desc: '', category: '', price: '', rating: '' });
+    const [formDetails, setFormDetails] = useState({ _id: '', name: '', highlights: '', desc: '', category: '', price: '', rating: '' });
     const [inputImg, setInputImg] = useState("");
     const [category, setCategory] = useState([]);
     const [choosedCategory, setChoosedCategory] = useState('No Category');
@@ -120,6 +120,8 @@ const EditProduct = () => {
                     <ChooseCategories propertiesToFill={propertiesToFill} name="edit" properties={properties} setProperties={setProperties} />
                     <label htmlFor="desc" className='text-lg'>Description</label>
                     <textarea onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value })} id='desc' className='inputPrimary' value={formDetails.desc} />
+                    <label htmlFor="highlights" className='text-lg'>Highlights</label>
+                    <input onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value.split(',') })} id='highlights' type='text' className='inputPrimary' value={formDetails.highlights} />
                     <label htmlFor="offerPrice" className='text-lg'>Offer Price</label>
                     <input onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value })} id='offerPrice' type='number' className='inputPrimary' value={formDetails.offerPrice} />
                     <label htmlFor="mrp" className='text-lg'>MRP</label>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BsSearch, BsCart3 } from "react-icons/bs";
-import { IoLogOutOutline, IoHomeOutline } from "react-icons/io5";
+import { IoLogOutOutline, IoHomeOutline, IoInformationCircleOutline } from "react-icons/io5";
 import { CiUser } from "react-icons/ci";
 import { FaUserTie } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
@@ -98,7 +98,7 @@ const Navbar = () => {
 
     return (
         <nav className='lg:h-14 sm:h-12 h-10 z-50 transition-all sticky top-0 bg-[#0C1934] justify-evenly flex items-center'>
-            <Link to='/' className='w-1/4'><img className='lg:h-14 sm:h-12 h-10' src='/assets/logo.png' /></Link>
+            <Link to='/' className='w-1/4'><img className='lg:h-14 sm:h-12 h-10' src='/assets/logo.svg' /></Link>
             <div className='md:flex items-center hidden text-lg gap-10'>
                 <Link to='/' className={`underline-animation transition-all duration-200 rounded-md ${location === '/' ? "text-[#f00] underline underline-offset-8" : "text-white"}`}>Home</Link>
                 <Link to='/categories' className={`underline-animation transition-all duration-200 rounded-md ${location.includes('/categories') ? "text-[#f00] underline underline-offset-8" : "text-white"}`}>Categories</Link>
@@ -115,8 +115,8 @@ const Navbar = () => {
                 {user._id && <div ref={dropDownRef2} className='cursor-pointer relative'>
                     <CiUser onClick={handleDropDown2} className='text-white w-7 h-7 hover:scale-125 transition-transform duration-5=700' />
                     {isOpen2 && <div ref={dropDownBoxRef2} className='absolute dropDownShow text-slate-700 text-lg p-3 px-3 right-0 rounded-md shadow-[0_0_10px] shadow-slate-400 bg-white mt-5'>
-                        <button className='flex items-center whitespace-nowrap gap-2'><FaUserTie className='w-5 h-5'/>{user.name}</button>
-                        <button className='flex items-center whitespace-nowrap gap-2'><MdEmail className='w-5 h-5'/>{user.username}</button>
+                        <button className='flex p-1 items-center whitespace-nowrap gap-2'><FaUserTie className='w-5 h-5'/>{user.name}</button>
+                        <button className='flex p-1 items-center whitespace-nowrap gap-2'><MdEmail className='w-5 h-5'/>{user.username}</button>
                     </div>}
                 </div>}
                 <Link to="/cart" className='sm:flex hidden'>
@@ -135,6 +135,7 @@ const Navbar = () => {
                     {isOpen1 && <div ref={dropDownBoxRef1} className='absolute px-4 right-0 dropDownShow text-slate-600 bg-white flex flex-col gap-2 rounded shadow-[0_0_10px_0] shadow-slate-500 mt-8 py-2'>
                         <Link to='/' className='flex gap-1 items-center hover:text-red-600 transition-all duration-600'><IoHomeOutline className='w-6 h-6' />Home</Link>
                         <Link to='/categories' className='flex items-center hover:text-red-600 transition-all duration-600 gap-1'><PiSquaresFour className='w-6 h-6' />Categories</Link>
+                        <Link to='/about-us' className='flex items-center hover:text-red-600 transition-all duration-600 gap-1'><IoInformationCircleOutline className='w-6 h-6' />About</Link>
                         <Link to='/cart' className=' flex gap-1 items-center text-slate-600 hover:text-red-600'>
                             <div className='flex relative'>
                                 <BsCart3 className={`w-6 h-6 mr-1 cursor-pointer ${location.includes('/cart') ? "text-red-500" : "text-inherit"}`} />

@@ -13,7 +13,7 @@ const Background = ({ backgroundRef }) => {
                 element.style.transform = `translateX(-${activeIndex * 100}%)`
             });
             setActiveIndex((prevIndex) => (prevIndex+1) % 3);
-        }, 3000);
+        }, 5000);
 
         return () => clearInterval(interval);
     }, [activeIndex]);
@@ -24,8 +24,6 @@ const Background = ({ backgroundRef }) => {
                 return <div key={index}  className={`min-w-full relative h-full flex flex-col`}>
                     <img ref={e => caraouselRef.current[index] = e} src={`/assets/svgs/${item}`} className={`transition-transform duration-1000 object-cover w-full h-full absolute`} alt="" />
                     <aside id='headings' className='w-1/2 h-full relative flex flex-col items-start lg:px-20 md:px-14 sm:px-8 px-4 justify-center'>
-                   
-             
                     </aside>
                 </div>
             })}

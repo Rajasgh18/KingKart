@@ -47,23 +47,23 @@ const CartItem = ({ cartDetails }) => {
     }
 
     return (
-        <div ref={currentItem} className='item p-5 rightAppear flex w-full h-1/4 items-center gap-4 border-b-2'>
-            <aside className='w-[12%] h-full'>
+        <div ref={currentItem} className='item p-4 rightAppear flex w-full md:h-[200px] h-[150px] items-center gap-4 border-b-2'>
+            <aside className='md:w-[20%] sm:w-[30%] w-[40%] h-full'>
                 <img onClick={handleClick} src={`/assets/productImg/${cartDetails?.img[0]}`} className='cursor-pointer w-full imgLoad h-full object-contain' alt="" />
             </aside>
-            <aside className='flex flex-col gap-2'>
-                <h3 onClick={handleClick} className='text-xl cursor-pointer text-slate-700'>{cartDetails?.name}</h3>
-                <span className='flex rounded px-1 bg-green-500 text-white items-center justify-center gap-1 w-fit'>{cartDetails?.rating}<AiFillStar /></span>
+            <aside className='flex flex-col md:gap-2 gap-1'>
+                <h3 onClick={handleClick} className='lg:text-xl gap-16 md:text-lg sm:text-base cursor-pointer text-slate-700'>{cartDetails?.name}</h3>
+                <span className='flex rounded px-1 bg-green-500 sm:text-base text-sm text-white items-center justify-center gap-1 w-fit'>{cartDetails?.rating}<AiFillStar /></span>
                 <div className='flex gap-2 items-end'>
-                    <span className='text-lg text-slate-700 font-viga'>Rs {quantity * cartDetails?.offerPrice}</span>
+                    <span className='md:text-lg text-slate-700 font-viga'>Rs {quantity * cartDetails?.offerPrice}</span>
                 </div>
-                <div className='flex gap-5'>
-                    <div className='flex items-center gap-3 text-xl'>
-                        <button onClick={handleDecrease} className='bg-blue-500 hover:scale-110 duration-200 transition-transform px-4 rounded-md text-white text-2xl'>-</button>
+                <div className='flex md:gap-5 gap-3'>
+                    <div className='flex items-center md:gap-3 gap-2 text-base sm:text-lg md:text-xl'>
+                        <button onClick={handleDecrease} className='bg-blue-500 hover:scale-110 duration-200 transition-transform md:px-4 px-3 md:rounded-md rounded text-white text-base md:text-2xl'>-</button>
                         <span>{quantity}</span>
-                        <button onClick={handleIncrease} className='bg-blue-500 hover:scale-110 duration-200 transition-transform px-4 rounded-md text-white text-2xl'>+</button>
+                        <button onClick={handleIncrease} className='bg-blue-500 hover:scale-110 duration-200 transition-transform md:px-4 px-3 md:rounded-md rounded text-white text-base md:text-2xl'>+</button>
                     </div>
-                    <button onClick={handleRemove} className='w-fit hover:bg-red-600 hover:scale-105 transition-transform p-1 px-2 rounded-md bg-red-500 text-white text-md'>Remove</button>
+                    <button onClick={handleRemove} className='w-fit hover:bg-red-600 hover:scale-105 transition-transform px-2 md:rounded-md rounded bg-red-500 text-white md:text-base text-sm'>Remove</button>
                 </div>
             </aside>
         </div>

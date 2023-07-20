@@ -9,6 +9,7 @@ import { UserContext } from './context/UserContext';
 import QueryProducts from './pages/QueryProducts';
 import ChatBot from './components/ChatBot';
 import Footer from './components/Footer';
+import About from './pages/About';
 
 
 const Customer = () => {
@@ -25,6 +26,7 @@ const Customer = () => {
         <Route exact path='/' element={<Home />} />
         <Route exact path='/:id' element={<ProductPage />} />
         <Route exact path='/categories' element={<Categories />} />
+        <Route exact path='/about-us' element={<About />} />
         <Route exact path='/cart' element={<Cart />} />
         <Route exact path='/products' element={<QueryProducts />} />
       </Routes>
