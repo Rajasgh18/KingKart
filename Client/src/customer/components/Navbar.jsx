@@ -8,6 +8,7 @@ import { PiSquaresFour } from "react-icons/pi";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import SearchResult from './SearchResult';
+
 const Navbar = () => {
     const { user } = useContext(UserContext);
     const dropDownRef1 = useRef(null);
@@ -98,7 +99,11 @@ const Navbar = () => {
 
     return (
         <nav className='lg:h-14 sm:h-12 h-10 z-50 transition-all sticky top-0 bg-[#0C1934] justify-evenly flex items-center'>
-            <Link to='/' className='w-1/4'><img className='lg:h-14 sm:h-12 h-10' src='/assets/logo.svg' /></Link>
+            <Link to='/' className='w-1/4'>
+                <object data="/assets/logo.svg" className='lg:h-14 sm:h-12 h-10' type="image/svg+xml">
+                    Your browser does not support SVG
+                </object>
+            </Link>
             <div className='md:flex items-center hidden text-lg gap-10'>
                 <Link to='/' className={`underline-animation transition-all duration-200 rounded-md ${location === '/' ? "text-[#f00] underline underline-offset-8" : "text-white"}`}>Home</Link>
                 <Link to='/categories' className={`underline-animation transition-all duration-200 rounded-md ${location.includes('/categories') ? "text-[#f00] underline underline-offset-8" : "text-white"}`}>Categories</Link>
@@ -115,8 +120,8 @@ const Navbar = () => {
                 {user._id && <div ref={dropDownRef2} className='cursor-pointer relative'>
                     <CiUser onClick={handleDropDown2} className='text-white w-7 h-7 hover:scale-125 transition-transform duration-5=700' />
                     {isOpen2 && <div ref={dropDownBoxRef2} className='absolute dropDownShow text-slate-700 text-lg p-3 px-3 right-0 rounded-md shadow-[0_0_10px] shadow-slate-400 bg-white mt-5'>
-                        <button className='flex p-1 items-center whitespace-nowrap gap-2'><FaUserTie className='w-5 h-5'/>{user.name}</button>
-                        <button className='flex p-1 items-center whitespace-nowrap gap-2'><MdEmail className='w-5 h-5'/>{user.username}</button>
+                        <button className='flex p-1 items-center whitespace-nowrap gap-2'><FaUserTie className='w-5 h-5' />{user.name}</button>
+                        <button className='flex p-1 items-center whitespace-nowrap gap-2'><MdEmail className='w-5 h-5' />{user.username}</button>
                     </div>}
                 </div>}
                 <Link to="/cart" className='sm:flex hidden'>
