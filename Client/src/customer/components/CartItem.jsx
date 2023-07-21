@@ -55,7 +55,7 @@ const CartItem = ({ cartDetails }) => {
                 <h3 onClick={handleClick} className='lg:text-xl gap-16 md:text-lg sm:text-base cursor-pointer text-slate-700'>{cartDetails?.name}</h3>
                 <span className='flex rounded px-1 bg-green-500 sm:text-base text-sm text-white items-center justify-center gap-1 w-fit'>{cartDetails?.rating}<AiFillStar /></span>
                 <div className='flex gap-2 items-end'>
-                    <span className='md:text-lg text-slate-700 font-viga'>Rs {quantity * cartDetails?.offerPrice}</span>
+                    <span className='md:text-lg text-slate-700 font-bold'>&#8377;{quantity * cartDetails?.offerPrice}</span>
                 </div>
                 <div className='flex md:gap-5 gap-3'>
                     <div className='flex items-center md:gap-3 gap-2 text-base sm:text-lg md:text-xl'>
