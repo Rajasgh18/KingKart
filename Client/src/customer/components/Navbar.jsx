@@ -100,9 +100,7 @@ const Navbar = () => {
     return (
         <nav className='lg:h-14 sm:h-12 h-10 z-50 transition-all sticky top-0 bg-[#0C1934] justify-evenly flex items-center'>
             <Link to='/' className='w-1/4'>
-                <object data="/assets/logo.svg" className='lg:h-14 sm:h-12 h-10' type="image/svg+xml">
-                    Your browser does not support SVG
-                </object>
+                <img className='lg:h-14 sm:h-12 h-10' src="/assets/logo.png" alt="" />
             </Link>
             <div className='md:flex items-center hidden text-lg gap-10'>
                 <Link to='/' className={`underline-animation transition-all duration-200 rounded-md ${location === '/' ? "text-[#f00] underline underline-offset-8" : "text-white"}`}>Home</Link>
