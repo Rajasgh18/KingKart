@@ -22,10 +22,10 @@ const Users = () => {
 
     return (
         <section className='p-12 flex flex-col gap-10'>
-            <div>
+            <header>
                 <h1 className='text-4xl text-slate-700'>Users</h1>
                 <p className='text-lg text-slate-500'>{users.length} entries found</p>
-            </div>
+            </header>
             <table className='border border-slate-300 w-full'>
                 <thead>
                     <tr className='bg-slate-100'>

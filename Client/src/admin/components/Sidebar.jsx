@@ -48,8 +48,8 @@ const Sidebar = () => {
                     <BsArchive className='w-6 h-6' />
                     Products
                 </Link>
-                <Link to='/admin/settings' className={location === '/admin/settings' ? activeLink : inactiveLink}>
-                    {location === '/admin/settings' && <div id='active' className='absolute left-0 w-2 rounded-tr-md rounded-br-md h-10 bg-blue-400'></div>}
+                <Link to='/admin/query' className={location === '/admin/query' ? activeLink : inactiveLink}>
+                    {location === '/admin/query' && <div id='active' className='absolute left-0 w-2 rounded-tr-md rounded-br-md h-10 bg-blue-400'></div>}
                     <SiChatbot className='w-6 h-6' />
                     Queries
                 </Link>

@@ -4,7 +4,7 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Orders from './pages/Orders';
 import Products from './pages/Products';
-import Settings from './pages/Settings';
+import Query from './pages/Query';
 import Category from './pages/Category';
 import EditProduct from './pages/EditProduct';
 import AddProduct from './pages/AddProduct';
@@ -35,7 +35,7 @@ const Admin = () => {
           <Route path="/orders" element={<Orders />} />
           <Route path="/users" element={<Users />} />
           <Route path="/category" element={<Category />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/query" element={<Query />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
