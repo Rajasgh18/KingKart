@@ -84,7 +84,6 @@ const ChatBot = () => {
     }
 
     const handleRestart = () => {
-        
         setMessages([{ name: 'chatbot', text: " I'm here to assist you with any questions, concerns, or issues you might have while navigating our online store.. How can I assist you today?", options: ["📦Product", "👨‍🔧Service"] }])
         setChoosedOptions([])
     }

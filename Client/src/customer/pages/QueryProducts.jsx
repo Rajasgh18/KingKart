@@ -4,6 +4,7 @@ import { TailSpin } from 'react-loader-spinner';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 import {UserContext} from '../context/UserContext';
+import Loader from '../components/Loader';
 
 const QueryProducts = () => {
 
@@ -51,7 +52,7 @@ const QueryProducts = () => {
                         </div>
                     })}
                 </aside>
-            </section> : <div className='flex flex-grow items-center justify-center'><TailSpin height={60} width={70} color='blue' /></div>}
+            </section> : <Loader />}
         </>
     )
 }

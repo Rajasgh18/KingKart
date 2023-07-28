@@ -10,15 +10,16 @@ export const UserState = (props) => {
     const url = import.meta.env.VITE_URL || 'https://king-kart-server.vercel.app/api';
     const userId = localStorage.getItem('userId');
     const Navigate = useNavigate();
+    const [selectedProducts, setSelectedProducts] = useState([]);
 
     const getUser = async () => {
-        if(userId){
+        if (userId) {
             const res = await axios.get(`${url}/user/${userId}`);
             setUser(res.data);
         }
     }
     return (
-        <UserContext.Provider value={{ user, getUser, setUser, changes, setChanges, userId, url, Navigate }}>
+        <UserContext.Provider value={{ user, getUser, setUser, changes, setChanges, userId, url, Navigate, selectedProducts, setSelectedProducts }}>
             {props.children}
         </UserContext.Provider>
     );

@@ -110,7 +110,7 @@ const Navbar = () => {
             <div className='w-1/4 flex items-center justify-end gap-5'>
                 <div ref={searchBoxRef} className='relative flex justify-center flex-col'>
                     <div onClick={() => { setSearchClicked(true) }} className={`flex justify-center items-center ${searchClicked ? "bg-white text-slate-600 rounded-md p-1 px-2" : "bg-transparent text-white"} items-center gap-2`}>
-                        <label htmlFor='searchBar' className='peer'><BsSearch className='lg:w-5 lg:h-5 sm:w-4 sm:h-4 cursor-pointer hover:scale-125 transition-transform duration-300 text-inherit' /></label>
+                        <label htmlFor='searchBar' className='peer'><BsSearch className='lg:w-5 lg:h-5 sm:w-4 sm:h-4 cursor-pointer hover:scale-125 transition-transform text-inherit' /></label>
                         <input onChange={(e) => { setSearchQuery(e.target.value) }} value={searchQuery} id='searchBar' type="text" placeholder='Search here...' className={`focus:outline-none ${searchClicked ? "w-52" : "w-0"} w-0 peer-focus:w-52 transition-all duration-500 lg:text-lg sm:text-md text-base text-slate-600`} />
                     </div>
                     {searchQuery && <SearchResult searchResultRef={searchResultRef} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}

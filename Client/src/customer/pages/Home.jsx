@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 import { UserContext } from '../context/UserContext';
+import Loader from '../components/Loader';
 
 const Home = () => {
   const { url } = useContext(UserContext);
@@ -93,7 +94,7 @@ const Home = () => {
           }
         </section>
       </div>
-        : <div className='flex flex-grow items-center justify-center'><TailSpin height={50} width={50} color='blue' /></div>}
+        : <Loader />}
     </>
   )
 }

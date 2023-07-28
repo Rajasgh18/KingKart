@@ -18,6 +18,10 @@ const UserSchema = new Schema({
         required: true,
     },
     cartItems: [{ type: Schema.Types.ObjectId, ref: 'products' }],
+    currAddress: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Address',
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('users', UserSchema);

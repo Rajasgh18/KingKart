@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 import Category from '../components/Category';
+import Loader from '../components/Loader';
 
 const Categories = () => {
 
@@ -44,7 +45,7 @@ const Categories = () => {
             return <Category key={category._id} details={category} />
           })}
         </div>
-      </section> : <div className='flex flex-grow items-center justify-center'><TailSpin width={60} height={60} color="blue" /></div>}
+      </section> : <Loader />}
     </>
   )
 }

@@ -9,6 +9,7 @@ const image = require('./routes/image');
 const user = require('./routes/user');
 const order = require('./routes/order');
 const query = require('./routes/query');
+const address = require('./routes/address');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
@@ -29,6 +30,7 @@ App.use(express.json());
 
 App.use('/api/product', product);
 App.use('/api/category', category);
+App.use('/api/address', address);
 App.use('/api/image', image);
 App.use('/api/user', user);
 App.use('/api/order', order);

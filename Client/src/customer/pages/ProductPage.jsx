@@ -2,18 +2,16 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { AiFillStar } from 'react-icons/ai';
-import { FaBolt, FaShoppingCart } from 'react-icons/fa';
-import Offer from '../components/Offer';
-import Exchange from '../components/Exchange';
 import ProductInfo from '../components/ProductInfo';
 import { UserContext } from '../context/UserContext';
 import 'intersection-observer';
 import { TailSpin } from 'react-loader-spinner';
 import DialogBox from '../components/DialogBox';
+import Loader from '../components/Loader';
 
 const ProductPage = () => {
 
-  const { setUser, setChanges, url, user } = useContext(UserContext);
+  const { setUser, setChanges, url, user, setSelectedProducts } = useContext(UserContext);
   const userId = localStorage.getItem('userId');
   const _id = useLocation().pathname;
   const [productDetail, setProductDetail] = useState({});
@@ -21,6 +19,7 @@ const ProductPage = () => {
   const [isLoader2, setIsLoader2] = useState(true);
   const [isDialog, setIsDialog] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
+  const [text, setText] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const caraouselRef = useRef([]);
   const Navigate = useNavigate();
@@ -97,12 +96,15 @@ const ProductPage = () => {
             details.cartItems.push(productDetail._id);
             return details;
           });
+          setText('Your product has been added to the cart');
+          setIsDialog(true);
           setChanges(prev => [prev++]);
         }
       } catch (error) {
         console.error(error);
       }
     } else {
+      setText('Please login first!')
       setIsDialog(true);
     }
   }
@@ -112,11 +114,20 @@ const ProductPage = () => {
       caraouselRef.current.forEach(element => {
         element.style.transform = `translateX(-${activeIndex * 100}%)`
       });
-      console.log(productDetail)
       setActiveIndex((prevIndex) => (prevIndex + 1) % productDetail?.img.length);
     }, 3000);
     return () => clearInterval(interval);
   }, [productDetail, activeIndex]);
+
+  const handleBuy = () => {
+    if(user._id){
+      setSelectedProducts([productDetail])
+      Navigate('/address')
+    }else{
+      setText("Please Login First!");
+      setIsDialog(true);
+    }
+  }
 
   return (
     <>
@@ -151,10 +162,10 @@ const ProductPage = () => {
           </aside>
           <ProductInfo setImgIndex={setImgIndex} productDetail={productDetail} imgIndex={imgIndex} />
           <aside className='w-full flex justify-center my-5 gap-4'>
-            <button onClick={handleCart} className='hover:bg-yellow-400 text-white flex items-center gap-2 justify-center rounded md:p-3 md:px-4 p-2 px-3 text-base bg-yellow-500 md:text-xl'><FaShoppingCart />Add to Cart</button>
-            <button className='hover:bg-orange-400 flex items-center justify-center gap-2 text-white rounded md:p-3 md:px-4 p-2 px-3 text-base bg-orange-500 md:text-xl'><FaBolt />Buy Now</button>
+            <button onClick={handleCart} className='hover:bg-slate-700 text-white flex items-center gap-2 justify-center rounded md:p-3 md:px-4 p-2 px-3 text-base bg-slate-800 md:text-xl'>Add to Cart</button>
+            <button onClick={handleBuy} className='hover:bg-slate-700 flex items-center justify-center gap-2 text-white rounded md:p-3 md:px-4 p-2 px-3 text-base bg-slate-800 md:text-xl'>Buy Now</button>
           </aside>
-          {isDialog && <DialogBox setIsDialog={setIsDialog} isDialog={isDialog} />}
+          {isDialog && <DialogBox text={text} setIsDialog={setIsDialog} isDialog={isDialog} />}
           <aside className='flex flex-col gap-8'>
             <div className='w-full flex justify-center'>
               <div className='w-fit flex justify-center flex-col gap-1'>
@@ -180,7 +191,7 @@ const ProductPage = () => {
               }) : <div className='flex-grow w-full flex justify-center items-center'><TailSpin width={60} height={60} color='blue' /></div>}
             </div>
           </aside>
-        </section> : <div className='flex-grow w-full flex justify-center items-center'><TailSpin width={60} height={60} color='blue' /></div>}
+        </section> : <Loader />}
     </>
   )
 }
