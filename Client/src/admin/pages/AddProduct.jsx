@@ -85,14 +85,14 @@ const AddProduct = () => {
           <label htmlFor="name" className='text-lg'>Product Name</label>
           <input placeholder='Product name' onChange={handleForm} id='name' type="text" className='inputPrimary' value={name} />
           <label htmlFor="image" className='text-lg'>Images</label>
-          <div id='image' className='my-4 flex'>
-            {inputImg.length !== 0 && inputImg.map(i => {
-              return <ImgBox key={i} name={i} />
-            })}
+          <div id='image' className='my-4 gap-3 overflow-x-auto p-2 flex'>
             <div onDragOver={e => e.preventDefault()}>
               <input onChange={addImgHandle} id='addImg' type="file" className='hidden' multiple />
               <label htmlFor='addImg' className='flex flex-col text-lg text-blue-500 cursor-pointer  items-center justify-center bg-slate-100 h-28 w-28 rounded border-2 border-blue-500'><FiUpload className='h-10 w-10' />Add Image</label>
             </div>
+            {inputImg.length !== 0 && inputImg.map(i => {
+              return <ImgBox key={i} name={i} />
+            })}
           </div>
           <DropDown dropDownValue={dropDownValue} setDropDownValue={setDropDownValue} formDetails={formDetails} setFormDetails={setFormDetails} setProperties={setProperties} setChoosedCategory={setChoosedCategory} name="product" noSelectionText="No Category" category={category} dropInputCss="w-1/4 my-4" dropDownCss="w-[18.4%]" />
           <ChooseCategories propertiesToFill={propertiesToFill} properties={properties} setProperties={setProperties} />

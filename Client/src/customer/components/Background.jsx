@@ -19,7 +19,7 @@ const Background = ({ backgroundRef }) => {
     }, [activeIndex]);
 
     return (
-        <div className={`lg:h-[760px] relative md:h-72 sm:h-60 overflow-hidden h-52 w-full flex items-center`}>
+        <div className={`lg:min-h-[calc(100vh-3.5rem)] relative md:h-72 sm:h-60 overflow-hidden h-52 w-full flex items-center`}>
             {caraousel.map((item, index) => {
                 return <div key={index}  className={`min-w-full relative h-full flex flex-col`}>
                     <img ref={e => caraouselRef.current[index] = e} src={`/assets/svgs/${item}`} className={`transition-transform duration-1000 object-cover w-full h-full absolute`} alt="" />

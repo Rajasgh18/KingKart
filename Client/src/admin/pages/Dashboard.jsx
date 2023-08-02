@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Widget from '../components/Widget';
-import Featured from '../components/featured/Featured';
 import Chart from '../components/Chart';
 
 const Dashboard = () => {

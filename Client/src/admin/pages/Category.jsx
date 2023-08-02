@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import DropDown from '../components/DropDown';
 import CategoryTable from '../components/CategoryTable';
-import {TailSpin} from 'react-loader-spinner';
+import { TailSpin } from 'react-loader-spinner';
 import CategoryProperty from '../components/CategoryProperty';
 import { FiUpload } from "react-icons/fi";
 import ImgBox from '../components/ImgBox';
@@ -25,7 +25,8 @@ const Category = () => {
         data = { categoryName: categoryDetails.categoryName, parentCategory: null, properties, categoryImg: inputImg };
       for (let i = 0; i < category.length; i++) {
         if (category[i].categoryName === categoryDetails.categoryName) {
-          const res = await axios.put(`${url}/category/${category[i]._id, data}`);
+          console.log(category[i]._id)
+          const res = await axios.put(`${url}/category/${category[i]._id}`, data);
           setCategoryDetails({ categoryName: "", parentCategory: "No Selection" });
           setProperties([])
           setInputImg(null);

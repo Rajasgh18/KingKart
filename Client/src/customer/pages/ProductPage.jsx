@@ -120,10 +120,10 @@ const ProductPage = () => {
   }, [productDetail, activeIndex]);
 
   const handleBuy = () => {
-    if(user._id){
+    if (user._id) {
       setSelectedProducts([productDetail])
       Navigate('/address')
-    }else{
+    } else {
       setText("Please Login First!");
       setIsDialog(true);
     }
@@ -160,6 +160,14 @@ const ProductPage = () => {
             {/* <Offer /> */}
             {/* <Exchange productDetail={productDetail} /> */}
           </aside>
+          <aside className='flex md:gap-3 gap-2 flex-wrap md:text-base text-xs text-blue-600'>
+            {Object.keys(productDetail.properties).map((key, index) => {
+              return <div className='md:p-2 md:px-3 p-1 px-2 border border-blue-600 rounded'>
+                <span>{key} : </span>
+                <span key={index}>{productDetail.properties[key]}</span>
+              </div>
+            })}
+          </aside>
           <ProductInfo setImgIndex={setImgIndex} productDetail={productDetail} imgIndex={imgIndex} />
           <aside className='w-full flex justify-center my-5 gap-4'>
             <button onClick={handleCart} className='hover:bg-slate-700 text-white flex items-center gap-2 justify-center rounded md:p-3 md:px-4 p-2 px-3 text-base bg-slate-800 md:text-xl'>Add to Cart</button>
@@ -175,11 +183,11 @@ const ProductPage = () => {
             </div>
             <div className='flex scrollBar p-2 gap-5'>
               {!isLoader2 ? products.map((p, index) => {
-                return <div
+                return p._id !== productDetail._id && <div
                   className='flex relative bottomA flex-shrink-0 text-slate-700 hover:text-blue-500 flex-col gap-2'
                   onClick={() => { Navigate(`/${p._id}`) }}
                   ref={(element) => { (productRefs.current[index] = element) }} key={p._id}>
-                  <img src={`assets/productImg/${p.img[0]}`} className='h-40 p-2 w-40 duration-200 cursor-pointer transition-transform hover:scale-110 bg-white shadow-[0_0_10px] shadow-slate-300 rounded-lg' alt="" />
+                  <img src={`assets/productImg/${p.img[0]}`} className='h-40 p-2 w-40 duration-200 cursor-pointer object-contain transition-transform hover:scale-110 bg-white shadow-[0_0_10px] shadow-slate-300 rounded-lg' alt="" />
                   <h4 className='text-inherit'>{p.name.length <= 18 ? p.name : `${p.name.substring(0, 18)}...`}</h4>
                   <span className='flex rounded px-1 bg-green-500 text-white items-center justify-center gap-1 w-fit'>{p.rating}<AiFillStar /></span>
                   <div className='flex gap-2 items-end'>

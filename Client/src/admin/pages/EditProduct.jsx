@@ -107,14 +107,14 @@ const EditProduct = () => {
                     <label htmlFor="name" className='text-lg'>Product Name</label>
                     <input onChange={e => setFormDetails({ ...formDetails, [e.target.id]: e.target.value })} id='name' type="text" className='inputPrimary' value={formDetails.name} />
                     <label htmlFor="image" className='text-lg'>Images</label>
-                    <div id='image' className='my-4 flex'>
-                        {inputImg && inputImg.map(i => {
-                            return <ImgBox key={i} name={i} />;
-                        })}
-                        <div onDragOver={e => e.preventDefault()}>
+                    <div id='image' className='my-4 flex gap-3 overflow-x-auto py-2'>
+                    <div onDragOver={e => e.preventDefault()}>
                             <input onChange={addImgHandle} id='addImg' type="file" className='hidden' multiple />
                             <label htmlFor='addImg' className='flex flex-col text-lg text-blue-500 cursor-pointer  items-center justify-center bg-slate-100 h-28 w-28 rounded border-2 border-blue-500'><FiUpload className='h-10 w-10' />Add Image</label>
                         </div>
+                        {inputImg && inputImg.map(i => {
+                            return <ImgBox key={i} name={i} />;
+                        })}
                     </div>
                     <DropDown choosedCategories={choosedCategory} formDetails={formDetails} setFormDetails={setFormDetails} setProperties={setProperties} setChoosedCategory={setChoosedCategory} name="product" noSelectionText="No Category" category={category} dropInputCss="w-1/4 my-4" dropDownCss="w-[18.4%]" />
                     <ChooseCategories propertiesToFill={propertiesToFill} name="edit" properties={properties} setProperties={setProperties} />
